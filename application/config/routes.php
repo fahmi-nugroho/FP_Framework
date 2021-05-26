@@ -53,6 +53,8 @@ $route['default_controller'] = 'OnlineShop';
 $route['produk'] = 'OnlineShop/products';
 $route['blog'] = '';
 $route['about'] = 'OnlineShop/about';
+$route['login'] = 'OnlineShop/login';
+$route['register'] = 'OnlineShop/register';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

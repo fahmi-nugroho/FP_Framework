@@ -23,4 +23,18 @@ class OnlineShop extends CI_Controller {
 		$this->load->view('OnlineShop/about');
         $this->load->view('OnlineShop/footer');
 	}
+
+	public function login()
+	{
+        $this->load->view('OnlineShop/header');
+		$this->load->view('OnlineShop/login');
+        $this->load->view('OnlineShop/footer');
+	}
+
+	public function register()
+	{
+        $this->load->view('OnlineShop/header');
+		$this->load->view('OnlineShop/register');
+        $this->load->view('OnlineShop/footer');
+	}
 }

@@ -75,7 +75,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                 <?php endif; ?>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">Login</a>
+                <a class="nav-link" href="<?php echo base_url() ?>login">Login</a>
               </li>
             </ul>
           </div>
