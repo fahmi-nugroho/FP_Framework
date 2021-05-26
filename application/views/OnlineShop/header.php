@@ -74,8 +74,11 @@ https://templatemo.com/tm-546-sixteen-clothing
                     <span class="sr-only">(current)</span>
                 <?php endif; ?>
               </li>
-              <li class="nav-item">
+              <li class="nav-item <?= (uri_string() == "login" || uri_string() == "register") ? "active" : "" ; ?>">
                 <a class="nav-link" href="<?php echo base_url() ?>login">Login</a>
+                <?php if (uri_string() == "login" || uri_string() == "register"): ?>
+                    <span class="sr-only">(current)</span>
+                <?php endif; ?>
               </li>
             </ul>
           </div>

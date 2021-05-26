@@ -291,7 +291,7 @@ header .navbar {
 }
 .navbar .navbar-toggler {
 	border-color: #fff;
-	background-color: #fff;	
+	background-color: #fff;
 	height: 36px;
 	outline: none;
 	border-radius: 0px;
@@ -426,7 +426,13 @@ header .navbar {
 	position: relative;
 }
 
+.product-image{
+  height: 250px;
+  overflow: hidden;
+}
+
 .product-item img {
+  /* min-height: 250px; */
 	width: 100%;
 	overflow: hidden;
 }
@@ -842,7 +848,7 @@ footer .inner-content p a {
 
 .contact-form input {
 	font-size: 14px;
-	width: 100%;
+	width: 99%;
 	height: 44px;
 	display: inline-block;
 	line-height: 42px;

@@ -33,12 +33,15 @@
               <a href="<?php echo base_url() ?>produk">lihat semua produk <i class="fa fa-angle-right"></i></a>
             </div>
           </div>
+
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="assets/images/product_01.jpg" alt=""></a>
+              <div class="product-image d-flex align-items-center justify-content-center">
+                <a href="#"><img src="assets/images/Batik/batik khas sidoarjo, lasem dan madura.jpg" alt=""></a>
+              </div>
               <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <h6>$25.75</h6>
+                <a href="#"><h4>Lasem dan Madura</h4></a>
+                <h6>Rp <?php echo number_format(150000, 0, ',', '.') ?></h6>
                 <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
                 <ul class="stars">
                   <li><i class="fa fa-star"></i></li>
@@ -51,12 +54,15 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="assets/images/product_02.jpg" alt=""></a>
+              <div class="product-image d-flex align-items-center justify-content-center">
+                <a href="#"><img src="assets/images/Batik/Batik Sidoarjo Motif Bunga kupu kupu.jpg" alt=""></a>
+              </div>
               <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <h6>$30.25</h6>
+                <a href="#"><h4>Bunga Kupu - kupu</h4></a>
+                <h6>Rp <?php echo number_format(75000, 0, ',', '.') ?></h6>
                 <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
                 <ul class="stars">
                   <li><i class="fa fa-star"></i></li>
@@ -69,12 +75,15 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="assets/images/product_03.jpg" alt=""></a>
+              <div class="product-image d-flex align-items-center justify-content-center">
+                <a href="#"><img src="assets/images/Batik/Batik Sidoarjo Motif Burung Merak 1.jpg" alt=""></a>
+              </div>
               <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <h6>$20.45</h6>
+                <a href="#"><h4>Burung Merak 1</h4></a>
+                <h6>Rp <?php echo number_format(110000, 0, ',', '.') ?></h6>
                 <p>Sixteen Clothing is free CSS template provided by TemplateMo.</p>
                 <ul class="stars">
                   <li><i class="fa fa-star"></i></li>
@@ -87,12 +96,15 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="assets/images/product_04.jpg" alt=""></a>
+              <div class="product-image d-flex align-items-center justify-content-center">
+                <a href="#"><img src="assets/images/Batik/Batik Sidoarjo Motif Burung Merak 2.jpg" alt=""></a>
+              </div>
               <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <h6>$15.25</h6>
+                <a href="#"><h4>Burung Merak 2</h4></a>
+                <h6>Rp <?php echo number_format(90000, 0, ',', '.') ?></h6>
                 <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
                 <ul class="stars">
                   <li><i class="fa fa-star"></i></li>
@@ -105,12 +117,15 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="assets/images/product_05.jpg" alt=""></a>
+              <div class="product-image d-flex align-items-center justify-content-center">
+                <a href="#"><img src="assets/images/Batik/batik sidoarjo motif kembang bayem.jpg" alt=""></a>
+              </div>
               <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <h6>$12.50</h6>
+                <a href="#"><h4>kembang Bayem</h4></a>
+                <h6>Rp <?php echo number_format(88000, 0, ',', '.') ?></h6>
                 <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
                 <ul class="stars">
                   <li><i class="fa fa-star"></i></li>
@@ -123,12 +138,15 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="assets/images/product_06.jpg" alt=""></a>
+              <div class="product-image d-flex align-items-center justify-content-center">
+                <a href="#"><img src="assets/images/Batik/Batik Sidoarjo Motif Mahkota.jpg" alt=""></a>
+              </div>
               <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <h6>$22.50</h6>
+                <a href="#"><h4>Mahkota</h4></a>
+                <h6>Rp <?php echo number_format(92000, 0, ',', '.') ?></h6>
                 <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
                 <ul class="stars">
                   <li><i class="fa fa-star"></i></li>
