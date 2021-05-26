@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-    <title>Sixteen Clothing</title>
+    <title>Batik Jetis</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo base_url() ?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +43,7 @@ https://templatemo.com/tm-546-sixteen-clothing
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="<?php echo base_url() ?>"><h2>Sixteen <em>Clothing</em></h2></a>
+          <a class="navbar-brand" href="<?php echo base_url() ?>"><h2>Batik <em>Jetis</em></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -56,23 +56,26 @@ https://templatemo.com/tm-546-sixteen-clothing
                     <?php endif; ?>
                 </a>
               </li>
-              <li class="nav-item <?= (uri_string() == "products") ? "active" : "" ; ?>">
-                <a class="nav-link" href="<?php echo base_url() ?>products">Our Products</a>
-                <?php if (uri_string() == "products"): ?>
+              <li class="nav-item <?= (uri_string() == "produk") ? "active" : "" ; ?>">
+                <a class="nav-link" href="<?php echo base_url() ?>produk">Produk</a>
+                <?php if (uri_string() == "produk"): ?>
+                    <span class="sr-only">(current)</span>
+                <?php endif; ?>
+              </li>
+              <li class="nav-item <?= (uri_string() == "blog") ? "active" : "" ; ?>">
+                <a class="nav-link" href="">Blog</a>
+                <?php if (uri_string() == "blog"): ?>
                     <span class="sr-only">(current)</span>
                 <?php endif; ?>
               </li>
               <li class="nav-item <?= (uri_string() == "about") ? "active" : "" ; ?>">
-                <a class="nav-link" href="<?php echo base_url() ?>about">About Us</a>
+                <a class="nav-link" href="<?php echo base_url() ?>about">Tentang Kami</a>
                 <?php if (uri_string() == "about"): ?>
                     <span class="sr-only">(current)</span>
                 <?php endif; ?>
               </li>
-              <li class="nav-item <?= (uri_string() == "contact") ? "active" : "" ; ?>">
-                <a class="nav-link" href="<?php echo base_url() ?>contact">Contact Us</a>
-                <?php if (uri_string() == "contact"): ?>
-                    <span class="sr-only">(current)</span>
-                <?php endif; ?>
+              <li class="nav-item">
+                <a class="nav-link" href="">Login</a>
               </li>
             </ul>
           </div>

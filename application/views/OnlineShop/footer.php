@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="inner-content">
-          <p>Copyright &copy; 2020 Sixteen Clothing Co., Ltd.
+          <p>Copyright &copy; 2021 Batik Jetis Co., Ltd.
 
         - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
         </div>
@@ -33,7 +33,7 @@
       cleared[t.id] = 1;  // you could use true and false, but that's more typing
       t.value='';         // with more chance of typos
       t.style.color='#fff';
-      }
+    }
   }
 </script>
 

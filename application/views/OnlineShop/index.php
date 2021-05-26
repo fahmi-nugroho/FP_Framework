@@ -29,8 +29,8 @@
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
-              <h2>Latest Products</h2>
-              <a href="products.php">view all products <i class="fa fa-angle-right"></i></a>
+              <h2>Produk Terbaru</h2>
+              <a href="<?php echo base_url() ?>produk">lihat semua produk <i class="fa fa-angle-right"></i></a>
             </div>
           </div>
           <div class="col-md-4">
@@ -47,7 +47,7 @@
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
                 </ul>
-                <span>Reviews (24)</span>
+                <span>Terjual 24</span>
               </div>
             </div>
           </div>
@@ -65,7 +65,7 @@
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
                 </ul>
-                <span>Reviews (21)</span>
+                <span>Terjual 21</span>
               </div>
             </div>
           </div>
@@ -83,7 +83,7 @@
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
                 </ul>
-                <span>Reviews (36)</span>
+                <span>Terjual 36</span>
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
                 </ul>
-                <span>Reviews (48)</span>
+                <span>Terjual 48</span>
               </div>
             </div>
           </div>
@@ -119,7 +119,7 @@
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
                 </ul>
-                <span>Reviews (16)</span>
+                <span>Terjual 16</span>
               </div>
             </div>
           </div>
@@ -137,7 +137,7 @@
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
                 </ul>
-                <span>Reviews (32)</span>
+                <span>Terjual 32</span>
               </div>
             </div>
           </div>
@@ -150,7 +150,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
-              <h2>About Sixteen Clothing</h2>
+              <h2>Tentang Batik Jetis</h2>
             </div>
           </div>
           <div class="col-md-6">
@@ -164,7 +164,7 @@
                 <li><a href="#">Corporis, omnis doloremque</a></li>
                 <li><a href="#">Non cum id reprehenderit</a></li>
               </ul>
-              <a href="about.php" class="filled-button">Read More</a>
+              <a href="<?php echo base_url() ?>about" class="filled-button">Read More</a>
             </div>
           </div>
           <div class="col-md-6">
