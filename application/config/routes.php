@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'OnlineShop';
 $route['produk'] = 'OnlineShop/products';
+$route['produk/(:num)'] = 'OnlineShop/product/$1';
 $route['blog'] = '';
 $route['about'] = 'OnlineShop/about';
 $route['login'] = 'OnlineShop/login';

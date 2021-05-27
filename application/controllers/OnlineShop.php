@@ -5,36 +5,44 @@ class OnlineShop extends CI_Controller {
 
 	public function index()
 	{
-        $this->load->view('OnlineShop/header');
+	  $this->load->view('OnlineShop/header');
 		$this->load->view('OnlineShop/index');
-        $this->load->view('OnlineShop/footer');
+    $this->load->view('OnlineShop/footer');
 	}
 
-    public function products()
+  public function product($id)
 	{
-        $this->load->view('OnlineShop/header');
+		$data['id'] = $id;
+    $this->load->view('OnlineShop/header');
+		$this->load->view('OnlineShop/product', $data);
+    $this->load->view('OnlineShop/footer');
+	}
+
+  public function products()
+	{
+    $this->load->view('OnlineShop/header');
 		$this->load->view('OnlineShop/products');
-        $this->load->view('OnlineShop/footer');
+    $this->load->view('OnlineShop/footer');
 	}
 
-    public function about()
+  public function about()
 	{
-        $this->load->view('OnlineShop/header');
+    $this->load->view('OnlineShop/header');
 		$this->load->view('OnlineShop/about');
-        $this->load->view('OnlineShop/footer');
+    $this->load->view('OnlineShop/footer');
 	}
 
 	public function login()
 	{
-        $this->load->view('OnlineShop/header');
+    $this->load->view('OnlineShop/header');
 		$this->load->view('OnlineShop/login');
-        $this->load->view('OnlineShop/footer');
+    $this->load->view('OnlineShop/footer');
 	}
 
 	public function register()
 	{
-        $this->load->view('OnlineShop/header');
+    $this->load->view('OnlineShop/header');
 		$this->load->view('OnlineShop/register');
-        $this->load->view('OnlineShop/footer');
+    $this->load->view('OnlineShop/footer');
 	}
 }

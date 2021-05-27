@@ -37,10 +37,10 @@
           <div class="col-md-4">
             <div class="product-item">
               <div class="product-image d-flex align-items-center justify-content-center">
-                <a href="#"><img src="assets/images/Batik/batik khas sidoarjo, lasem dan madura.jpg" alt=""></a>
+                <a href="<?php echo base_url() ?>produk/1"><img src="<?php echo base_url() ?>assets/images/Batik/batik khas sidoarjo, lasem dan madura.jpg" alt=""></a>
               </div>
               <div class="down-content">
-                <a href="#"><h4>Lasem dan Madura</h4></a>
+                <a href="<?php echo base_url() ?>produk/1"><h4>Lasem dan Madura</h4></a>
                 <h6>Rp <?php echo number_format(150000, 0, ',', '.') ?></h6>
                 <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
                 <ul class="stars">

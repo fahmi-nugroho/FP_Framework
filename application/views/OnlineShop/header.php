@@ -56,7 +56,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                     <?php endif; ?>
                 </a>
               </li>
-              <li class="nav-item <?= (uri_string() == "produk") ? "active" : "" ; ?>">
+              <li class="nav-item <?= (substr(uri_string(), 0, 6) == "produk") ? "active" : "" ; ?>">
                 <a class="nav-link" href="<?php echo base_url() ?>produk">Produk</a>
                 <?php if (uri_string() == "produk"): ?>
                     <span class="sr-only">(current)</span>
