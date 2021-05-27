@@ -40,45 +40,33 @@ https://templatemo.com/tm-546-sixteen-clothing
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
-    <header class="">
+    <header>
       <nav class="navbar navbar-expand-lg">
         <div class="container">
           <a class="navbar-brand" href="<?php echo base_url() ?>"><h2>Batik <em>Jetis</em></h2></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item <?= (empty(uri_string())) ? "active" : "" ; ?>">
-                <a class="nav-link" href="<?php echo base_url() ?>">Home
-                    <?php if (empty(uri_string())): ?>
-                        <span class="sr-only">(current)</span>
-                    <?php endif; ?>
-                </a>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link <?= (empty(uri_string())) ? "active" : "" ; ?>" href="<?php echo base_url() ?>">Home</a>
               </li>
-              <li class="nav-item <?= (substr(uri_string(), 0, 6) == "produk") ? "active" : "" ; ?>">
-                <a class="nav-link" href="<?php echo base_url() ?>produk">Produk</a>
-                <?php if (uri_string() == "produk"): ?>
-                    <span class="sr-only">(current)</span>
-                <?php endif; ?>
+
+              <li class="nav-item">
+                <a class="nav-link <?= (substr(uri_string(), 0, 6) == "produk") ? "active" : "" ; ?>" href="<?php echo base_url() ?>produk">Produk</a>
               </li>
-              <li class="nav-item <?= (uri_string() == "blog") ? "active" : "" ; ?>">
-                <a class="nav-link" href="">Blog</a>
-                <?php if (uri_string() == "blog"): ?>
-                    <span class="sr-only">(current)</span>
-                <?php endif; ?>
+
+              <li class="nav-item">
+                <a class="nav-link <?= (uri_string() == "blog") ? "active" : "" ; ?>" href="">Blog</a>
               </li>
-              <li class="nav-item <?= (uri_string() == "about") ? "active" : "" ; ?>">
-                <a class="nav-link" href="<?php echo base_url() ?>about">Tentang Kami</a>
-                <?php if (uri_string() == "about"): ?>
-                    <span class="sr-only">(current)</span>
-                <?php endif; ?>
+
+              <li class="nav-item">
+                <a class="nav-link <?= (uri_string() == "about") ? "active" : "" ; ?>" href="<?php echo base_url() ?>about">Tentang Kami</a>
               </li>
-              <li class="nav-item <?= (uri_string() == "login" || uri_string() == "register") ? "active" : "" ; ?>">
-                <a class="nav-link" href="<?php echo base_url() ?>login">Login</a>
-                <?php if (uri_string() == "login" || uri_string() == "register"): ?>
-                    <span class="sr-only">(current)</span>
-                <?php endif; ?>
+
+              <li class="nav-item">
+                <a class="nav-link <?= (uri_string() == "login" || uri_string() == "register") ? "active" : "" ; ?>" href="<?php echo base_url() ?>login">Login</a
               </li>
             </ul>
           </div>
