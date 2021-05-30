@@ -1,0 +1,11 @@
+/* Chrome, Safari, Edge, Opera */
+#inputJumlah::-webkit-outer-spin-button,
+#inputJumlah::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+#inputJumlah[type=number] {
+  -moz-appearance: textfield;
+}

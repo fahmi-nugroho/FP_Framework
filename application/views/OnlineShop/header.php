@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -13,19 +11,21 @@
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo base_url() ?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<!--
 
-TemplateMo 546 Sixteen Clothing
-
-https://templatemo.com/tm-546-sixteen-clothing
-
--->
+    <!--
+    TemplateMo 546 Sixteen Clothing
+    https://templatemo.com/tm-546-sixteen-clothing
+    -->
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/fontawesome.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/templatemo-sixteen.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/owl.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/custom.css">
 
+    <!-- Bootstrap core JavaScript -->
+    <script src="<?php echo base_url() ?>vendor/jquery/jquery-3.5.1.min.js"></script>
+    <script src="<?php echo base_url() ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   </head>
 
   <body>
@@ -66,7 +66,7 @@ https://templatemo.com/tm-546-sixteen-clothing
               </li>
 
               <li class="nav-item">
-                <a class="nav-link <?= (uri_string() == "login" || uri_string() == "register") ? "active" : "" ; ?>" href="<?php echo base_url() ?>login">Login</a
+                <a class="nav-link <?= (uri_string() == "login" || uri_string() == "register") ? "active" : "" ; ?>" href="<?php echo base_url() ?>login">Login <!--<span class="badge bg-danger">4</span>--></a>
               </li>
             </ul>
           </div>
