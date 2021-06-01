@@ -46,10 +46,24 @@ class OnlineShop extends CI_Controller {
     $this->load->view('OnlineShop/footer');
 	}
 
-	public function admin()
+	public function adminartikel()
 	{
-    $this->load->view('OnlineShop/header');
-		$this->load->view('OnlineShop/admin');
+    $this->load->view('OnlineShop/headeradmin');
+		$this->load->view('OnlineShop/adminartikel');
+    $this->load->view('OnlineShop/footer');
+	}
+
+	public function adminproduk()
+	{
+    $this->load->view('OnlineShop/headeradmin');
+		$this->load->view('OnlineShop/adminproduk');
+    $this->load->view('OnlineShop/footer');
+	}
+
+	public function admintransaksi()
+	{
+    $this->load->view('OnlineShop/headeradmin');
+		$this->load->view('OnlineShop/admintransaksi');
     $this->load->view('OnlineShop/footer');
 	}
 }
