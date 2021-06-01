@@ -56,6 +56,7 @@ $route['blog'] = '';
 $route['about'] = 'OnlineShop/about';
 $route['login'] = 'OnlineShop/login';
 $route['register'] = 'OnlineShop/register';
+$route['admin'] = 'OnlineShop/admin';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

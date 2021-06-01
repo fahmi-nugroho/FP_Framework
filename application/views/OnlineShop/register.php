@@ -7,7 +7,7 @@
               <h4>Daftar</h4>
               <div class="contact-form">
               <form id="contact" action="" method="post">
-                <div class="row">
+                <div class="row"> 
                   <div class="col-lg-12 col-md-12 col-sm-12">
                     <fieldset>
                       <input name="email" type="text" class="form-control" id="email" placeholder="Alamat Email" required="">
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="best-features about-features">
       <div class="container">
         <div class="row">
