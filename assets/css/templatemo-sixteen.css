@@ -909,6 +909,39 @@ footer .inner-content p a {
   color: #fff;
 }
 
+.best-features input {
+  font-size: 14px;
+  width: 99%;
+  height: 44px;
+  display: inline-block;
+  line-height: 42px;
+  border: 1px solid #eee;
+  border-radius: 0px;
+  margin-bottom: 30px;
+}
+
+.best-features input:focus {
+  box-shadow: none;
+  border: 1px solid #eee;
+}
+
+.best-features textarea {
+  font-size: 14px;
+  width: 100%;
+  min-width: 100%;
+  min-height: 120px;
+  height: 120px;
+  max-height: 180px;
+  border: 1px solid #eee;
+  border-radius: 0px;
+  margin-bottom: 30px;
+}
+
+.best-features textarea:focus {
+  box-shadow: none;
+  border: 1px solid #eee;
+}
+
 .accordion {
   margin-left: 30px;
 }

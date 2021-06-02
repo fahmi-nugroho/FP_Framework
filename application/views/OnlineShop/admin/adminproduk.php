@@ -20,7 +20,41 @@
               <h2>Masukkan Produk Baru</h2>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-12">
+            <form id="contact" action="" method="post">
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <fieldset>
+                    <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Produk" required="">
+                  </fieldset>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <fieldset>
+                    <input name="harga" type="text" class="form-control" id="harga" placeholder="Harga Produk" required="">
+                  </fieldset>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <fieldset>
+                    <input name="stok" type="text" class="form-control" id="stok" placeholder="Stok Produk" required="">
+                  </fieldset>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <fieldset>
+                      <textarea name="deskripsi" rows="6" class="form-control" id="deskripsi" placeholder="Deskripsi Artikel" required=""></textarea>
+                    </fieldset>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <input class="form-control" type="file" id="formFile">
+                </div>
+                <div class="col-lg-12">
+                  <fieldset>
+                    <a type="submit" id="form-submit" class="filled-button" href="<?php echo base_url() ?>register">Tambah</a>
+                  </fieldset>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- <div class="col-md-6">
             <div class="right-image">
               <img src="assets/images/feature-image.jpg" alt="">
             </div>
@@ -36,7 +70,7 @@
                 <li><a href="#"><i class="fa fa-behance"></i></a></li>
               </ul>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
