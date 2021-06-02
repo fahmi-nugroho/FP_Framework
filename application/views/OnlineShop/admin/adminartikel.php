@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div class="best-features about-features">
+    <div class="form-insert about-features">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="col-md-12">
-            <form id="contact" action="" method="post">
+            <?php echo form_open_multipart(base_url().'OnlineShopAdmin/tambah_artikel'); ?>
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <fieldset>
@@ -34,15 +34,16 @@
                     </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                  <input class="form-control" type="file" id="formFile">
+                  <input name="gambar" class="form-control" type="file" id="formFile">
                 </div>
                 <div class="col-lg-12">
                   <fieldset>
-                    <a type="submit" id="form-submit" class="filled-button" href="<?php echo base_url() ?>register">Tambah</a>
+                    <button type="submit" id="form-submit" class="filled-button">Tambah</button>
                   </fieldset>
                 </div>
               </div>
-            </form>
+            <?php echo form_close(); ?>
+            <!-- </form> -->
           </div>
           <!-- <div class="col-md-6">
             <div class="right-image">
@@ -73,7 +74,37 @@
               <h2>Daftar Artikel</h2>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="text-center">No.</th>
+                  <th scope="col" class="text-center">Judul</th>
+                  <th scope="col" class="text-center">Tanggal</th>
+                  <th scope="col" class="text-center">Isi</th>
+                  <th scope="col" class="text-center">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  $no = 1; 
+                  foreach ($artikel as $art) : 
+                ?>
+                <tr>
+                  <th scope="row" class="text-center"><?= $no++ ?></th>
+                  <td class="text-center"><?= $art->judul_artikel ?></td>
+                  <td class="text-center"><?= $art->tanggal_artikel ?></td>
+                  <td class="text-center"><?= $art->isi_artikel ?></td>
+                  <td class="text-center">
+                    <button type="button" class="btn btn-warning">Edit</button>
+                    <?= anchor('OnlineShopAdmin/hapus_artikel/'.$art->id_artikel.'/'.$art->gambar_artikel, '<button type="button" class="btn btn-danger">Hapus</button>') ?>
+                  </td>
+                </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+          <!-- <div class="col-md-4">
             <div class="team-member">
               <div class="thumb-container">
                 <img src="assets/images/team_01.jpg" alt="">
@@ -204,7 +235,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="col-md-12">
             <ul class="pages">
                 <li class="active"><a href="#">1</a></li>

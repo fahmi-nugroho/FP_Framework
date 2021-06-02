@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div class="best-features about-features">
+    <div class="form-insert about-features">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -21,7 +21,8 @@
             </div>
           </div>
           <div class="col-md-12">
-            <form id="contact" action="" method="post">
+            <!-- <form id="contact" action="" method="post"> -->
+            <?php echo form_open_multipart('OnlineShopAdmin/tambah_produk'); ?>
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <fieldset>
@@ -40,19 +41,20 @@
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <fieldset>
-                      <textarea name="deskripsi" rows="6" class="form-control" id="deskripsi" placeholder="Deskripsi Artikel" required=""></textarea>
+                      <textarea name="deskripsi" rows="6" class="form-control" id="deskripsi" placeholder="Deskripsi Produk" required=""></textarea>
                     </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                  <input class="form-control" type="file" id="formFile">
+                  <input name="gambar" class="form-control" type="file" id="formFile">
                 </div>
                 <div class="col-lg-12">
                   <fieldset>
-                    <a type="submit" id="form-submit" class="filled-button" href="<?php echo base_url() ?>register">Tambah</a>
+                    <button type="submit" id="form-submit" class="filled-button">Tambah</button>
                   </fieldset>
                 </div>
               </div>
-            </form>
+            <?php echo form_close(); ?>
+            <!-- </form> -->
           </div>
           <!-- <div class="col-md-6">
             <div class="right-image">
@@ -83,7 +85,37 @@
               <h2>Daftar Produk</h2>
             </div>
           </div>
-          <div class="col-md-4">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center">No.</th>
+                <th scope="col" class="text-center">Nama</th>
+                <th scope="col" class="text-center">Harga</th>
+                <th scope="col" class="text-center">Stok</th>
+                <th scope="col" class="text-center">Deskripsi</th>
+                <th scope="col" class="text-center">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+                $no = 1; 
+                foreach ($produk as $prd) : 
+              ?>
+              <tr>
+                <th scope="row" class="text-center"><?= $no++ ?></th>
+                <td class="text-center"><?= $prd->nama_produk ?></td>
+                <td class="text-center"><?= $prd->harga_produk ?></td>
+                <td class="text-center"><?= $prd->stok_produk ?></td>
+                <td class="text-center"><?= $prd->deskripsi_produk ?></td>
+                <td class="text-center">
+                  <button type="button" class="btn btn-warning">Edit</button>
+                  <?= anchor('OnlineShopAdmin/hapus_produk/'.$prd->id_produk.'/'.$prd->gambar_produk, '<button type="button" class="btn btn-danger">Hapus</button>') ?>
+                </td>
+              </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+          <!-- <div class="col-md-4">
             <div class="team-member">
               <div class="thumb-container">
                 <img src="assets/images/team_01.jpg" alt="">
@@ -214,7 +246,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="col-md-12">
             <ul class="pages">
                 <li class="active"><a href="#">1</a></li>

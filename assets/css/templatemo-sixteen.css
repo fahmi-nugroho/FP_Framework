@@ -909,7 +909,7 @@ footer .inner-content p a {
   color: #fff;
 }
 
-.best-features input {
+.form-insert input {
   font-size: 14px;
   width: 99%;
   height: 44px;
@@ -920,12 +920,12 @@ footer .inner-content p a {
   margin-bottom: 30px;
 }
 
-.best-features input:focus {
+.form-insert input:focus {
   box-shadow: none;
   border: 1px solid #eee;
 }
 
-.best-features textarea {
+.form-insert textarea {
   font-size: 14px;
   width: 100%;
   min-width: 100%;
@@ -937,9 +937,29 @@ footer .inner-content p a {
   margin-bottom: 30px;
 }
 
-.best-features textarea:focus {
+.form-insert textarea:focus {
   box-shadow: none;
   border: 1px solid #eee;
+}
+
+.form-insert button.filled-button {
+  background-color: #f33f3f;
+  color: #fff;
+  font-size: 14px;
+  text-transform: capitalize;
+  font-weight: 300;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  transition: all 0.3s;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.form-insert button.filled-button:hover {
+  background-color: #121212;
+  color: #fff;
 }
 
 .accordion {
