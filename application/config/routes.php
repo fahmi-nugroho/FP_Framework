@@ -56,9 +56,9 @@ $route['blog'] = '';
 $route['about'] = 'OnlineShop/about';
 $route['login'] = 'OnlineShop/login';
 $route['register'] = 'OnlineShop/register';
-$route['adminartikel'] = 'OnlineShop/adminartikel';
-$route['adminproduk'] = 'OnlineShop/adminproduk';
-$route['admintransaksi'] = 'OnlineShop/admintransaksi';
+$route['adminartikel'] = 'OnlineShopAdmin/adminartikel';
+$route['adminproduk'] = 'OnlineShopAdmin/adminproduk';
+$route['admintransaksi'] = 'OnlineShopAdmin/admintransaksi';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
