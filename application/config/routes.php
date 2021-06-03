@@ -56,6 +56,7 @@ $route['blog'] = '';
 $route['about'] = 'OnlineShop/about';
 $route['login'] = 'OnlineShop/login';
 $route['register'] = 'OnlineShop/register';
+// $route['keranjang'] = 'OnlineShop/keranjang';
 $route['adminartikel'] = 'OnlineShopAdmin/adminartikel';
 $route['adminproduk'] = 'OnlineShopAdmin/adminproduk';
 $route['admintransaksi'] = 'OnlineShopAdmin/admintransaksi';
