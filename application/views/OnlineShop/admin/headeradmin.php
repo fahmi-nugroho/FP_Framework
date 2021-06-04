@@ -50,11 +50,11 @@
           <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link <?= (uri_string() == "adminartikel") ? "active" : "" ; ?>" href="<?php echo base_url() ?>adminartikel">Artikel</a>
+                <a class="nav-link <?= (substr(uri_string(), 0, 12) == "adminartikel") ? "active" : "" ; ?>" href="<?php echo base_url() ?>adminartikel">Artikel</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link <?= (uri_string() == "adminproduk") ? "active" : "" ; ?>" href="<?php echo base_url() ?>adminproduk">Produk</a>
+                <a class="nav-link <?= (substr(uri_string(), 0, 11) == "adminproduk") ? "active" : "" ; ?>" href="<?php echo base_url() ?>adminproduk">Produk</a>
               </li>
 
               <li class="nav-item">

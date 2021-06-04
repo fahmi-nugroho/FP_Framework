@@ -45,7 +45,7 @@
                     </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                  <input name="gambar" class="form-control" type="file" id="formFile">
+                  <input name="gambar" class="form-control" type="file" id="formFile" required="">
                 </div>
                 <div class="col-lg-12">
                   <fieldset>
@@ -93,7 +93,7 @@
                 <th scope="col" class="text-center">Harga</th>
                 <th scope="col" class="text-center">Stok</th>
                 <th scope="col" class="text-center">Deskripsi</th>
-                <th scope="col" class="text-center">Aksi</th>
+                <th scope="col" colspan="2" class="text-center">Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -108,7 +108,9 @@
                 <td class="text-center"><?= $prd->stok_produk ?></td>
                 <td class="text-center"><?= $prd->deskripsi_produk ?></td>
                 <td class="text-center">
-                  <button type="button" class="btn btn-warning">Edit</button>
+                  <?= anchor('adminproduk/edit/'.$prd->id_produk, '<button type="button" class="btn btn-warning">Edit</button>') ?>
+                </td>
+                <td class="text-center" onclick="javascript: return confirm('Anda yakin hapus?')">
                   <?= anchor('OnlineShopAdmin/hapus_produk/'.$prd->id_produk.'/'.$prd->gambar_produk, '<button type="button" class="btn btn-danger">Hapus</button>') ?>
                 </td>
               </tr>

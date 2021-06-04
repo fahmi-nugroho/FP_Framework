@@ -57,7 +57,9 @@ $route['about'] = 'OnlineShop/about';
 $route['login'] = 'OnlineShop/login';
 $route['register'] = 'OnlineShop/register';
 $route['adminartikel'] = 'OnlineShopAdmin/adminartikel';
+$route['adminartikel/edit/(:num)'] = 'OnlineShopAdmin/edit_artikel/$1';
 $route['adminproduk'] = 'OnlineShopAdmin/adminproduk';
+$route['adminproduk/edit/(:num)'] = 'OnlineShopAdmin/edit_produk/$1';
 $route['admintransaksi'] = 'OnlineShopAdmin/admintransaksi';
 
 $route['404_override'] = '';

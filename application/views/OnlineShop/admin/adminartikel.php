@@ -34,7 +34,7 @@
                     </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                  <input name="gambar" class="form-control" type="file" id="formFile">
+                  <input name="gambar" class="form-control" type="file" id="formFile" required="">
                 </div>
                 <div class="col-lg-12">
                   <fieldset>
@@ -43,7 +43,6 @@
                 </div>
               </div>
             <?php echo form_close(); ?>
-            <!-- </form> -->
           </div>
           <!-- <div class="col-md-6">
             <div class="right-image">
@@ -82,7 +81,7 @@
                   <th scope="col" class="text-center">Judul</th>
                   <th scope="col" class="text-center">Tanggal</th>
                   <th scope="col" class="text-center">Isi</th>
-                  <th scope="col" class="text-center">Aksi</th>
+                  <th scope="col" colspan="2" class="text-center">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -96,7 +95,9 @@
                   <td class="text-center"><?= $art->tanggal_artikel ?></td>
                   <td class="text-center"><?= $art->isi_artikel ?></td>
                   <td class="text-center">
-                    <button type="button" class="btn btn-warning">Edit</button>
+                    <?= anchor('adminartikel/edit/'.$art->id_artikel, '<button type="button" class="btn btn-warning">Edit</button>') ?>
+                  </td>
+                  <td class="text-center" onclick="javascript: return confirm('Anda yakin hapus?')">
                     <?= anchor('OnlineShopAdmin/hapus_artikel/'.$art->id_artikel.'/'.$art->gambar_artikel, '<button type="button" class="btn btn-danger">Hapus</button>') ?>
                   </td>
                 </tr>

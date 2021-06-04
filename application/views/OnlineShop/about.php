@@ -4,8 +4,8 @@
         <div class="row">
           <div class="col-md-12">
             <div class="text-content">
-              <h4>about us</h4>
-              <h2>our company</h2>
+              <h4>Tentang Kami</h4>
+              <h2>Kampung Batik Jetis</h2>
             </div>
           </div>
         </div>
@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
-              <h2>Our Background</h2>
+              <h2>Sejarah Kampoeng Jetis</h2>
             </div>
           </div>
           <div class="col-md-6">
@@ -28,14 +28,15 @@
           </div>
           <div class="col-md-6">
             <div class="left-content">
-              <h4>Who we are &amp; What we do?</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat. Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis.</p>
-              <ul class="social-icons">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-              </ul>
+              <h4>Kenapa Dinamakan Kampung Batik Jetis?</h4>
+              <p>
+                Dinamakan kampoeng batik tulis, karena sebagian besar warga Kelurahan Jetis Kecamatan Sidoarjo ini adalah pembatik.
+                Mereka juga menjual langsung karya karyanya di rumah masing masing. Karena itu, kawasan ini dikukuhkan sebagai Kampoeng Batik Tulis Jetis, Sidoarjo.
+                <br><br>
+                Batik pertama kali hadir di Kampung Jetis pada tahun 1675. Pelopor seni batik ini merupakan seorang pendakwah agama islam bernama Mbah Mulyadi yang datang dari suatu kerajaan yang tidak diketahui namanya. Pada mulanya ia menyamar sebagai pedagang sehingga mempermudah untuk membaur dan akrab dengan masyarakat kampung. Karena hebat, akhirnya banyak masyarakat sekitar yang menjadi pengikutnya.
+                <br><br>
+                Saat aktif menyebarkan agama islam, ia membuka latihan membuat batik tulis kepada para jamaah. Latihan membatik ini mereka lakukan di Masjid Jami’ Al-Abror yang juga didirikan oleh Mbah Mulyadi pada akhir tahun 1675. Hasil batik tulis yang dihasilkan ini diminati oleh para pedagang dari Madura. Sehingga seringkali mereka mendapat pesanan untuk membuat batik dengan corak Madura. Itulah mengapa batik tulis dari Kampung Jetis ini terkenal sebagai penghasil batik tulis Madura.
+              </p>
             </div>
           </div>
         </div>
@@ -48,222 +49,39 @@
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
-              <h2>Our Team Members</h2>
+              <h2>Motif Asli Kampoeng Batik Jetis</h2>
             </div>
           </div>
           <div class="col-md-4">
             <div class="team-member">
               <div class="thumb-container">
-                <img src="assets/images/team_01.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
+                <img src="assets/images/batik/Batik Sidoarjo motif Beras Utah.jpg" alt="">
               </div>
               <div class="down-content">
-                <h4>Johnny William</h4>
-                <span>CO-Founder</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+                <h4>Motif Beras Utah</h4>
+                <p>Beras wutah, artinya beras tumpah, dimana Sidoarjo berlimpah ruah makanan pokok dan penghasil beras terbesar sehingga harus di ekspor keluar kota atau pulau.</p>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="team-member">
               <div class="thumb-container">
-                <img src="assets/images/team_02.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
+                <img src="assets/images/batik/Batik Sidoarjo motif Sekardangan.jpg" alt="">
               </div>
               <div class="down-content">
-                <h4>Karry Pitcher</h4>
-                <span>Product Expert</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+                <h4>Motif Sekardangan</h4>
+                <p>Batik motif sekardangan merupakan motif pertama yang muncul dan dikenal dan hanya berwarna coklat, biru tua, dan jingga tua.</p>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="team-member">
               <div class="thumb-container">
-                <img src="assets/images/team_03.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
+                <img src="assets/images/batik/Batik Sidoarjo motif Kembang Tebu.jpg" alt="">
               </div>
               <div class="down-content">
-                <h4>Michael Soft</h4>
-                <span>Chief Marketing</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="assets/images/team_04.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Mary Cool</h4>
-                <span>Product Specialist</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="assets/images/team_05.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>George Walker</h4>
-                <span>Product Photographer</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="assets/images/team_06.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Kate Town</h4>
-                <span>General Manager</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="services">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="service-item">
-              <div class="icon">
-                <i class="fa fa-gear"></i>
-              </div>
-              <div class="down-content">
-                <h4>Product Management</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat.</p>
-                <a href="#" class="filled-button">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="service-item">
-              <div class="icon">
-                <i class="fa fa-gear"></i>
-              </div>
-              <div class="down-content">
-                <h4>Customer Relations</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat.</p>
-                <a href="#" class="filled-button">Details</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="service-item">
-              <div class="icon">
-                <i class="fa fa-gear"></i>
-              </div>
-              <div class="down-content">
-                <h4>Global Collection</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat.</p>
-                <a href="#" class="filled-button">Read More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="happy-clients">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <h2>Happy Partners</h2>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="owl-clients owl-carousel">
-              <div class="client-item">
-                <img src="assets/images/client-01.png" alt="1">
-              </div>
-
-              <div class="client-item">
-                <img src="assets/images/client-01.png" alt="2">
-              </div>
-
-              <div class="client-item">
-                <img src="assets/images/client-01.png" alt="3">
-              </div>
-
-              <div class="client-item">
-                <img src="assets/images/client-01.png" alt="4">
-              </div>
-
-              <div class="client-item">
-                <img src="assets/images/client-01.png" alt="5">
-              </div>
-
-              <div class="client-item">
-                <img src="assets/images/client-01.png" alt="6">
+                <h4>Motif Kembang Tebu</h4>
+                <p>kembang tebu, artinya bunga tebu sebagai penggambaran Sidoarjo yang dulunya memiliki ratusan hektar perkebunan tebu sebagai bahan baku sejumlah pabrik gula.</p>
               </div>
             </div>
           </div>
