@@ -91,7 +91,7 @@
         </div>
       </nav>
 
-      <div class="offcanvas offcanvas-end show" data-bs-scroll="false" tabindex="-1" id="keranjang" aria-labelledby="keranjangLabel" style="width: 450px;">
+      <div class="offcanvas offcanvas-end" data-bs-scroll="false" tabindex="-1" id="keranjang" aria-labelledby="keranjangLabel" style="width: 450px;">
         <div class="offcanvas-header border-bottom">
           <h5 class="offcanvas-title" id="keranjangLabel">Keranjang</h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
