@@ -1,15 +1,24 @@
+body{
+  min-width: 450px !important;
+}
+
 /* Chrome, Safari, Edge, Opera */
-#inputJumlah::-webkit-outer-spin-button,
-#inputJumlah::-webkit-inner-spin-button {
+.inputTextCustom::-webkit-outer-spin-button,
+.inputTextCustom::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 /* Firefox */
-#inputJumlah[type=number] {
+.inputTextCustom[type=number] {
   -moz-appearance: textfield;
 }
 
+.outer{
+  margin-top: 100px !important;
+}
+
+/* Custom Dropdown Navbar */
 .dropcustom{
   background-color: #232323;
   border: none;
@@ -35,6 +44,7 @@
 
 .dropcustom .dropdown-item.active{
   color: #f33f3f;
+  background-color: #232323;
 }
 
 .dropcustom .dropdown-item:visited{
@@ -74,6 +84,10 @@
     padding: .5rem 1rem;
   }
 
+  .dropcustom .dropdown-item.active{
+    background-color: #fff;
+  }
+
   .dropcustom .dropdown-item:visited{
     background-color: #fff;
   }
@@ -88,4 +102,11 @@
     background-color: #fff;
     color: #f33f3f;
   }
+}
+
+/* Keranjang */
+.keranjang-img{
+  width: 75px !important;
+  height: 75px !important;
+  overflow: hidden !important;
 }

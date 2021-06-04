@@ -12,7 +12,6 @@
       </div>
     </div>
 
-
     <div class="best-features about-features">
       <div class="container">
         <div class="row">
@@ -42,7 +41,6 @@
         </div>
       </div>
     </div>
-
 
     <div class="team-members">
       <div class="container">
