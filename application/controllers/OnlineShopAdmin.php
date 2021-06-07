@@ -14,7 +14,7 @@ class OnlineShopAdmin extends CI_Controller {
 		$data['artikel'] = $this->m_artikel->tampil_artikel()->result();
         $this->load->view('OnlineShop/admin/headeradmin');
 		$this->load->view('OnlineShop/admin/adminartikel', $data);
-        $this->load->view('OnlineShop/footer');
+        $this->load->view('OnlineShop/template/footer');
 	}
 
 	public function tambah_artikel()
@@ -69,7 +69,7 @@ class OnlineShopAdmin extends CI_Controller {
 		$data['artikel'] = $this->m_artikel->edit_data($where, 'artikel')->result();
 		$this->load->view('OnlineShop/admin/headeradmin');
 		$this->load->view('OnlineShop/admin/editartikel', $data);
-        $this->load->view('OnlineShop/footer');
+        $this->load->view('OnlineShop/template/footer');
 	}
 
 	public function ubah_artikel(){
@@ -121,13 +121,16 @@ class OnlineShopAdmin extends CI_Controller {
 		$data['produk'] = $this->m_produk->tampil_produk()->result();
         $this->load->view('OnlineShop/admin/headeradmin');
 		$this->load->view('OnlineShop/admin/adminproduk', $data);
-        $this->load->view('OnlineShop/footer');
+        $this->load->view('OnlineShop/template/footer');
 	}
 
 	public function tambah_produk()
 	{
 		$nama		= $this->input->post('nama');
 		$harga		= $this->input->post('harga');
+		$panjang	= $this->input->post('panjang');
+		$lebar		= $this->input->post('lebar');
+		$ukuran		= $panjang." x ".$lebar;
 		$stok		= $this->input->post('stok');
 		$deskripsi	= $this->input->post('deskripsi');
 		$gambar		= $_FILES['gambar'];
@@ -135,7 +138,7 @@ class OnlineShopAdmin extends CI_Controller {
 		$ext		= explode(".", $ext);
 		$ext		= strtolower(end($ext));
 
-		if (isset($_FILES['gambar'])){
+		if (!isset($_FILES['gambar'])){
 			$gambar = $gambarlama;
 		} else {
 			$config['upload_path']		= './assets/images/uploaded_image';
@@ -152,41 +155,44 @@ class OnlineShopAdmin extends CI_Controller {
 		}
 
 		$data = array(
-			'nama_produk'			=> $nama,
-			'harga_produk'			=> $harga,
-			'stok_produk'			=> $stok,
-			'deskripsi_produk'		=> $deskripsi,
-			'gambar_produk'			=> $gambar,
+			'nama_batik'		=> $nama,
+			'harga'				=> $harga,
+			'ukuran'			=> $ukuran,
+			'stok'				=> $stok,
+			'deskripsi'			=> $deskripsi,
+			'gambar'			=> $gambar,
 		);
 
-		$this->m_produk->input_data($data, 'produk');
+		$this->m_produk->input_data($data, 'batik');
 		redirect('adminproduk');
 	}
 
 	public function hapus_produk()
 	{
-		$id 		= $this->uri->segment(3);
+		$id			= $this->uri->segment(3);
+		$gambar		= $this->uri->segment(4);
 		$nama		= $this->input->post('nama');
-		$harga		= $this->input->post('harga');
-		$stok		= $this->input->post('stok');
-		$deskripsi	= $this->input->post('deskripsi');
-		$this->m_produk->hapus_data($where, 'produk');
+		$where		= array ('id_batik' => $id);
+		$this->m_produk->hapus_data($where, 'batik');
 		unlink('./assets/images/uploaded_image/'.$gambar);
 		redirect('adminproduk');
 	}
 
 	public function edit_produk($id){
-		$where = array('id_produk' => $id);
-		$data['produk'] = $this->m_produk->edit_data($where, 'produk')->result();
+		$where = array('id_batik' => $id);
+		$data['produk'] = $this->m_produk->edit_data($where, 'batik')->result();
 		$this->load->view('OnlineShop/admin/headeradmin');
 		$this->load->view('OnlineShop/admin/editproduk', $data);
-        $this->load->view('OnlineShop/footer');
+        $this->load->view('OnlineShop/template/footer');
 	}
 
 	public function ubah_produk(){
 		$id			= $this->input->post('id');
 		$nama		= $this->input->post('nama');
 		$harga		= $this->input->post('harga');
+		$panjang	= $this->input->post('panjang');
+		$lebar		= $this->input->post('lebar');
+		$ukuran		= $panjang." x ".$lebar;
 		$stok		= $this->input->post('stok');
 		$deskripsi	= $this->input->post('deskripsi');
 		$gambarlama	= $this->input->post('gambarlama');
@@ -215,17 +221,18 @@ class OnlineShopAdmin extends CI_Controller {
 		}
 
 		$data = array(
-			'nama_produk'			=> $nama,
-			'harga_produk'			=> $harga,
-			'stok_produk'			=> $stok,
-			'deskripsi_produk'		=> $deskripsi,
-			'gambar_produk'			=> $gambar,
+			'nama_batik'		=> $nama,
+			'harga'				=> $harga,
+			'ukuran'			=> $ukuran,
+			'stok'				=> $stok,
+			'deskripsi'			=> $deskripsi,
+			'gambar'			=> $gambar,
 		);
 
 		$where = array(
-			'id_produk'				=> $id,
+			'id_batik'			=> $id,
 		);
-		$this->m_artikel->edit_artikel($where, $data, 'produk');
+		$this->m_artikel->edit_artikel($where, $data, 'batik');
 		redirect('adminproduk');
 	}
 
@@ -234,6 +241,6 @@ class OnlineShopAdmin extends CI_Controller {
 		$data['transaksi'] = $this->m_transaksi->tampil_transaksi()->result();
         $this->load->view('OnlineShop/admin/headeradmin');
 		$this->load->view('OnlineShop/admin/admintransaksi');
-        $this->load->view('OnlineShop/footer');
+        $this->load->view('OnlineShop/template/footer');
 	}
 }

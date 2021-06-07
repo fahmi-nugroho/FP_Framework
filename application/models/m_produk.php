@@ -4,12 +4,12 @@
   class m_produk extends CI_Model{
     public function tampil_produk()
     {
-        return $this->db->get('produk');
+        return $this->db->get('batik');
     }
 
     public function input_data($data)
     {
-        $this->db->insert('produk', $data);
+        $this->db->insert('batik', $data);
     }
 
     public function hapus_data($where, $table)

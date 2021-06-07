@@ -26,22 +26,32 @@
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <fieldset>
-                    <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Produk" required="">
+                    <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Batik" required="">
                   </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <fieldset>
-                    <input name="harga" type="text" class="form-control" id="harga" placeholder="Harga Produk" required="">
+                    <input name="harga" type="text" class="form-control" id="harga" placeholder="Harga Batik" required="">
+                  </fieldset>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <fieldset>
+                    <input name="panjang" type="text" class="form-control" id="panjang" placeholder="Panjang Batik" required="">
+                  </fieldset>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <fieldset>
+                    <input name="lebar" type="text" class="form-control" id="lebar" placeholder="Lebar Batik" required="">
                   </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <fieldset>
-                    <input name="stok" type="text" class="form-control" id="stok" placeholder="Stok Produk" required="">
+                    <input name="stok" type="text" class="form-control" id="stok" placeholder="Stok Batik" required="">
                   </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <fieldset>
-                      <textarea name="deskripsi" rows="6" class="form-control" id="deskripsi" placeholder="Deskripsi Produk" required=""></textarea>
+                      <textarea name="deskripsi" rows="6" class="form-control" id="deskripsi" placeholder="Deskripsi Batik" required=""></textarea>
                     </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -91,6 +101,7 @@
                 <th scope="col" class="text-center">No.</th>
                 <th scope="col" class="text-center">Nama</th>
                 <th scope="col" class="text-center">Harga</th>
+                <th scope="col" class="text-center">Ukuran</th>
                 <th scope="col" class="text-center">Stok</th>
                 <th scope="col" class="text-center">Deskripsi</th>
                 <th scope="col" colspan="2" class="text-center">Aksi</th>
@@ -103,15 +114,16 @@
               ?>
               <tr>
                 <th scope="row" class="text-center"><?= $no++ ?></th>
-                <td class="text-center"><?= $prd->nama_produk ?></td>
-                <td class="text-center"><?= $prd->harga_produk ?></td>
-                <td class="text-center"><?= $prd->stok_produk ?></td>
-                <td class="text-center"><?= $prd->deskripsi_produk ?></td>
+                <td class="text-center"><?= $prd->nama_batik ?></td>
+                <td class="text-center"><?= $prd->harga ?></td>
+                <td class="text-center"><?= $prd->ukuran ?></td>
+                <td class="text-center"><?= $prd->stok ?></td>
+                <td class="text-center"><?= $prd->deskripsi ?></td>
                 <td class="text-center">
-                  <?= anchor('adminproduk/edit/'.$prd->id_produk, '<button type="button" class="btn btn-warning">Edit</button>') ?>
+                  <?= anchor('adminproduk/edit/'.$prd->id_batik, '<button type="button" class="btn btn-warning">Edit</button>') ?>
                 </td>
                 <td class="text-center" onclick="javascript: return confirm('Anda yakin hapus?')">
-                  <?= anchor('OnlineShopAdmin/hapus_produk/'.$prd->id_produk.'/'.$prd->gambar_produk, '<button type="button" class="btn btn-danger">Hapus</button>') ?>
+                  <?= anchor('OnlineShopAdmin/hapus_produk/'.$prd->id_batik.'/'.$prd->gambar, '<button type="button" class="btn btn-danger">Hapus</button>') ?>
                 </td>
               </tr>
               <?php endforeach; ?>
