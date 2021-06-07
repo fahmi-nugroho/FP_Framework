@@ -21,6 +21,11 @@
             </div>
           </div>
           <div class="col-md-12">
+            <?php 
+              $banyak = count($transaksi);
+              $no = 1; 
+              if ($banyak > 0) : 
+            ?>
             <table class="table">
               <thead>
                 <tr>
@@ -31,56 +36,62 @@
                   <th scope="col" class="text-center">Alamat</th>
                   <th scope="col" class="text-center">Total Harga</th>
                   <th scope="col" class="text-center">Status</th>
-                  <th scope="col" class="text-center">Aksi</th>
+                  <th scope="col" colspan="3" class="text-center">Aksi</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row" class="text-center">1</th>
-                  <td class="text-center">18081010065</td>
-                  <td class="text-center">6/2/2021</td>
-                  <td class="text-center">Fahmi Nugroho</td>
-                  <td class="text-center">Surabaya</td>
-                  <td class="text-center">Rp. 90.000,00</td>
-                  <td class="text-center">Menunggu Pembayaran</td>
+                <?php
+                  foreach ($transaksi as $trs) : 
+                    if ($trs->status == "Menunggu Pengiriman") {
+                        echo "<tr class='table-primary'>";
+                    } elseif ($trs->status == "Proses Pengiriman") {
+                        echo "<tr class='table-warning'>";
+                    } elseif ($trs->status == "Pesanan Selesai") {
+                        echo "<tr class='table-success'>";
+                    } elseif ($trs->status == "Pesanan Dibatalkan") {
+                        echo "<tr class='table-danger'>";
+                    } else {
+                        echo "<tr>";
+                    }
+                ?>
+                  <th scope="row" class="text-center"><?= $no++ ?></th>
+                  <td class="text-center"><?= $trs->id_order ?></td>
+                  <td class="text-center"><?= $trs->tanggal ?></td>
+                  <td class="text-center"><?= $trs->nama_pembeli ?></td>
+                  <td class="text-center"><?= $trs->alamat ?></td>
+                  <td class="text-center"><?= $trs->total_harga ?></td>
+                  <td class="text-center"><?= $trs->status ?></td>
                   <td class="text-center">
                     <button type="button" class="btn btn-primary">Detail</button>
-                    <button type="button" class="btn btn-warning">Kirim</button>
-                    <button type="button" class="btn btn-danger">Batal</button>
                   </td>
-                </tr>
-                <tr>
-                  <th scope="row" class="text-center" class="text-center">2</th>
-                  <td class="text-center">18081010067</td>
-                  <td class="text-center">6/2/2021</td>
-                  <td class="text-center">M Rifan</td>
-                  <td class="text-center">Sidoarjo</td>
-                  <td class="text-center">Rp. 300.000,00</td>
-                  <td class="text-center">Menunggu Pengiriman</td>
+                  <?php if ($trs->status != 'Menunggu Pengiriman') : ?>
                   <td class="text-center">
-                    <button type="button" class="btn btn-primary">Detail</button>
-                    <button type="button" class="btn btn-warning">Kirim</button>
-                    <button type="button" class="btn btn-danger">Batal</button>
+                    <button type="button" class="btn btn-warning" disabled data-bs-toggle="button">Kirim</button>
                   </td>
-                </tr>
-                <tr>
-                  <th scope="row" class="text-center">3</th>
-                  <td class="text-center">18081010064</td>
-                  <td class="text-center">6/2/2021</td>
-                  <td class="text-center">Dwiki Aditama</td>
-                  <td class="text-center">Jombang</td>
-                  <td class="text-center">Rp. 150.000,00</td>
-                  <td class="text-center">Selesai</td>
                   <td class="text-center">
-                    <button type="button" class="btn btn-primary">Detail</button>
-                    <button type="button" class="btn btn-warning">Kirim</button>
-                    <button type="button" class="btn btn-danger">Batal</button>
+                    <button type="button" class="btn btn-danger" disabled data-bs-toggle="button">Batal</button>
                   </td>
+                  <?php else : ?>
+                    <td class="text-center" onclick="javascript: return confirm('Anda yakin kirim?')">
+                    <?= anchor('OnlineShopAdmin/update_transaksi/'.$trs->id_transaksi.'/kirim', '<button type="button" class="btn btn-warning">Kirim</button>') ?>
+                  </td>
+                  <td class="text-center" onclick="javascript: return confirm('Anda yakin batal?')">
+                    <?= anchor('OnlineShopAdmin/update_transaksi/'.$trs->id_transaksi.'/batal', '<button type="button" class="btn btn-danger">Batal</button>') ?>
+                  </td>
+                  <?php endif; ?>
                 </tr>
               </tbody>
+              <?php endforeach; ?>
             </table>
           </div>
-          <div class="col-md-12">
+          <?php else : ?>
+          <div class="col-md-12 text-center">
+            <h1>Transaksi Kosong</h1>
+          </div>
+          <?php  
+            endif;
+            ?> 
+          <!-- <div class="col-md-12">
             <ul class="pages">
                 <li class="active"><a href="#">1</a></li>
               <li><a href="#">2</a></li>
@@ -88,7 +99,7 @@
               <li><a href="#">4</a></li>
               <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
             </ul>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

@@ -240,7 +240,39 @@ class OnlineShopAdmin extends CI_Controller {
 	{
 		$data['transaksi'] = $this->m_transaksi->tampil_transaksi()->result();
         $this->load->view('OnlineShop/admin/headeradmin');
-		$this->load->view('OnlineShop/admin/admintransaksi');
+		$this->load->view('OnlineShop/admin/admintransaksi', $data);
         $this->load->view('OnlineShop/template/footer');
+	}
+
+	public function update_transaksi()
+	{
+		$id			= $this->uri->segment(3);
+		$status		= $this->uri->segment(4);
+
+		$where		= array ('id_transaksi' => $id);
+		$dataselect['produk'] = $this->m_transaksi->get_data($where, 'transaksi')->result();
+		$id_order = $dataselect['produk'][0]->id_order;
+		$tanggal = $dataselect['produk'][0]->id_order;
+		$nama_pembeli = $dataselect['produk'][0]->nama_pembeli;
+		$alamat = $dataselect['produk'][0]->alamat;
+		$total_harga = $dataselect['produk'][0]->total_harga;
+		if ($status == 'kirim'){
+			$status = "Proses Pengiriman";
+		}
+		elseif ($status == 'batal'){
+			$status = "Pesanan Dibatalkan";
+		}
+
+		$data = array(
+			'id_order'				=> $id_order,
+			'tanggal'				=> $tanggal,
+			'nama_pembeli'			=> $nama_pembeli,
+			'alamat'				=> $alamat,
+			'total_harga'			=> $total_harga,
+			'status'				=> $status,
+		);
+
+		$this->m_transaksi->edit_transaksi($where, $data, 'transaksi');
+		redirect('admintransaksi');
 	}
 }
