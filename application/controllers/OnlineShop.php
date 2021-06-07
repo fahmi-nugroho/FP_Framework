@@ -54,6 +54,7 @@ class OnlineShop extends CI_Controller {
 			}
 
 			echo json_encode(array(
+					'stok' => $batik[0]->stok,
 					'sisa' => $batik[0]->stok - $_SESSION['cart']['cart_'.$id]
 			));
 		} else if ($action == "kurang") {
@@ -63,6 +64,7 @@ class OnlineShop extends CI_Controller {
 				$_SESSION['cart']['cart_'.$id] --;
 
 				echo json_encode(array(
+					'stok' => $batik[0]->stok,
 					'sisa' => $batik[0]->stok - $_SESSION['cart']['cart_'.$id]
 				));
 			} else {
@@ -70,6 +72,7 @@ class OnlineShop extends CI_Controller {
 				$_SESSION['cart']['total'] --;
 
 				echo json_encode(array(
+					'stok' => $batik[0]->stok,
 					'sisa' => $batik[0]->stok
 				));
 			}
@@ -81,6 +84,7 @@ class OnlineShop extends CI_Controller {
 			$_SESSION['cart']['cart_'.$id] = $jumlah;
 
 			echo json_encode(array(
+				'stok' => $batik[0]->stok,
 				'sisa' => $batik[0]->stok - $_SESSION['cart']['cart_'.$id]
 			));
 		} else {
@@ -106,7 +110,7 @@ class OnlineShop extends CI_Controller {
 										<div class="col">
 											<div class="input-group">
 												<button class="btn btn-outline-secondary btn-sm" type="button" onclick="button('#itemKeranjang-<?= $batiks[0]->id_batik ?>', 0)">-</button>
-												<input type="number" id="itemKeranjang-<?= $batiks[0]->id_batik ?>" class="form-control text-center p-0 inputTextCustom" value="<?php echo $value ?>" max="<?php echo $avail ?>" onkeyup="jumlahProduct('#itemKeranjang-<?= $batiks[0]->id_batik ?>', 1)" required>
+												<input type="number" id="itemKeranjang-<?= $batiks[0]->id_batik ?>" class="form-control text-center p-0 inputTextCustom" value="<?php echo $value ?>" max="<?php echo $avail ?>" onkeyup="jumlahProduct('#itemKeranjang-<?= $batiks[0]->id_batik ?>', <?= $batiks[0]->stok ?>)" required>
 												<button class="btn btn-outline-secondary btn-sm" type="button" onclick="button('#itemKeranjang-<?= $batiks[0]->id_batik ?>', 1)" <?php echo ($value == $batiks[0]->stok) ? "disabled" : "" ?>>+</button>
 											</div>
 										</div>
@@ -139,7 +143,8 @@ class OnlineShop extends CI_Controller {
 					</div>
 
 					<div class="text-center">
-						<button class="btn btn-secondary btn-sm w-75 mt-4" type="button" name="button">Checkout</button>
+						<a class="btn btn-secondary btn-sm w-75 mt-4" href="<?php echo base_url() ?>checkout">Checkout</a>
+						<!-- <button class="btn btn-secondary btn-sm w-75 mt-4" type="button" name="button">Checkout</button> -->
 					</div>
 				<?php
 			} else {
@@ -153,19 +158,19 @@ class OnlineShop extends CI_Controller {
 		}
 	}
 
+	public function checkout()
+	{
+		$this->load->view('OnlineShop/template/header');
+		$this->load->view('OnlineShop/checkout');
+		$this->load->view('OnlineShop/template/footer');
+	}
+
   public function about()
 	{
     $this->load->view('OnlineShop/template/header');
 		$this->load->view('OnlineShop/about');
     $this->load->view('OnlineShop/template/footer');
 	}
-
-  // public function keranjang()
-	// {
-  //   $this->load->view('OnlineShop/template/header');
-	// 	$this->load->view('OnlineShop/keranjang');
-  //   $this->load->view('OnlineShop/template/footer');
-	// }
 
 	public function login()
 	{

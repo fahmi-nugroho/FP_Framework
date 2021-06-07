@@ -55,24 +55,25 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link <?= (empty(uri_string())) ? "active" : "" ; ?>" href="<?php echo base_url() ?>">Home</a>
-              </li>
+            <?php if (uri_string() != "checkout"): ?>
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link <?= (empty(uri_string())) ? "active" : "" ; ?>" href="<?php echo base_url() ?>">Home</a>
+                </li>
 
-              <li class="nav-item">
-                <a class="nav-link <?= (substr(uri_string(), 0, 6) == "produk") ? "active" : "" ; ?>" href="<?php echo base_url() ?>produk">Produk</a>
-              </li>
+                <li class="nav-item">
+                  <a class="nav-link <?= (substr(uri_string(), 0, 6) == "produk") ? "active" : "" ; ?>" href="<?php echo base_url() ?>produk">Produk</a>
+                </li>
 
-              <li class="nav-item">
-                <a class="nav-link <?= (uri_string() == "blog") ? "active" : "" ; ?>" href="">Blog</a>
-              </li>
+                <li class="nav-item">
+                  <a class="nav-link <?= (uri_string() == "blog") ? "active" : "" ; ?>" href="">Blog</a>
+                </li>
 
-              <li class="nav-item">
-                <a class="nav-link <?= (uri_string() == "about") ? "active" : "" ; ?>" href="<?php echo base_url() ?>about">Tentang Kami</a>
-              </li>
+                <li class="nav-item">
+                  <a class="nav-link <?= (uri_string() == "about") ? "active" : "" ; ?>" href="<?php echo base_url() ?>about">Tentang Kami</a>
+                </li>
 
-              <!-- <li class="nav-item">
+                <!-- <li class="nav-item">
                 <a class="nav-link <?= (uri_string() == "login" || uri_string() == "register") ? "active" : "" ; ?>" href="<?php echo base_url() ?>login">Login</a>
               </li> -->
 
@@ -87,6 +88,7 @@
                 </ul>
               </li>
             </ul>
+            <?php endif; ?>
           </div>
         </div>
       </nav>
@@ -96,8 +98,13 @@
           <h5 class="offcanvas-title" id="keranjangLabel">Keranjang</h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div id="isiKeranjang" class="offcanvas-body pt-0">
+        <div class="offcanvas-body pt-0">
+          <div id="isiKeranjang">
 
+          </div>
+          <!-- <div id="isiCheckout">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </div> -->
         </div>
       </div>
 
@@ -134,7 +141,7 @@
               } else {
                 $("#inputJumlah-"+id).next().next().html("Masukkan jumlah dengan benar");
               }
-              jumlahProduct('#inputJumlah-'+id, 0);
+              jumlahProduct('#inputJumlah-'+id, JSON.parse(data).stok);
               tampilKeranjang();
             }
           })
@@ -153,8 +160,8 @@
                 $("#inputJumlah-"+id).next().next().html("Masukkan jumlah dengan benar");
               }
               // console.log(JSON.parse(data).sisa);
-              jumlahProduct('#itemKeranjang-'+id, 0);
-              jumlahProduct('#inputJumlah-'+id, 0);
+              jumlahProduct('#itemKeranjang-'+id, JSON.parse(data).stok);
+              jumlahProduct('#inputJumlah-'+id, JSON.parse(data).stok);
               tampilKeranjang();
             }
           })
@@ -166,16 +173,14 @@
             url: "<?php echo base_url() ?>OnlineShop/keranjang",
             data: "action=kurang&id=" + id,
             success: function(data){
-              // var sisa = Number($("#inputJumlah-"+id).prop("max"));
-              // $("#inputJumlah-"+id).prop("max", ++sisa);
               $("#inputJumlah-"+id).prop("max", JSON.parse(data).sisa);
               if (JSON.parse(data).sisa == 0) {
                 $("#inputJumlah-"+id).next().next().html("Semua stok sudah masuk keranjang");
               } else {
                 $("#inputJumlah-"+id).next().next().html("Masukkan jumlah dengan benar");
               }
-              jumlahProduct('#itemKeranjang-'+id, 0);
-              jumlahProduct('#inputJumlah-'+id, 0);
+              jumlahProduct('#itemKeranjang-'+id, JSON.parse(data).stok);
+              jumlahProduct('#inputJumlah-'+id, JSON.parse(data).stok);
               tampilKeranjang();
             }
           })
@@ -195,11 +200,119 @@
               } else {
                 $("#inputJumlah-"+id).next().next().html("Masukkan jumlah dengan benar");
               }
-              jumlahProduct('#itemKeranjang-'+id, 0);
-              jumlahProduct('#inputJumlah-'+id, 0);
+              jumlahProduct('#itemKeranjang-'+id, JSON.parse(data).stok);
+              jumlahProduct('#inputJumlah-'+id, JSON.parse(data).stok);
               tampilKeranjang();
             }
           })
+        }
+
+        // function openCheckout() {
+        //   $("#isiKeranjang").css('transform', 'translateX(-500px)');
+        //   $("#isiCheckout").css('transform', 'translateX(0px)');
+        // }
+
+        function button(id_input, bol) {
+          // console.log("button = " + id_input);
+          // console.log($("input[id*='inputJumlah']").length);
+          var input = $(id_input);
+          var value = Number(input.val());
+
+          if (bol == 0) {
+            input.val(--value);
+            if (id_input.includes("itemKeranjang")) {
+              kurangKeranjang(id_input.substr(15));
+            } else {
+              jumlahProduct(id_input);
+            }
+          } else {
+            input.val(++value);
+            if (id_input.includes("itemKeranjang")) {
+              tambahKeranjang(id_input.substr(15));
+            } else {
+              jumlahProduct(id_input);
+            }
+          }
+
+          // console.log(value);
+        };
+
+        function jumlahProduct(id_input, stok){
+          // console.log("jumlah = " + id_input);
+          // console.log(id_input);
+          // console.log(id_input.includes("inputJumlah"));
+          var input = $(id_input);
+          var plus = input.next();
+          var min = input.prev();
+          var regex = /[0-9]+/;
+
+          if (id_input.includes("inputJumlah")) {
+            var tersedia = Number(input.prop("max"));
+          } else {
+            var tersedia = $("#itemKeranjang-"+id_input.substr(15)).prop("max");
+          }
+
+          if (input.val() <= 1) {
+            min.prop("disabled", true);
+          } else {
+            min.prop("disabled", false);
+          }
+
+          if (id_input.includes("inputJumlah")) {
+            if (input.val() >= tersedia) {
+              plus.prop("disabled", true);
+            } else {
+              plus.prop("disabled", false);
+            }
+          } else {
+            if (input.val() >= stok) {
+              plus.prop("disabled", true);
+            } else {
+              plus.prop("disabled", false);
+            }
+          }
+
+          if (regex.test(input.val())) {
+            if (id_input.includes("inputJumlah")) {
+              if (input.val() >= 1 && input.val() <= tersedia) {
+                input.removeClass('is-invalid');
+                plus.removeClass('btn-outline-danger').addClass('btn-outline-secondary');
+                min.removeClass('btn-outline-danger').addClass('btn-outline-secondary');
+              } else {
+                input.addClass('is-invalid');
+                plus.removeClass('btn-outline-secondary').addClass('btn-outline-danger');
+                min.removeClass('btn-outline-secondary').addClass('btn-outline-danger');
+              }
+            }else if (id_input.includes("itemKeranjang")) {
+              if (input.val() >= 1 && input.val() <= stok) {
+                input.removeClass('is-invalid');
+                plus.removeClass('btn-outline-danger').addClass('btn-outline-secondary');
+                min.removeClass('btn-outline-danger').addClass('btn-outline-secondary');
+              } else {
+                input.addClass('is-invalid');
+                plus.removeClass('btn-outline-secondary').addClass('btn-outline-danger');
+                min.removeClass('btn-outline-secondary').addClass('btn-outline-danger');
+              }
+            }
+          } else {
+            input.addClass('is-invalid');
+            plus.removeClass('btn-outline-secondary').addClass('btn-outline-danger');
+            min.removeClass('btn-outline-secondary').addClass('btn-outline-danger');
+          }
+
+          if (id_input.includes("inputJumlah")) {
+            if (input.hasClass('is-invalid')) {
+              $("#btnMasukKeranjang").prop("disabled", true);
+            } else {
+              $("#btnMasukKeranjang").prop("disabled", false);
+            }
+          } else {
+            if (input.hasClass('is-invalid')) {
+              $("#checkout").prop("disabled", true);
+            } else {
+              $("#checkout").prop("disabled", false);
+            }
+          }
         }
       </script>
 

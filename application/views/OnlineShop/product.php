@@ -80,7 +80,7 @@
                 }
                 ?>
                 <button class="btn btn-outline-secondary" type="button" onclick="button('#inputJumlah-<?php echo $db[0]->id_batik ?>', 0)">-</button>
-                <input type="number" id="inputJumlah-<?php echo $db[0]->id_batik ?>" class="form-control text-center p-0 inputTextCustom" value="<?php echo ($db[0]->stok > 0) ? 1 : 0; ?>" max="<?php echo $max ?>" onkeyup="jumlahProduct('#inputJumlah-<?php echo $db[0]->id_batik ?>', 0)" required>
+                <input type="number" id="inputJumlah-<?php echo $db[0]->id_batik ?>" class="form-control text-center p-0 inputTextCustom" value="<?php echo ($db[0]->stok > 0) ? 1 : 0; ?>" max="<?php echo $max ?>" onkeyup="jumlahProduct('#inputJumlah-<?php echo $db[0]->id_batik ?>', <?= $db[0]->stok ?>)" required>
                 <button class="btn btn-outline-secondary" type="button" onclick="button('#inputJumlah-<?php echo $db[0]->id_batik ?>', 1)">+</button>
                 <div class="invalid-feedback text-center">
                   <?php
@@ -108,116 +108,9 @@
 
 <script type="text/javascript">
   $(document).ready(function () {
-    jumlahProduct('#itemKeranjang-<?php echo $db[0]->id_batik ?>', 0);
-    jumlahProduct('#inputJumlah-<?php echo $db[0]->id_batik ?>', 0);
+    jumlahProduct('#itemKeranjang-<?php echo $db[0]->id_batik ?>');
+    jumlahProduct('#inputJumlah-<?php echo $db[0]->id_batik ?>');
   });
 
-  function button(id_input, bol) {
-    console.log("button = " + id_input);
-    // console.log($("input[id*='inputJumlah']").length);
-    var input = $(id_input);
-    var value = Number(input.val());
 
-    if (bol == 0) {
-      input.val(--value);
-      if (id_input.includes("itemKeranjang")) {
-        kurangKeranjang(id_input.substr(15));
-      } else {
-        jumlahProduct(id_input, 0);
-      }
-    } else {
-      input.val(++value);
-      if (id_input.includes("itemKeranjang")) {
-        tambahKeranjang(id_input.substr(15));
-      } else {
-        jumlahProduct(id_input, 0);
-      }
-    }
-
-    console.log(value);
-  };
-
-  function jumlahProduct(id_input, cek){
-    console.log("jumlah = " + id_input);
-    // console.log(id_input);
-    // console.log(id_input.includes("inputJumlah"));
-    var input = $(id_input);
-    var plus = input.next();
-    var min = input.prev();
-    // console.log(plus.prop("onclick"));
-    var regex = /[0-9]/;
-    if (id_input.includes("inputJumlah")) {
-      var tersedia = Number(input.prop("max"));
-    } else {
-      var tersedia = $("#inputJumlah-<?php echo $db[0]->id_batik ?>").prop("max");
-    }
-    // console.log(input.prop("max"));
-    // console.log(tersedia);
-
-    if (input.val() <= 1) {
-      min.prop("disabled", true);
-    } else {
-      min.prop("disabled", false);
-    }
-
-    if (id_input.includes("inputJumlah")) {
-      if (input.val() >= tersedia) {
-        plus.prop("disabled", true);
-      } else {
-        plus.prop("disabled", false);
-      }
-    } else {
-      if (input.val() >= <?php echo $db[0]->stok ?>) {
-        plus.prop("disabled", true);
-      } else {
-        plus.prop("disabled", false);
-      }
-    }
-
-    // console.log(input.val() + " = " + tersedia);
-    // console.log(input.val() >= 1 && input.val() <= tersedia);
-    if (regex.test(input.val())) {
-      if (id_input.includes("inputJumlah")) {
-        if (input.val() >= 1 && input.val() <= tersedia) {
-          console.log("b");
-          input.removeClass('is-invalid');
-          plus.removeClass('btn-outline-danger').addClass('btn-outline-secondary');
-          min.removeClass('btn-outline-danger').addClass('btn-outline-secondary');
-        } else {
-          console.log("d");
-          input.addClass('is-invalid');
-          plus.removeClass('btn-outline-secondary').addClass('btn-outline-danger');
-          min.removeClass('btn-outline-secondary').addClass('btn-outline-danger');
-        }
-      }
-
-      if (id_input.includes("itemKeranjang")) {
-        if (input.val() >= 1 && input.val() <= <?php echo $db[0]->stok ?>) {
-          console.log("a");
-          if (cek == 1) {
-            // ubahKeranjang(id_input.substr(15));
-          }
-          input.removeClass('is-invalid');
-          plus.removeClass('btn-outline-danger').addClass('btn-outline-secondary');
-          min.removeClass('btn-outline-danger').addClass('btn-outline-secondary');
-        } else {
-          console.log("c");
-          input.addClass('is-invalid');
-          plus.removeClass('btn-outline-secondary').addClass('btn-outline-danger');
-          min.removeClass('btn-outline-secondary').addClass('btn-outline-danger');
-        }
-      }
-    } else {
-      console.log("x");
-      input.addClass('is-invalid');
-      plus.removeClass('btn-outline-secondary').addClass('btn-outline-danger');
-      min.removeClass('btn-outline-secondary').addClass('btn-outline-danger');
-    }
-
-    if (input.hasClass('is-invalid')) {
-      $("#btnMasukKeranjang").prop("disabled", true);
-    } else {
-      $("#btnMasukKeranjang").prop("disabled", false);
-    }
-  }
 </script>
