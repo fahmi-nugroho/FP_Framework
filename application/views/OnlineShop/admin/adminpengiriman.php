@@ -21,16 +21,19 @@
             </div>
           </div>
           <div class="col-md-12">
-            <?php echo form_open_multipart(base_url().'OnlineShopAdmin/tambah_kurir'); ?>
+            <?php echo form_open_multipart(base_url().'adminpengiriman'); ?>
               <div class="row">
+                <input name="input" type="hidden" class="form-control" id="input" placeholder="Input" required="" value="Tambah">
                 <div class="col-lg-12 col-md-12 col-sm-12">
+                  <?= form_error('nama', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Kurir" required="">
+                    <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Kurir" required="" value="<?= set_value('nama') ?>">
                   </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
+                  <?= form_error('harga', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <input name="harga" type="text" class="form-control" id="harga" placeholder="Harga Kurir" required="">
+                    <input name="harga" type="text" class="form-control" id="harga" placeholder="Harga Kurir" required="" value="<?= set_value('harga') ?>">
                   </fieldset>
                 </div>
                 <div class="col-lg-12">

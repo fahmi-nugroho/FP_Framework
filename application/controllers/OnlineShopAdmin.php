@@ -12,47 +12,55 @@ class OnlineShopAdmin extends CI_Controller {
 
 	public function adminartikel()
 	{
+		$submit = $this->input->post('input');
+
+		if ($submit == 'Tambah') {
+			$this->form_validation->set_rules('judul', 'Judul', 'trim|alpha_numeric_spaces');
+			$this->form_validation->set_rules('isi', 'Isi', 'trim|alpha_numeric_spaces');
+
+			$this -> form_validation -> set_message('alpha_numeric_spaces', '{field} tidak boleh ada karakter selain alphabet dan angka.');
+
+			if ($this->form_validation->run() == true){
+				$judul		= $this->input->post('judul');
+				$isi		= $this->input->post('isi');
+				$tanggal	= date('Y-m-d');
+				$gambar		= $_FILES['gambar'];
+				$ext		= $gambar['name'];
+				$ext		= explode(".", $ext);
+				$ext		= strtolower(end($ext));
+
+				if ($gambar=""){
+
+				} else {
+					$config['upload_path']		= './assets/images/uploaded_image';
+					$config['allowed_types']	= 'jpg|png|jpeg';
+					$config['file_name']		= uniqid("", true).".".$ext;
+
+					$this->upload->initialize($config);
+					if (!$this->upload->do_upload('gambar')){
+						echo "Upload Gagal";
+						die();
+					} else {
+						$gambar = $this->upload->data('file_name');
+					}
+				}
+
+				$data = array(
+					'judul_artikel'			=> $judul,
+					'isi_artikel'			=> $isi,
+					'tanggal_artikel'		=> $tanggal,
+					'gambar_artikel'		=> $gambar,
+				);
+		
+				$this->m_artikel->input_data($data, 'artikel');
+				// redirect('adminartikel');
+			}
+		}
+
 		$data['artikel'] = $this->m_artikel->tampil_artikel()->result();
         $this->load->view('OnlineShop/admin/headeradmin');
 		$this->load->view('OnlineShop/admin/adminartikel', $data);
         $this->load->view('OnlineShop/template/footer');
-	}
-
-	public function tambah_artikel()
-	{
-		$judul		= $this->input->post('judul');
-		$isi		= $this->input->post('isi');
-		$tanggal	= date('Y-m-d');
-		$gambar		= $_FILES['gambar'];
-		$ext		= $gambar['name'];
-		$ext		= explode(".", $ext);
-		$ext		= strtolower(end($ext));
-
-		if ($gambar=""){
-
-		} else {
-			$config['upload_path']		= './assets/images/uploaded_image';
-			$config['allowed_types']	= 'jpg|png|jpeg';
-			$config['file_name']		= uniqid("", true).".".$ext;
-
-			$this->upload->initialize($config);
-			if (!$this->upload->do_upload('gambar')){
-				echo "Upload Gagal";
-				die();
-			} else {
-				$gambar = $this->upload->data('file_name');
-			}
-		}
-
-		$data = array(
-			'judul_artikel'			=> $judul,
-			'isi_artikel'			=> $isi,
-			'tanggal_artikel'		=> $tanggal,
-			'gambar_artikel'		=> $gambar,
-		);
-
-		$this->m_artikel->input_data($data, 'artikel');
-		redirect('adminartikel');
 	}
 
 	public function hapus_artikel()
@@ -119,53 +127,65 @@ class OnlineShopAdmin extends CI_Controller {
 
 	public function adminproduk()
 	{
+		$submit = $this->input->post('input');
+		if ($submit == 'Tambah') {
+			$this->form_validation->set_rules('nama', 'Nama', 'trim|alpha_numeric_spaces');
+			$this->form_validation->set_rules('harga', 'Harga', 'integer');
+			$this->form_validation->set_rules('panjang', 'Panjang', 'integer');
+			$this->form_validation->set_rules('lebar', 'Lebar', 'integer');
+			$this->form_validation->set_rules('stok', 'Stok', 'integer');
+			$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|alpha_numeric_spaces');
+
+			$this -> form_validation -> set_message('alpha_numeric_spaces', '{field} tidak boleh ada karakter selain alphabet dan angka.');
+			$this -> form_validation -> set_message('integer', '{field} harus berupa angka.');
+
+			if ($this->form_validation->run() == true){
+				$nama		= $this->input->post('nama');
+				$harga		= $this->input->post('harga');
+				$panjang	= $this->input->post('panjang');
+				$lebar		= $this->input->post('lebar');
+				$ukuran		= $panjang." x ".$lebar;
+				$stok		= $this->input->post('stok');
+				$deskripsi	= $this->input->post('deskripsi');
+				$gambar		= $_FILES['gambar'];
+				$ext		= $gambar['name'];
+				$ext		= explode(".", $ext);
+				$ext		= strtolower(end($ext));
+
+				if (!isset($_FILES['gambar'])){
+					$gambar = $gambarlama;
+				} else {
+					$config['upload_path']		= './assets/images/uploaded_image';
+					$config['allowed_types']	= 'jpg|png|jpeg';
+					$config['file_name']		= uniqid("", true).".".$ext;
+
+					$this->upload->initialize($config);
+					if (!$this->upload->do_upload('gambar')){
+						echo "Upload Gagal";
+						die();
+					} else {
+						$gambar = $this->upload->data('file_name');
+					}
+				}
+
+				$data = array(
+					'nama_batik'		=> $nama,
+					'harga'				=> $harga,
+					'ukuran'			=> $ukuran,
+					'stok'				=> $stok,
+					'deskripsi'			=> $deskripsi,
+					'gambar'			=> $gambar,
+				);
+
+				$this->m_produk->input_data($data, 'batik');
+				redirect('adminproduk');
+			}
+		}
+
 		$data['produk'] = $this->m_produk->tampil_produk()->result();
         $this->load->view('OnlineShop/admin/headeradmin');
 		$this->load->view('OnlineShop/admin/adminproduk', $data);
         $this->load->view('OnlineShop/template/footer');
-	}
-
-	public function tambah_produk()
-	{
-		$nama		= $this->input->post('nama');
-		$harga		= $this->input->post('harga');
-		$panjang	= $this->input->post('panjang');
-		$lebar		= $this->input->post('lebar');
-		$ukuran		= $panjang." x ".$lebar;
-		$stok		= $this->input->post('stok');
-		$deskripsi	= $this->input->post('deskripsi');
-		$gambar		= $_FILES['gambar'];
-		$ext		= $gambar['name'];
-		$ext		= explode(".", $ext);
-		$ext		= strtolower(end($ext));
-
-		if (!isset($_FILES['gambar'])){
-			$gambar = $gambarlama;
-		} else {
-			$config['upload_path']		= './assets/images/uploaded_image';
-			$config['allowed_types']	= 'jpg|png|jpeg';
-			$config['file_name']		= uniqid("", true).".".$ext;
-
-			$this->upload->initialize($config);
-			if (!$this->upload->do_upload('gambar')){
-				echo "Upload Gagal";
-				die();
-			} else {
-				$gambar = $this->upload->data('file_name');
-			}
-		}
-
-		$data = array(
-			'nama_batik'		=> $nama,
-			'harga'				=> $harga,
-			'ukuran'			=> $ukuran,
-			'stok'				=> $stok,
-			'deskripsi'			=> $deskripsi,
-			'gambar'			=> $gambar,
-		);
-
-		$this->m_produk->input_data($data, 'batik');
-		redirect('adminproduk');
 	}
 
 	public function hapus_produk()
@@ -239,6 +259,28 @@ class OnlineShopAdmin extends CI_Controller {
 
 	public function adminpengiriman()
 	{
+		$submit = $this->input->post('input');
+		if ($submit == "Tambah") {
+			$this->form_validation->set_rules('nama', 'Nama', 'trim|alpha_numeric_spaces');
+			$this->form_validation->set_rules('harga', 'Harga', 'integer');
+
+			$this -> form_validation -> set_message('alpha_numeric_spaces', '{field} tidak boleh ada karakter selain alphabet dan angka.');
+			$this -> form_validation -> set_message('integer', '{field} harus berupa angka.');
+
+			if ($this->form_validation->run() == true) {
+				$nama		= $this->input->post('nama');
+				$harga		= $this->input->post('harga');
+
+				$data = array(
+					'nama_kurir'		=> $nama,
+					'harga_kurir'		=> $harga,
+				);
+
+				$this->m_kurir->input_data($data, 'kurir');
+				// redirect('adminpengiriman');
+			}
+		}
+
 		$data['pengiriman'] = $this->m_kurir->tampil_kurir()->result();
         $this->load->view('OnlineShop/admin/headeradmin');
 		$this->load->view('OnlineShop/admin/adminpengiriman', $data);
@@ -247,16 +289,7 @@ class OnlineShopAdmin extends CI_Controller {
 
 	public function tambah_kurir()
 	{
-		$nama		= $this->input->post('nama');
-		$harga		= $this->input->post('harga');
-
-		$data = array(
-			'nama_kurir'		=> $nama,
-			'harga_kurir'		=> $harga,
-		);
-
-		$this->m_kurir->input_data($data, 'kurir');
-		redirect('adminpengiriman');
+		
 	}
 
 	public function hapus_kurir($id)

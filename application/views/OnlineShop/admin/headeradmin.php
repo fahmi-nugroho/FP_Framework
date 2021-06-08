@@ -65,11 +65,11 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link <?= (uri_string() == "adminpengiriman") ? "active" : "" ; ?>" href="<?php echo base_url() ?>adminpengiriman">Pengiriman</a>
+                <a class="nav-link <?= (substr(uri_string(), 0, 15) == "adminpengiriman") ? "active" : "" ; ?>" href="<?php echo base_url() ?>adminpengiriman">Pengiriman</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link <?= (uri_string() == "admintransaksi") ? "active" : "" ; ?>" href="<?php echo base_url() ?>admintransaksi">Transaksi</a>
+                <a class="nav-link <?= (substr(uri_string(), 0, 14) == "admintransaksi") ? "active" : "" ; ?>" href="<?php echo base_url() ?>admintransaksi">Transaksi</a>
               </li>
             </ul>
           </div>

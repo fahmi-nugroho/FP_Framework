@@ -23,26 +23,26 @@
             <?php echo form_open_multipart(base_url().'OnlineShopAdmin/ubah_artikel'); ?>
               <?php foreach($artikel as $art): ?>
                 <div class="row">
-                    <input name="id" type="hidden" class="form-control" id="id" placeholder="ID Artikel" required="" value="<?= $art->id_artikel ?>">
-                    <input name="gambarlama" type="hidden" class="form-control" id="gambarlama" placeholder="Gambarlama Artikel" required="" value="<?= $art->gambar_artikel ?>">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                  <input name="id" type="hidden" class="form-control" id="id" placeholder="ID Artikel" required="" value="<?= $art->id_artikel ?>">
+                  <input name="gambarlama" type="hidden" class="form-control" id="gambarlama" placeholder="Gambarlama Artikel" required="" value="<?= $art->gambar_artikel ?>">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                  <fieldset>
+                      <input name="judul" type="text" class="form-control" id="judul" placeholder="Judul Artikel" required="" value="<?= $art->judul_artikel ?>">
+                  </fieldset>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12">
                     <fieldset>
-                        <input name="judul" type="text" class="form-control" id="judul" placeholder="Judul Artikel" required="" value="<?= $art->judul_artikel ?>">
+                      <textarea name="isi" rows="6" class="form-control" id="isi" placeholder="Isi Artikel" required=""><?= $art->isi_artikel ?></textarea>
                     </fieldset>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                      <fieldset>
-                        <textarea name="isi" rows="6" class="form-control" id="isi" placeholder="Isi Artikel" required=""><?= $art->isi_artikel ?></textarea>
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                    <input name="gambar" class="form-control" type="file" id="formFile">
-                    </div>
-                    <div class="col-lg-12">
-                    <fieldset>
-                        <button type="submit" id="form-submit" class="filled-button">Ubah</button>
-                    </fieldset>
-                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                  <input name="gambar" class="form-control" type="file" id="formFile">
+                  </div>
+                  <div class="col-lg-12">
+                  <fieldset>
+                      <button type="submit" id="form-submit" class="filled-button">Ubah</button>
+                  </fieldset>
+                  </div>
                 </div>
               <?php endforeach; ?>
             <?php echo form_close(); ?>

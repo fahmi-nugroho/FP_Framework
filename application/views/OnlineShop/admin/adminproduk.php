@@ -22,36 +22,43 @@
           </div>
           <div class="col-md-12">
             <!-- <form id="contact" action="" method="post"> -->
-            <?php echo form_open_multipart('OnlineShopAdmin/tambah_produk'); ?>
+            <?php echo form_open_multipart('adminproduk'); ?>
               <div class="row">
+                <input name="input" type="hidden" class="form-control" id="input" placeholder="Input" required="" value="Tambah">
                 <div class="col-lg-12 col-md-12 col-sm-12">
+                  <?= form_error('nama', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Batik" required="">
+                    <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Batik" required="" value="<?= set_value('nama') ?>">
                   </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
+                  <?= form_error('harga', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <input name="harga" type="text" class="form-control" id="harga" placeholder="Harga Batik" required="">
+                    <input name="harga" type="text" class="form-control" id="harga" placeholder="Harga Batik" required="" value="<?= set_value('harga') ?>">
                   </fieldset>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
+                  <?= form_error('panjang', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <input name="panjang" type="text" class="form-control" id="panjang" placeholder="Panjang Batik" required="">
+                    <input name="panjang" type="text" class="form-control" id="panjang" placeholder="Panjang Batik" required="" value="<?= set_value('panjang') ?>">
                   </fieldset>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
+                  <?= form_error('lebar', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <input name="lebar" type="text" class="form-control" id="lebar" placeholder="Lebar Batik" required="">
+                    <input name="lebar" type="text" class="form-control" id="lebar" placeholder="Lebar Batik" required="" value="<?= set_value('lebar') ?>">
                   </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
+                  <?= form_error('stok', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <input name="stok" type="text" class="form-control" id="stok" placeholder="Stok Batik" required="">
+                    <input name="stok" type="text" class="form-control" id="stok" placeholder="Stok Batik" required="" value="<?= set_value('stok') ?>">
                   </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
+                  <?= form_error('deskripsi', '<small class="text-danger pl-3">', '</small>') ?>
                     <fieldset>
-                      <textarea name="deskripsi" rows="6" class="form-control" id="deskripsi" placeholder="Deskripsi Batik" required=""></textarea>
+                      <textarea name="deskripsi" rows="6" class="form-control" id="deskripsi" placeholder="Deskripsi Batik" required=""><?= set_value('panjang') ?></textarea>
                     </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">

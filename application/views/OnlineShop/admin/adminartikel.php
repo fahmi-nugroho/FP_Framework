@@ -21,17 +21,20 @@
             </div>
           </div>
           <div class="col-md-12">
-            <?php echo form_open_multipart(base_url().'OnlineShopAdmin/tambah_artikel'); ?>
+            <?php echo form_open_multipart(base_url().'adminartikel'); ?>
               <div class="row">
+                <input name="input" type="hidden" class="form-control" id="input" placeholder="Input" required="" value="Tambah">
                 <div class="col-lg-12 col-md-12 col-sm-12">
+                  <?= form_error('judul', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <input name="judul" type="text" class="form-control" id="judul" placeholder="Judul Artikel" required="">
+                    <input name="judul" type="text" class="form-control" id="judul" placeholder="Judul Artikel" required="" value="<?= set_value('judul') ?>">
                   </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <fieldset>
-                      <textarea name="isi" rows="6" class="form-control" id="isi" placeholder="Isi Artikel" required=""></textarea>
-                    </fieldset>
+                  <?= form_error('isi', '<small class="text-danger pl-3">', '</small>') ?>
+                  <fieldset>
+                    <textarea name="isi" rows="6" class="form-control" id="isi" placeholder="Isi Artikel" required=""><?= set_value('isi') ?></textarea>
+                  </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <input name="gambar" class="form-control" type="file" id="formFile" required="">
