@@ -62,7 +62,7 @@
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link <?= (substr(uri_string(), 0, 6) == "produk") ? "active" : "" ; ?>" href="<?php echo base_url() ?>produk">Produk</a>
+                  <a class="nav-link <?= (substr(uri_string(), 0, 5) == "batik") ? "active" : "" ; ?>" href="<?php echo base_url() ?>batik">Batik</a>
                 </li>
 
                 <li class="nav-item">
