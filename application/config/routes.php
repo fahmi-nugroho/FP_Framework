@@ -61,6 +61,8 @@ $route['adminartikel'] = 'OnlineShopAdmin/adminartikel';
 $route['adminartikel/edit/(:num)'] = 'OnlineShopAdmin/edit_artikel/$1';
 $route['adminproduk'] = 'OnlineShopAdmin/adminproduk';
 $route['adminproduk/edit/(:num)'] = 'OnlineShopAdmin/edit_produk/$1';
+$route['adminpengiriman'] = 'OnlineShopAdmin/adminpengiriman';
+$route['adminpengiriman/edit/(:num)'] = 'OnlineShopAdmin/edit_kurir/$1';
 $route['admintransaksi'] = 'OnlineShopAdmin/admintransaksi';
 
 $route['404_override'] = '';

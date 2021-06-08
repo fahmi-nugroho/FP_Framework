@@ -65,6 +65,10 @@
               </li>
 
               <li class="nav-item">
+                <a class="nav-link <?= (uri_string() == "adminpengiriman") ? "active" : "" ; ?>" href="<?php echo base_url() ?>adminpengiriman">Pengiriman</a>
+              </li>
+
+              <li class="nav-item">
                 <a class="nav-link <?= (uri_string() == "admintransaksi") ? "active" : "" ; ?>" href="<?php echo base_url() ?>admintransaksi">Transaksi</a>
               </li>
             </ul>

@@ -7,6 +7,7 @@ class OnlineShopAdmin extends CI_Controller {
 		$this->load->model('m_artikel');
 		$this->load->model('m_produk');
 		$this->load->model('m_transaksi');
+		$this->load->model('m_kurir');
 	}
 
 	public function adminartikel()
@@ -234,6 +235,60 @@ class OnlineShopAdmin extends CI_Controller {
 		);
 		$this->m_artikel->edit_artikel($where, $data, 'batik');
 		redirect('adminproduk');
+	}
+
+	public function adminpengiriman()
+	{
+		$data['pengiriman'] = $this->m_kurir->tampil_kurir()->result();
+        $this->load->view('OnlineShop/admin/headeradmin');
+		$this->load->view('OnlineShop/admin/adminpengiriman', $data);
+        $this->load->view('OnlineShop/template/footer');
+	}
+
+	public function tambah_kurir()
+	{
+		$nama		= $this->input->post('nama');
+		$harga		= $this->input->post('harga');
+
+		$data = array(
+			'nama_kurir'		=> $nama,
+			'harga_kurir'		=> $harga,
+		);
+
+		$this->m_kurir->input_data($data, 'kurir');
+		redirect('adminpengiriman');
+	}
+
+	public function hapus_kurir($id)
+	{
+		$where		= array ('id_kurir' => $id);
+		$this->m_kurir->hapus_data($where, 'kurir');
+		redirect('adminproduk');
+	}
+
+	public function edit_kurir($id){
+		$where = array('id_kurir' => $id);
+		$data['pengiriman'] = $this->m_kurir->edit_data($where, 'kurir')->result();
+		$this->load->view('OnlineShop/admin/headeradmin');
+		$this->load->view('OnlineShop/admin/editpengiriman', $data);
+        $this->load->view('OnlineShop/template/footer');
+	}
+
+	public function ubah_kurir(){
+		$id			= $this->input->post('id');
+		$nama		= $this->input->post('nama');
+		$harga		= $this->input->post('harga');
+
+		$data = array(
+			'nama_kurir'		=> $nama,
+			'harga_kurir'		=> $harga,
+		);
+
+		$where = array(
+			'id_kurir'			=> $id,
+		);
+		$this->m_kurir->edit_kurir($where, $data, 'kurir');
+		redirect('adminpengiriman');
 	}
 
 	public function admintransaksi()

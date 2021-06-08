@@ -120,7 +120,16 @@
                 <td class="text-center"><?= $prd->harga ?></td>
                 <td class="text-center"><?= $prd->ukuran ?></td>
                 <td class="text-center"><?= $prd->stok ?></td>
-                <td class="text-center"><?= $prd->deskripsi ?></td>
+                <?php
+                  $deskripsi      = $prd->deskripsi;
+                  $ar_deskripsi   = explode(' ', $deskripsi);
+                  $deskripsi      = $ar_deskripsi[0];
+                  for ($x = 1; $x < 10; $x++) {
+                    $deskripsi = $deskripsi . ' ' . $ar_deskripsi[$x];
+                  }
+                  $deskripsi = $deskripsi . ' ...';
+                ?>
+                <td class="text-center"><?= $deskripsi ?></td>
                 <td class="text-center">
                   <?= anchor('adminproduk/edit/'.$prd->id_batik, '<button type="button" class="btn btn-warning">Edit</button>') ?>
                 </td>
