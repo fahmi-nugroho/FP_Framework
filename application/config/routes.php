@@ -50,8 +50,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'OnlineShop';
-$route['produk'] = 'OnlineShop/products';
-$route['produk/(:num)'] = 'OnlineShop/product/$1';
+$route['batik'] = 'OnlineShop/products';
+$route['batik/(:num)'] = 'OnlineShop/products';
+$route['batik/produk/(:num)'] = 'OnlineShop/product/$1';
 $route['blog'] = '';
 $route['about'] = 'OnlineShop/about';
 $route['login'] = 'OnlineShop/login';
