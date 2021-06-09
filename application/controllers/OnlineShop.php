@@ -5,6 +5,7 @@ class OnlineShop extends CI_Controller {
 	function __construct(){
 			parent::__construct();
 			$this -> load -> model('model_olshop', 'batik');
+			$this -> load -> model('m_artikel');
 	}
 
 	public function index()
@@ -227,9 +228,10 @@ class OnlineShop extends CI_Controller {
 	}
 	public function blog()
 	{
-    $this->load->view('OnlineShop/template/header');
-		$this->load->view('OnlineShop/blog');
-    $this->load->view('OnlineShop/template/footer');
+		$data['artikel'] = $this -> m_artikel -> tampil_artikel()->result();
+    	$this->load->view('OnlineShop/template/header');
+		$this->load->view('OnlineShop/blog', $data);
+    	$this->load->view('OnlineShop/template/footer');
 	}
 	public function bacablog()
 	{

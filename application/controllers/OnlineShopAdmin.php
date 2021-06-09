@@ -51,7 +51,7 @@ class OnlineShopAdmin extends CI_Controller {
 				);
 		
 				$this->m_artikel->input_data($data, 'artikel');
-				// redirect('adminartikel');
+				redirect('adminartikel');
 			}
 		}
 
@@ -129,10 +129,6 @@ class OnlineShopAdmin extends CI_Controller {
         $this->load->view('OnlineShop/template/footer');
 	}
 
-	public function ubah_artikel(){
-		
-	}
-
 	public function adminproduk()
 	{
 		$submit = $this->input->post('input');
@@ -185,7 +181,7 @@ class OnlineShopAdmin extends CI_Controller {
 				);
 
 				$this->m_produk->input_data($data, 'batik');
-				// redirect('adminproduk');
+				redirect('adminproduk');
 			}
 		}
 
@@ -274,10 +270,6 @@ class OnlineShopAdmin extends CI_Controller {
 		$this->load->view('OnlineShop/admin/headeradmin');
 		$this->load->view('OnlineShop/admin/editproduk', $data);
 		$this->load->view('OnlineShop/template/footer');
-	}
-
-	public function ubah_produk(){
-		
 	}
 
 	public function adminpengiriman()
