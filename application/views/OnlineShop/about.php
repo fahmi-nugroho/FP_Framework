@@ -52,7 +52,7 @@
           </div>
           <div class="col-md-4">
             <div class="team-member">
-              <div class="thumb-container">
+              <div class="product-image thumb-container">
                 <img src="assets/images/batik/Batik Sidoarjo motif Beras Utah.jpg" alt="">
               </div>
               <div class="down-content">
@@ -63,18 +63,18 @@
           </div>
           <div class="col-md-4">
             <div class="team-member">
-              <div class="thumb-container">
+              <div class="product-image thumb-container">
                 <img src="assets/images/batik/Batik Sidoarjo motif Sekardangan.jpg" alt="">
               </div>
               <div class="down-content">
                 <h4>Motif Sekardangan</h4>
-                <p>Batik motif sekardangan merupakan motif pertama yang muncul dan dikenal dan hanya berwarna coklat, biru tua, dan jingga tua.</p>
+                <p>Batik motif sekardangan merupakan motif pertama yang muncul dan dikenal dengan hanya pewarnaan berwarna coklat, biru tua, dan jingga tua.</p>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="team-member">
-              <div class="thumb-container">
+              <div class="product-image thumb-container">
                 <img src="assets/images/batik/Batik Sidoarjo motif Kembang Tebu.jpg" alt="">
               </div>
               <div class="down-content">

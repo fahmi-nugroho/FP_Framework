@@ -74,6 +74,7 @@
               <tbody>
                 <?php
                   foreach ($pengiriman as $pmn) : ?>
+                <tr>
                   <th scope="row" class="text-center"><?= $no++ ?></th>
                   <td class="text-center"><?= $pmn->nama_kurir ?></td>
                   <td class="text-center"><?= $pmn->harga_kurir ?></td>
@@ -84,8 +85,8 @@
                     </span>
                   </td>
                 </tr>
+                <?php endforeach; ?>
               </tbody>
-              <?php endforeach; ?>
             </table>
           </div>
           <?php else : ?>
