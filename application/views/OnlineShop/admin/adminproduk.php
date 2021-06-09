@@ -22,36 +22,43 @@
           </div>
           <div class="col-md-12">
             <!-- <form id="contact" action="" method="post"> -->
-            <?php echo form_open_multipart('OnlineShopAdmin/tambah_produk'); ?>
+            <?php echo form_open_multipart('adminproduk'); ?>
               <div class="row">
+                <input name="input" type="hidden" class="form-control" id="input" placeholder="Input" required="" value="Tambah">
                 <div class="col-lg-12 col-md-12 col-sm-12">
+                  <?= form_error('nama', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Batik" required="">
+                    <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Batik" required="" value="<?= set_value('nama') ?>">
                   </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
+                  <?= form_error('harga', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <input name="harga" type="text" class="form-control" id="harga" placeholder="Harga Batik" required="">
+                    <input name="harga" type="text" class="form-control" id="harga" placeholder="Harga Batik" required="" value="<?= set_value('harga') ?>">
                   </fieldset>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
+                  <?= form_error('panjang', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <input name="panjang" type="text" class="form-control" id="panjang" placeholder="Panjang Batik" required="">
+                    <input name="panjang" type="text" class="form-control" id="panjang" placeholder="Panjang Batik" required="" value="<?= set_value('panjang') ?>">
                   </fieldset>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
+                  <?= form_error('lebar', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <input name="lebar" type="text" class="form-control" id="lebar" placeholder="Lebar Batik" required="">
+                    <input name="lebar" type="text" class="form-control" id="lebar" placeholder="Lebar Batik" required="" value="<?= set_value('lebar') ?>">
                   </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
+                  <?= form_error('stok', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <input name="stok" type="text" class="form-control" id="stok" placeholder="Stok Batik" required="">
+                    <input name="stok" type="text" class="form-control" id="stok" placeholder="Stok Batik" required="" value="<?= set_value('stok') ?>">
                   </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
+                  <?= form_error('deskripsi', '<small class="text-danger pl-3">', '</small>') ?>
                     <fieldset>
-                      <textarea name="deskripsi" rows="6" class="form-control" id="deskripsi" placeholder="Deskripsi Batik" required=""></textarea>
+                      <textarea name="deskripsi" rows="6" class="form-control" id="deskripsi" placeholder="Deskripsi Batik" required=""><?= set_value('panjang') ?></textarea>
                     </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -96,6 +103,11 @@
             </div>
           </div>
           <table class="table">
+            <?php
+              $banyak = count($produk);
+              $no = 1;
+              if ($banyak > 0) :  
+            ?>
             <thead>
               <tr>
                 <th scope="col" class="text-center">No.</th>
@@ -108,17 +120,23 @@
               </tr>
             </thead>
             <tbody>
-              <?php
-                $no = 1; 
-                foreach ($produk as $prd) : 
-              ?>
+              <?php foreach ($produk as $prd) :  ?>
               <tr>
                 <th scope="row" class="text-center"><?= $no++ ?></th>
                 <td class="text-center"><?= $prd->nama_batik ?></td>
                 <td class="text-center"><?= $prd->harga ?></td>
                 <td class="text-center"><?= $prd->ukuran ?></td>
                 <td class="text-center"><?= $prd->stok ?></td>
-                <td class="text-center"><?= $prd->deskripsi ?></td>
+                <?php
+                  $deskripsi      = $prd->deskripsi;
+                  $ar_deskripsi   = explode(' ', $deskripsi);
+                  $deskripsi      = $ar_deskripsi[0];
+                  for ($x = 1; $x < 10; $x++) {
+                    $deskripsi = $deskripsi . ' ' . $ar_deskripsi[$x];
+                  }
+                  $deskripsi = $deskripsi . ' ...';
+                ?>
+                <td class="text-center"><?= $deskripsi ?></td>
                 <td class="text-center">
                   <?= anchor('adminproduk/edit/'.$prd->id_batik, '<button type="button" class="btn btn-warning">Edit</button>') ?>
                 </td>
@@ -129,139 +147,14 @@
               <?php endforeach; ?>
             </tbody>
           </table>
-          <!-- <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="assets/images/team_01.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Produk 1</h4>
-                <span>CO-Founder</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
-            </div>
+          <?php else : ?>
+          <div class="col-md-12 text-center">
+            <h1>Produk Kosong</h1>
           </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="assets/images/team_02.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Produk 2</h4>
-                <span>Product Expert</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="assets/images/team_03.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Produk 3</h4>
-                <span>Chief Marketing</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="assets/images/team_04.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Produk 4</h4>
-                <span>Product Specialist</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="assets/images/team_05.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Produk 5</h4>
-                <span>Product Photographer</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="assets/images/team_06.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Produk 6</h4>
-                <span>General Manager</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
-            </div>
-          </div> -->
-          <div class="col-md-12">
+          <?php  
+            endif;
+          ?> 
+          <!-- <div class="col-md-12">
             <ul class="pages">
                 <li class="active"><a href="#">1</a></li>
               <li><a href="#">2</a></li>
@@ -269,7 +162,7 @@
               <li><a href="#">4</a></li>
               <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
             </ul>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

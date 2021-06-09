@@ -9,7 +9,7 @@ class OnlineShop extends CI_Controller {
 
 	public function index()
 	{
-		$data['db'] = $this -> batik -> views_batik();
+		$data['db'] = $this -> batik -> pagiBatik(6, 0);
 	  $this->load->view('OnlineShop/template/header');
 		$this->load->view('OnlineShop/index', $data);
     $this->load->view('OnlineShop/template/footer');
@@ -17,8 +17,38 @@ class OnlineShop extends CI_Controller {
 
 	public function products()
 	{
-		unset($_SESSION['cart']);
-		$data['db'] = $this -> batik -> views_batik();
+		$config['base_url'] = base_url().'batik';
+		$config['total_rows'] = $this->batik->countBatik();
+		$config['per_page'] = 9;
+
+		$config['num_links'] = 2;
+		// $config['use_page_numbers'] = TRUE;
+
+		$config['full_tag_open'] = '<ul class="pages">';
+		$config['full_tag_close'] = '</ul>';
+
+		$config['first_link'] = false;
+		$config['last_link'] = false;
+
+		$config['prev_link'] = '<i class="fa fa-angle-double-left"></i>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+
+		$config['next_link'] = '<i class="fa fa-angle-double-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+
+		$this -> pagination -> initialize($config);
+
+		$data['start'] = $this -> uri -> segment(2);
+		$data['db'] = $this -> batik -> pagiBatik($config['per_page'], $data['start']);
+
 		$this->load->view('OnlineShop/template/header');
 		$this->load->view('OnlineShop/products', $data);
 		$this->load->view('OnlineShop/template/footer');
@@ -160,8 +190,18 @@ class OnlineShop extends CI_Controller {
 
 	public function checkout()
 	{
+		$data['batiks'] = array();
+		if (isset($_SESSION['cart']) && $_SESSION['cart']['total'] > 0) {
+			foreach ($_SESSION['cart'] as $key => $value) {
+				if (substr($key, 0, 5) == "cart_") {
+					array_push($data['batiks'], $this -> batik -> view_batik(substr($key, 5))[0]);
+				}
+			}
+		}
+
+		$data['kurir'] = $this -> batik -> views_kurir();
 		$this->load->view('OnlineShop/template/header');
-		$this->load->view('OnlineShop/checkout');
+		$this->load->view('OnlineShop/checkout', $data);
 		$this->load->view('OnlineShop/template/footer');
 	}
 

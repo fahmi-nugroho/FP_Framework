@@ -73,7 +73,7 @@
           <div class="col-md-12">
             <div class="section-heading">
               <h2>Produk Terbaru</h2>
-              <a href="<?php echo base_url() ?>produk">lihat semua produk <i class="fa fa-angle-right"></i></a>
+              <a href="<?php echo base_url() ?>batik">lihat semua produk <i class="fa fa-angle-right"></i></a>
             </div>
           </div>
           <?php
@@ -83,12 +83,20 @@
           <div class="col-md-4">
             <div class="product-item">
               <div class="product-image d-flex align-items-center justify-content-center">
-                <a href="<?php echo base_url() ?>produk/<?php echo $row->id_batik ?>"><img src="<?php echo base_url() ?>assets/images/Batik/<?php echo $row->gambar ?>" alt=""></a>
+                <a href="<?php echo base_url() ?>batik/produk/<?php echo $row->id_batik ?>"><img src="<?php echo base_url() ?>assets/images/Batik/<?php echo $row->gambar ?>" alt=""></a>
               </div>
               <div class="down-content">
-                <a href="<?php echo base_url() ?>produk/<?php echo $row->id_batik ?>"><h4><?php echo $row->nama_batik ?></h4></a>
+                <a href="<?php echo base_url() ?>batik/produk/<?php echo $row->id_batik ?>"><h4><?php echo $row->nama_batik ?></h4></a>
                 <h6>Rp <?php echo number_format($row->harga, 0, ',', '.') ?></h6>
-                <p><?php echo $row->deskripsi ?></p>
+                <p class="text-break">
+                  <?php
+                    if (strlen($row->deskripsi) > 80) {
+                      echo ucfirst(substr($row->deskripsi, 0, 80)."...");
+                    } else {
+                      echo ucfirst($row->deskripsi);
+                    }
+                  ?>
+                </p>
                 <ul class="stars">
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
@@ -102,7 +110,6 @@
           </div>
 
           <?php } ?>
-
         </div>
       </div>
     </div>

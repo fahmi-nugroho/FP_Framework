@@ -7,4 +7,14 @@
     {
         return $this->db->get('transaksi');
     }
+
+    public function get_data($where, $table){
+      return $this->db->get_where($table, $where);
+    }
+
+    public function edit_transaksi($where,$data,$table)
+    {
+      $this->db->where($where);
+      $this->db->update($table, $data);
+    }
   }

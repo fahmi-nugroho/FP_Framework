@@ -66,8 +66,7 @@
               :
             </div>
           </div>
-          <?php $txt = "batik khas sidoarjo, lasem dan madura, semuanya hampir memiliki pewarnaan yang serupa. Dimana warna warna ngejreng dan berani banyak dipilih. namun untuk batik madura, motif yang diaplikasi adalah tentang bunga atau tumbuhan, tidak memiliki kebiasaan bermotif hewan. ini sangat berkaitan dengan kulturnya yang religius." ?>
-          <p class="fs-6"><?php echo ucfirst($txt) ?></p>
+          <p class="fs-6"><?php echo ucfirst($db[0]->deskripsi) ?></p>
 
           <div class="row">
             <div class="col-12 col-xl-6 mb-3">

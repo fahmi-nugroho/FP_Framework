@@ -17,27 +17,24 @@
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
-              <h2>Buat Artikel Baru</h2>
+              <h2>Daftarkan Jasa Pengiriman Baru</h2>
             </div>
           </div>
           <div class="col-md-12">
-            <?php echo form_open_multipart(base_url().'adminartikel'); ?>
+            <?php echo form_open_multipart(base_url().'adminpengiriman'); ?>
               <div class="row">
                 <input name="input" type="hidden" class="form-control" id="input" placeholder="Input" required="" value="Tambah">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                  <?= form_error('judul', '<small class="text-danger pl-3">', '</small>') ?>
+                  <?= form_error('nama', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <input name="judul" type="text" class="form-control" id="judul" placeholder="Judul Artikel" required="" value="<?= set_value('judul') ?>">
+                    <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Kurir" required="" value="<?= set_value('nama') ?>">
                   </fieldset>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                  <?= form_error('isi', '<small class="text-danger pl-3">', '</small>') ?>
+                  <?= form_error('harga', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
-                    <textarea name="isi" rows="6" class="form-control" id="isi" placeholder="Isi Artikel" required=""><?= set_value('isi') ?></textarea>
+                    <input name="harga" type="text" class="form-control" id="harga" placeholder="Harga Kurir" required="" value="<?= set_value('harga') ?>">
                   </fieldset>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                  <input name="gambar" class="form-control" type="file" id="formFile" required="">
                 </div>
                 <div class="col-lg-12">
                   <fieldset>
@@ -56,46 +53,35 @@
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
-              <h2>Daftar Artikel</h2>
+              <h2>Daftar Pengiriman</h2>
             </div>
           </div>
           <div class="col-md-12">
-            <?php
-              $banyak = count($artikel);
-              $no = 1;
+            <?php 
+              $banyak = count($pengiriman);
+              $no = 1; 
               if ($banyak > 0) : 
             ?>
             <table class="table">
               <thead>
                 <tr>
                   <th scope="col" class="text-center">No.</th>
-                  <th scope="col" class="text-center">Judul</th>
-                  <th scope="col" class="text-center">Tanggal</th>
-                  <th scope="col" class="text-center">Isi</th>
-                  <th scope="col" colspan="2" class="text-center">Aksi</th>
+                  <th scope="col" class="text-center">Nama Kurir</th>
+                  <th scope="col" class="text-center">Harga Kurir</th>
+                  <th scope="col" colspan="1" class="text-center">Aksi</th>
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($artikel as $art) :  ?>
-                <tr>
+                <?php
+                  foreach ($pengiriman as $pmn) : ?>
                   <th scope="row" class="text-center"><?= $no++ ?></th>
-                  <td class="text-center"><?= $art->judul_artikel ?></td>
-                  <td class="text-center"><?= $art->tanggal_artikel ?></td>
-                  <?php
-                    $isi      = $art->isi_artikel;
-                    $ar_isi   = explode(' ', $isi);
-                    $isi      = $ar_isi[0];
-                    for ($x = 1; $x < 10; $x++) {
-                      $isi = $isi . ' ' . $ar_isi[$x];
-                    }
-                    $isi = $isi . ' ...';
-                  ?>
-                  <td class="text-center"><?= $isi  ?></td>
+                  <td class="text-center"><?= $pmn->nama_kurir ?></td>
+                  <td class="text-center"><?= $pmn->harga_kurir ?></td>
                   <td class="text-center">
-                    <?= anchor('adminartikel/edit/'.$art->id_artikel, '<button type="button" class="btn btn-warning">Edit</button>') ?>
-                  </td>
-                  <td class="text-center" onclick="javascript: return confirm('Anda yakin hapus?')">
-                    <?= anchor('OnlineShopAdmin/hapus_artikel/'.$art->id_artikel.'/'.$art->gambar_artikel, '<button type="button" class="btn btn-danger">Hapus</button>') ?>
+                    <?= anchor('adminpengiriman/edit/'.$pmn->id_kurir, '<button type="button" class="btn btn-warning">Edit</button>') ?>
+                    <span onclick="javascript: return confirm('Anda yakin hapus?')">
+                        <?= anchor('OnlineShopAdmin/hapus_kurir/'.$pmn->id_kurir, '<button type="button" class="btn btn-danger">Hapus</button>') ?>
+                    </span>
                   </td>
                 </tr>
               </tbody>
@@ -104,9 +90,11 @@
           </div>
           <?php else : ?>
           <div class="col-md-12 text-center">
-            <h1>Artikel Kosong</h1>
+            <h1>Pengiriman Kosong</h1>
           </div>
-          <?php endif; ?> 
+          <?php  
+            endif;
+            ?> 
           <!-- <div class="col-md-12">
             <ul class="pages">
                 <li class="active"><a href="#">1</a></li>
