@@ -6,21 +6,28 @@
             <div class="text-content">
               <h4>Masuk</h4>
               <div class="contact-form">
-              <form id="contact" action="" method="post">
+              <form id="contact" action="<?php echo base_url() ?>login" method="post">
                 <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 30px">
                     <fieldset>
-                      <input name="email" type="text" class="form-control" id="email" placeholder="Alamat Email" required="">
+                      <input name="email" type="text" class="form-control mb-0" id="email" placeholder="Alamat Email" required>
+                      <?= form_error('email', '<span class="badge bg-danger fs-6 fw-normal">', '</span>') ?>
                     </fieldset>
                   </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 30px">
                     <fieldset>
-                      <input name="password" type="password" class="form-control" id="password" placeholder="Password" required="">
+                      <input name="password" type="password" class="form-control mb-0" id="password" placeholder="Password" required>
+                      <?= form_error('password', '<span class="badge bg-danger fs-6 fw-normal">', '</span>') ?>
+                      <?php
+                        if ($this->session->flashdata('Error') == "ada") {
+                          echo '<span class="badge bg-danger fs-6 fw-normal mt-4">Email atau Password salah</span>';
+                        }
+                      ?>
                     </fieldset>
                   </div>
-                  <div class="col-lg-12">
+                  <div class="col-lg-12" style="margin-top: 30px">
                     <fieldset>
-                      <button type="submit" id="form-submit" class="filled-button">Masuk</button>
+                      <button type="submit" name="masuk" value="masuk" id="form-submit" class="filled-button">Masuk</button>
                       <a type="submit" id="form-submit" class="filled-button" href="<?php echo base_url() ?>register">Daftar</a>
                     </fieldset>
                   </div>
@@ -38,7 +45,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
-              <h2>Our Background</h2>
+              <h2>Our Background</h2
             </div>
           </div>
           <div class="col-md-6">

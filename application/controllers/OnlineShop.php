@@ -175,7 +175,6 @@ class OnlineShop extends CI_Controller {
 
 					<div class="text-center">
 						<a class="btn btn-secondary btn-sm w-75 mt-4" href="<?php echo base_url() ?>checkout">Checkout</a>
-						<!-- <button class="btn btn-secondary btn-sm w-75 mt-4" type="button" name="button">Checkout</button> -->
 					</div>
 				<?php
 			} else {
@@ -191,6 +190,10 @@ class OnlineShop extends CI_Controller {
 
 	public function checkout()
 	{
+		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1){
+			echo "<script>window.history.back()</script>";
+		}
+		
 		$data['batiks'] = array();
 		if (isset($_SESSION['cart']) && $_SESSION['cart']['total'] > 0) {
 			foreach ($_SESSION['cart'] as $key => $value) {
@@ -215,6 +218,48 @@ class OnlineShop extends CI_Controller {
 
 	public function login()
 	{
+		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1){
+			echo "<script>window.history.back()</script>";
+		}
+
+		$submit = $this->input->post('masuk');
+
+		if ($submit == 'masuk') {
+			$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+			$this->form_validation->set_rules('password', 'Password', 'required|trim');
+
+			$this->form_validation->set_message('required', '{field} harus di isi.');
+			$this->form_validation->set_message('valid_email', 'Harap isi {field} dengan benar.');
+
+			if ($this->form_validation->run() === true){
+				$email	= $this->input->post('email');
+				$password	= $this->input->post('password');
+
+				$user = $this -> batik -> login($email);
+				if (!empty($user)) {
+					if (password_verify($password, $user[0]['password'])) {
+						$newdata = array(
+							'id' => $user[0]['id_user'],
+							'nama' => $user[0]['nama_user'],
+							'email' => $user[0]['email'],
+							'logged_in' => TRUE
+						);
+
+						$this->session->set_userdata($newdata);
+						if ($user[0]['email'] == 'Admin@admin.com') {
+							redirect('adminartikel');
+						} else {
+							redirect();
+						}
+					} else {
+						$this->session->set_flashdata('Error', 'ada');
+					}
+				} else {
+					$this->session->set_flashdata('Error', 'ada');
+				}
+			}
+		}
+
     $this->load->view('OnlineShop/template/header');
 		$this->load->view('OnlineShop/login');
     $this->load->view('OnlineShop/template/footer');
@@ -222,20 +267,60 @@ class OnlineShop extends CI_Controller {
 
 	public function register()
 	{
-    $this->load->view('OnlineShop/template/header');
+		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1){
+			echo "<script>window.history.back()</script>";
+		}
+
+		$submit = $this->input->post('daftar');
+
+		if ($submit == 'daftar') {
+			$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
+			$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]');
+			$this->form_validation->set_rules('confirmpassword', 'Confirm Password', 'required|trim|matches[password]');
+
+			$this->form_validation->set_message('required', '{field} harus di isi.');
+			$this->form_validation->set_message('valid_email', 'Harap isi {field} dengan  benar.');
+			$this->form_validation->set_message('is_unique', '{field} sudah terdaftar.');
+			$this->form_validation->set_message('min_length', '{field} harus lebih dari {param} karakter.');
+			$this->form_validation->set_message('matches', '{field} tidak sama dengan {param}.');
+
+			if ($this->form_validation->run() === true){
+				$email	= $this->input->post('email');
+				$nama = strtolower(explode("@", $email)[0]);
+				$password	= password_hash($this->input->post('password'), PASSWORD_BCRYPT);
+
+				$data = array(
+					'nama_user' => $nama,
+					'email' => $email,
+					'password' => $password,
+				);
+
+				$this->batik->register($data);
+				redirect("login");
+			}
+		}
+
+		$this->load->view('OnlineShop/template/header');
 		$this->load->view('OnlineShop/register');
-    $this->load->view('OnlineShop/template/footer');
+		$this->load->view('OnlineShop/template/footer');
 	}
+
+	public function logout()
+	{
+		session_destroy();
+		redirect();
+	}
+
 	public function blog()
 	{
 		$data['artikel'] = $this -> m_artikel -> tampil_artikel()->result();
-    	$this->load->view('OnlineShop/template/header');
+    $this->load->view('OnlineShop/template/header');
 		$this->load->view('OnlineShop/blog', $data);
-    	$this->load->view('OnlineShop/template/footer');
+    $this->load->view('OnlineShop/template/footer');
 	}
+
 	public function bacablog()
 	{
-		// $data['db'] = $this -> batik -> view_batik($id);
 		$this->load->view('OnlineShop/template/header');
 		$this->load->view('OnlineShop/bacablog');
 		$this->load->view('OnlineShop/template/footer');

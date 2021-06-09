@@ -63,7 +63,7 @@
             <?php
               $banyak = count($artikel);
               $no = 1;
-              if ($banyak > 0) : 
+              if ($banyak > 0) :
             ?>
             <table class="table">
               <thead>
@@ -109,7 +109,7 @@
           <div class="col-md-12 text-center">
             <h1>Artikel Kosong</h1>
           </div>
-          <?php endif; ?> 
+          <?php endif; ?>
           <!-- <div class="col-md-12">
             <ul class="pages">
                 <li class="active"><a href="#">1</a></li>

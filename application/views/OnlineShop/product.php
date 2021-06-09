@@ -95,7 +95,13 @@
               </div>
             </div>
             <div class="col-12 col-xl-6">
-              <button class="btn btn-success w-100" id="btnMasukKeranjang" onclick="masukKeranjang(<?php echo $db[0]->id_batik ?>)" type="button">+ Keranjang</button>
+              <?php
+            		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1){
+            			echo '<button class="btn btn-success w-100" id="btnMasukKeranjang" onclick="masukKeranjang('.$db[0]->id_batik.')" type="button">+ Keranjang</button>';
+            		} else {
+                  echo '<button class="btn btn-success w-100" id="btnMasukKeranjang" onclick="notif()" type="button">+ Keranjang</button>';
+                }
+              ?>
             </div>
           </div>
 
@@ -111,5 +117,7 @@
     jumlahProduct('#inputJumlah-<?php echo $db[0]->id_batik ?>');
   });
 
-
+  function notif() {
+    alert("Harap login terlebih dahulu");
+  }
 </script>

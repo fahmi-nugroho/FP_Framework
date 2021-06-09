@@ -30,4 +30,16 @@
     {
       return $this->db->get('batik')->num_rows();
     }
+
+    public function register($data)
+    {
+      return $this -> db -> insert('user', $data);
+    }
+
+    public function login($email)
+    {
+      $this->db->where('email', $email);
+      $query = $this -> db -> get('user');
+      return $query -> result_array();
+    }
   }

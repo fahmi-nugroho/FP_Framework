@@ -73,21 +73,23 @@
                   <a class="nav-link <?= (uri_string() == "about") ? "active" : "" ; ?>" href="<?php echo base_url() ?>about">Tentang Kami</a>
                 </li>
 
-                <!-- <li class="nav-item">
-                <a class="nav-link <?= (uri_string() == "login" || uri_string() == "register") ? "active" : "" ; ?>" href="<?php echo base_url() ?>login">Login</a>
-              </li> -->
-
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle <?= (uri_string() == "keranjang") ? "active" : "" ; ?>" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  User
-                </a>
-                <ul class="dropdown-menu dropcustom" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Profil</a></li>
-                  <li><a class="dropdown-item" onclick="hideDropdown()" data-bs-toggle="offcanvas" href="#keranjang" role="button" aria-controls="keranjang">Keranjang</a></li>
-                  <li><a class="dropdown-item" href="#">Logout</a></li>
-                </ul>
-              </li>
-            </ul>
+                <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1): ?>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle <?= (uri_string() == "keranjang") ? "active" : "" ; ?>" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      User
+                    </a>
+                    <ul class="dropdown-menu dropcustom" aria-labelledby="navbarDropdownMenuLink">
+                      <li><a class="dropdown-item" href="#">Profil</a></li>
+                      <li><a class="dropdown-item" onclick="hideDropdown()" data-bs-toggle="offcanvas" href="#keranjang" role="button" aria-controls="keranjang">Keranjang</a></li>
+                      <li><a class="dropdown-item" href="<?php echo base_url() ?>OnlineShop/logout">Logout</a></li>
+                    </ul>
+                  </li>
+                <?php else: ?>
+                  <li class="nav-item">
+                    <a class="nav-link <?= (uri_string() == "login" || uri_string() == "register") ? "active" : "" ; ?>" href="<?php echo base_url() ?>login">Login</a>
+                  </li>
+                <?php endif; ?>
+              </ul>
             <?php endif; ?>
           </div>
         </div>
@@ -102,9 +104,6 @@
           <div id="isiKeranjang">
 
           </div>
-          <!-- <div id="isiCheckout">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </div> -->
         </div>
       </div>
 

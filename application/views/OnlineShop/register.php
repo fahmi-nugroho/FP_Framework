@@ -6,27 +6,30 @@
             <div class="text-content">
               <h4>Daftar</h4>
               <div class="contact-form">
-              <form id="contact" action="" method="post">
-                <div class="row"> 
+              <form id="contact" action="<?php echo base_url() ?>register" method="post">
+                <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12">
                     <fieldset>
-                      <input name="email" type="text" class="form-control" id="email" placeholder="Alamat Email" required="">
+                      <input name="email" type="text" class="form-control mb-0" id="email" placeholder="Alamat Email" required>
+                      <?= form_error('email', '<span class="badge bg-danger fs-6 fw-normal">', '</span>') ?>
                     </fieldset>
                   </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 30px">
                     <fieldset>
-                      <input name="password" type="password" class="form-control" id="password" placeholder="Password" required="">
+                      <input name="password" type="password" class="form-control mb-0" id="password" placeholder="Password" required>
+                      <?= form_error('password', '<span class="badge bg-danger fs-6 fw-normal">', '</span>') ?>
                     </fieldset>
                   </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 30px">
                     <fieldset>
-                      <input name="confirmpassword" type="password" class="form-control" id="confirmpassword" placeholder="Confirm Password" required="">
+                      <input name="confirmpassword" type="password" class="form-control mb-0" id="confirmpassword" placeholder="Confirm Password" required>
+                      <?= form_error('confirmpassword', '<span class="badge bg-danger fs-6 fw-normal">', '</span>') ?>
                     </fieldset>
                   </div>
-                  <div class="col-lg-12">
+                  <div class="col-lg-12" style="margin-top: 30px">
                     <fieldset>
                       <a type="submit" id="form-submit" class="filled-button" href="<?php echo base_url() ?>login">Masuk</a>
-                      <button type="submit" id="form-submit" class="filled-button">Daftar</button>
+                      <button type="submit" name="daftar" value="daftar" id="form-submit" class="filled-button">Daftar</button>
                     </fieldset>
                   </div>
                 </div>
@@ -37,7 +40,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="best-features about-features">
       <div class="container">
         <div class="row">
