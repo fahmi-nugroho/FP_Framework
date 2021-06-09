@@ -84,11 +84,14 @@
                   <?php
                     $isi      = $art->isi_artikel;
                     $ar_isi   = explode(' ', $isi);
-                    $isi      = $ar_isi[0];
-                    for ($x = 1; $x < 10; $x++) {
-                      $isi = $isi . ' ' . $ar_isi[$x];
+                    $banyak   = count($ar_isi);
+                    if ($banyak > 10) {
+                      $isi      = $ar_isi[0];
+                      for ($x = 1; $x < 10; $x++) {
+                        $isi = $isi . ' ' . $ar_isi[$x];
+                      }
+                      $isi = $isi . ' ...';
                     }
-                    $isi = $isi . ' ...';
                   ?>
                   <td class="text-center"><?= $isi  ?></td>
                   <td class="text-center">

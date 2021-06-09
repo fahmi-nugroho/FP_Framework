@@ -130,11 +130,14 @@
                 <?php
                   $deskripsi      = $prd->deskripsi;
                   $ar_deskripsi   = explode(' ', $deskripsi);
-                  $deskripsi      = $ar_deskripsi[0];
-                  for ($x = 1; $x < 10; $x++) {
-                    $deskripsi = $deskripsi . ' ' . $ar_deskripsi[$x];
+                  $banyak   = count($ar_deskripsi);
+                  if ($banyak > 10) {
+                    $deskripsi      = $ar_deskripsi[0];
+                    for ($x = 1; $x < 10; $x++) {
+                      $deskripsi = $deskripsi . ' ' . $ar_deskripsi[$x];
+                    }
+                    $deskripsi = $deskripsi . ' ...';
                   }
-                  $deskripsi = $deskripsi . ' ...';
                 ?>
                 <td class="text-center"><?= $deskripsi ?></td>
                 <td class="text-center">
