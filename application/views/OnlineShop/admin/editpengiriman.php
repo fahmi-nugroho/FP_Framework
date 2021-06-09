@@ -20,16 +20,19 @@
             </div>
           </div>
           <div class="col-md-12">
-            <?php echo form_open_multipart(base_url().'OnlineShopAdmin/ubah_kurir'); ?>
+            <?php echo form_open_multipart(base_url().'adminpengiriman/edit/'.$pengiriman[0]->id_kurir); ?>
               <?php foreach($pengiriman as $pmn): ?>
                 <div class="row">
+                    <input name="input" type="hidden" class="form-control" id="input" placeholder="Input" required="" value="Ubah">
                     <input name="id" type="hidden" class="form-control" id="id" placeholder="ID Pengiriman" required="" value="<?= $pmn->id_kurir ?>">
                     <div class="col-lg-12 col-md-12 col-sm-12">
+                      <?= form_error('nama', '<small class="text-danger pl-3">', '</small>') ?>
                         <fieldset>
                             <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Kurir" required="" value="<?= $pmn->nama_kurir ?>">
                         </fieldset>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12">
+                      <?= form_error('harga', '<small class="text-danger pl-3">', '</small>') ?>
                         <fieldset>
                             <input name="harga" type="text" class="form-control" id="harga" placeholder="Harga Kurir" required="" value="<?= $pmn->harga_kurir ?>">
                         </fieldset>

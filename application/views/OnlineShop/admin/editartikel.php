@@ -20,17 +20,20 @@
             </div>
           </div>
           <div class="col-md-12">
-            <?php echo form_open_multipart(base_url().'OnlineShopAdmin/ubah_artikel'); ?>
+            <?php echo form_open_multipart(base_url().'adminartikel/edit/'.$artikel[0]->id_artikel); ?>
               <?php foreach($artikel as $art): ?>
                 <div class="row">
+                  <input name="input" type="hidden" class="form-control" id="input" placeholder="Input" required="" value="Ubah">
                   <input name="id" type="hidden" class="form-control" id="id" placeholder="ID Artikel" required="" value="<?= $art->id_artikel ?>">
                   <input name="gambarlama" type="hidden" class="form-control" id="gambarlama" placeholder="Gambarlama Artikel" required="" value="<?= $art->gambar_artikel ?>">
                   <div class="col-lg-12 col-md-12 col-sm-12">
+                  <?= form_error('judul', '<small class="text-danger pl-3">', '</small>') ?>
                   <fieldset>
                       <input name="judul" type="text" class="form-control" id="judul" placeholder="Judul Artikel" required="" value="<?= $art->judul_artikel ?>">
                   </fieldset>
                   </div>
                   <div class="col-lg-12 col-md-12 col-sm-12">
+                  <?= form_error('isi', '<small class="text-danger pl-3">', '</small>') ?>
                     <fieldset>
                       <textarea name="isi" rows="6" class="form-control" id="isi" placeholder="Isi Artikel" required=""><?= $art->isi_artikel ?></textarea>
                     </fieldset>

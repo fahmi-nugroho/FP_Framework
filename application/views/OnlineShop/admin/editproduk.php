@@ -20,17 +20,20 @@
             </div>
           </div>
           <div class="col-md-12">
-            <?php echo form_open_multipart(base_url().'OnlineShopAdmin/ubah_produk'); ?>
+            <?php echo form_open_multipart(base_url().'adminproduk/edit/'.$produk[0]->id_batik); ?>
               <?php foreach($produk as $prd): ?>
                 <div class="row">
+                    <input name="input" type="hidden" class="form-control" id="input" placeholder="Input" required="" value="Ubah">
                     <input name="id" type="hidden" class="form-control" id="id" placeholder="ID Produk" required="" value="<?= $prd->id_batik ?>">
                     <input name="gambarlama" type="hidden" class="form-control" id="gambarlama" placeholder="Gambarlama Produk" required="" value="<?= $prd->gambar ?>">
                     <div class="col-lg-12 col-md-12 col-sm-12">
+                      <?= form_error('nama', '<small class="text-danger pl-3">', '</small>') ?>
                     <fieldset>
                         <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Batik" required="" value="<?= $prd->nama_batik ?>">
                     </fieldset>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12">
+                      <?= form_error('harga', '<small class="text-danger pl-3">', '</small>') ?>
                       <fieldset>
                         <input name="harga" type="text" class="form-control" id="harga" placeholder="Harga Batik" required="" value="<?= $prd->harga ?>">
                       </fieldset>
@@ -42,21 +45,25 @@
                       $lebar      = $ar_ukuran[2];
                     ?>
                     <div class="col-lg-6 col-md-6 col-sm-6">
+                      <?= form_error('panjang', '<small class="text-danger pl-3">', '</small>') ?>
                       <fieldset>
                         <input name="panjang" type="text" class="form-control" id="panjang" placeholder="Panjang Batik" required="" value="<?= $panjang ?>">
                       </fieldset>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
+                      <?= form_error('lebar', '<small class="text-danger pl-3">', '</small>') ?>
                       <fieldset>
                         <input name="lebar" type="text" class="form-control" id="lebar" placeholder="Lebar Batik" required="" value="<?= $lebar ?>">
                       </fieldset>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12">
+                      <?= form_error('stok', '<small class="text-danger pl-3">', '</small>') ?>
                     <fieldset>
                         <input name="stok" type="text" class="form-control" id="stok" placeholder="Stok Batik" required="" value="<?= $prd->stok ?>">
                     </fieldset>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12">
+                      <?= form_error('deskripsi', '<small class="text-danger pl-3">', '</small>') ?>
                       <fieldset>
                         <textarea name="deskripsi" rows="6" class="form-control" id="deskripsi" placeholder="Deskripsi Batik" required=""><?= $prd->deskripsi ?></textarea>
                       </fieldset>
