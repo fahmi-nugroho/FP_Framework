@@ -51,9 +51,11 @@
       <nav class="navbar navbar-expand-lg">
         <div class="container">
           <a class="navbar-brand" href="<?php echo base_url() ?>"><h2>Batik <em>Jetis</em></h2></a>
-          <button class="navbar-toggler" id="btnNavbar" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+          <?php if (uri_string() != "checkout"): ?>
+            <button class="navbar-toggler" id="btnNavbar" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          <?php endif; ?>
           <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
             <?php if (uri_string() != "checkout"): ?>
               <ul class="navbar-nav">
@@ -76,7 +78,7 @@
                 <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1): ?>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle <?= (uri_string() == "keranjang") ? "active" : "" ; ?>" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      User
+                      <?php echo $_SESSION['nama'] ?>
                     </a>
                     <ul class="dropdown-menu dropcustom" aria-labelledby="navbarDropdownMenuLink">
                       <li><a class="dropdown-item" href="#">Profil</a></li>

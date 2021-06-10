@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 09, 2021 at 03:20 PM
+-- Generation Time: Jun 10, 2021 at 12:18 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -73,6 +73,56 @@ INSERT INTO `batik` (`id_batik`, `nama_batik`, `deskripsi`, `harga`, `ukuran`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `daftar_order`
+--
+
+CREATE TABLE `daftar_order` (
+  `id_transaksi` int(11) NOT NULL,
+  `id_order` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `tanggal` varchar(100) NOT NULL,
+  `alamat` text NOT NULL,
+  `notelp` varchar(25) NOT NULL,
+  `total` double NOT NULL,
+  `kurir` varchar(50) NOT NULL,
+  `status` varchar(100) NOT NULL,
+  `bukti` varchar(100) DEFAULT NULL,
+  `resi` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `daftar_order`
+--
+
+INSERT INTO `daftar_order` (`id_transaksi`, `id_order`, `id_user`, `nama`, `tanggal`, `alamat`, `notelp`, `total`, `kurir`, `status`, `bukti`, `resi`) VALUES
+(1, 1623283968, 4, 'rifan', '10-06-2021', 'Perumahan Sejahtera', '087755565590', 2170000, 'JNT', 'Menunggu Pembayaran', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_order`
+--
+
+CREATE TABLE `detail_order` (
+  `id_detail` int(11) NOT NULL,
+  `id_order` int(11) NOT NULL,
+  `id_batik` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `harga` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detail_order`
+--
+
+INSERT INTO `detail_order` (`id_detail`, `id_order`, `id_batik`, `jumlah`, `harga`) VALUES
+(1, 1623283968, 3, 5, '110000'),
+(2, 1623283968, 1, 10, '150000');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kurir`
 --
 
@@ -138,7 +188,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nama_user`, `email`, `password`, `telepon`, `alamat`, `foto`) VALUES
 (1, 'Admin', 'Admin@admin.com', '$2y$10$ROxtKzqztryWEtq6aPrxo.EPXxpKC1q0q9RELtGWz2rEeMe3kOMs6', NULL, 'Jl. P. Diponegoro, Lemah Putro, Lemahputro, Kec. Sidoarjo, Kabupaten Sidoarjo, Jawa Timur 61213', NULL),
-(4, 'rifan', 'rifan@gmail.com', '$2y$10$JsbO69v8DQ0tH5RtQ/cAOuv8a9bPTpbK.LdfaCxNQrHBREerSWs1W', NULL, NULL, NULL);
+(4, 'rifan', 'rifan@gmail.com', '$2y$10$JsbO69v8DQ0tH5RtQ/cAOuv8a9bPTpbK.LdfaCxNQrHBREerSWs1W', '087755565590', 'Perumahan Sejahtera', NULL);
 
 --
 -- Indexes for dumped tables
@@ -155,6 +205,23 @@ ALTER TABLE `artikel`
 --
 ALTER TABLE `batik`
   ADD PRIMARY KEY (`id_batik`);
+
+--
+-- Indexes for table `daftar_order`
+--
+ALTER TABLE `daftar_order`
+  ADD PRIMARY KEY (`id_transaksi`),
+  ADD UNIQUE KEY `id_order` (`id_order`),
+  ADD UNIQUE KEY `resi` (`resi`),
+  ADD KEY `fk_user` (`id_user`);
+
+--
+-- Indexes for table `detail_order`
+--
+ALTER TABLE `detail_order`
+  ADD PRIMARY KEY (`id_detail`),
+  ADD KEY `fk_order` (`id_order`),
+  ADD KEY `fk_batik` (`id_batik`);
 
 --
 -- Indexes for table `kurir`
@@ -184,13 +251,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `artikel`
 --
 ALTER TABLE `artikel`
-  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `batik`
 --
 ALTER TABLE `batik`
   MODIFY `id_batik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `daftar_order`
+--
+ALTER TABLE `daftar_order`
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `detail_order`
+--
+ALTER TABLE `detail_order`
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `kurir`
@@ -209,6 +288,23 @@ ALTER TABLE `transaksi`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `daftar_order`
+--
+ALTER TABLE `daftar_order`
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `detail_order`
+--
+ALTER TABLE `detail_order`
+  ADD CONSTRAINT `fk_batik` FOREIGN KEY (`id_batik`) REFERENCES `batik` (`id_batik`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_order` FOREIGN KEY (`id_order`) REFERENCES `daftar_order` (`id_order`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

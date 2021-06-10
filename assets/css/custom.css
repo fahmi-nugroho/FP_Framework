@@ -115,30 +115,9 @@ body {
 
 #bodyDeliv {
   overflow: hidden;
-  /* opacity: 0; */
-  max-height: 90px;
-  transition: max-height 1s;
+  max-height: 140px;
+  transition: max-height 0.5s linear;
 }
-
-/*
-#delivSetting div{
-  transform: translateY(-1000px);
-  transition: transform 1s;
-} */
-
-/* #isiKeranjang{
-  transform: translateX(0px);
-  transition: transform 1s;
-}
-
-#isiCheckout{
-  position: absolute;
-  top: 0;
-  margin-top: 65px;
-  transform: translateX(500px);
-  transition: transform 1s;
-} */
-
 
 .main-row {
   margin: 8%;

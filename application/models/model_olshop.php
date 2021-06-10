@@ -20,6 +20,13 @@
       return $query -> result();
     }
 
+    public function view_user($id)
+    {
+      $this -> db -> where('id_user', $id);
+      $query = $this -> db -> get('user');
+      return $query -> result_array();
+    }
+
     public function pagiBatik($limit, $start)
     {
       $query = $this->db->get('batik', $limit, $start);
@@ -41,5 +48,15 @@
       $this->db->where('email', $email);
       $query = $this -> db -> get('user');
       return $query -> result_array();
+    }
+
+    public function checkout($data)
+    {
+      return $this -> db -> insert('daftar_order', $data);
+    }
+
+    public function detailCheckout($data)
+    {
+      return $this -> db -> insert('detail_order', $data);
     }
   }

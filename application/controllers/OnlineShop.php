@@ -85,8 +85,8 @@ class OnlineShop extends CI_Controller {
 			}
 
 			echo json_encode(array(
-					'stok' => $batik[0]->stok,
-					'sisa' => $batik[0]->stok - $_SESSION['cart']['cart_'.$id]
+				'stok' => $batik[0]->stok,
+				'sisa' => $batik[0]->stok - $_SESSION['cart']['cart_'.$id]
 			));
 		} else if ($action == "kurang") {
 			$batik = $this -> batik -> view_batik($id);
@@ -190,10 +190,69 @@ class OnlineShop extends CI_Controller {
 
 	public function checkout()
 	{
-		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1){
+		if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != 1 || !isset($_SESSION['cart']) || $_SESSION['cart']['total'] == 0){
 			echo "<script>window.history.back()</script>";
 		}
-		
+
+		$submit = $this->input->post('bayar');
+
+		if ($submit == 'bayar') {
+			$this->form_validation->set_rules('telepon', 'Telepon', 'trim|strip_tags|numeric|min_length[10]');
+
+			$metode = $this->input->post('metode');
+			if ($metode == "Kirim") {
+				$this->form_validation->set_rules('alamat', 'Alamat', 'trim|strip_tags');
+				$this->form_validation->set_rules('hargaKurir', 'Email', 'trim|strip_tags|numeric');
+			}
+
+			$this->form_validation->set_message('min_length', 'Masukkan {field} dengan benar.');
+			$this->form_validation->set_message('numeric', '{field} harus terdiri dari angka.');
+
+			if ($this->form_validation->run() === true){
+				$id_order = time();
+				$id_user = $_SESSION['id'];
+				$nama = $_SESSION['nama'];
+				$tanggal = date("d-m-Y");
+				$alamat = $this->input->post('alamat');
+				$notelp = $this->input->post('telepon');
+				$total = $this->input->post('bayartotal');
+				$kurir = $this->input->post('kurir');
+
+				$data = array(
+					'id_order' => $id_order,
+					'id_user' => $id_user,
+					'nama' => $nama,
+					'tanggal' => $tanggal,
+					'alamat' => $alamat,
+					'notelp' => $notelp,
+					'total' => $total,
+					'kurir' => $kurir,
+					'status' => "Menunggu Pembayaran",
+				);
+
+				$this->batik->checkout($data);
+
+				foreach ($_SESSION['cart'] as $key => $value) {
+					if (substr($key, 0, 5) == "cart_") {
+						$batik = $this -> batik -> view_batik(substr($key, 5))[0];
+
+						$data = array(
+							'id_order' => $id_order,
+							'id_batik' => $batik->id_batik,
+							'jumlah' => $value,
+							'harga' => $batik->harga,
+						);
+
+						$this->batik->detailCheckout($data);
+					}
+				}
+
+				unset($_SESSION['cart']);
+				// echo "<script>alert('Silahkan Melakukan Pembayaran')</script>";
+				redirect();
+			}
+		}
+
 		$data['batiks'] = array();
 		if (isset($_SESSION['cart']) && $_SESSION['cart']['total'] > 0) {
 			foreach ($_SESSION['cart'] as $key => $value) {
@@ -204,6 +263,9 @@ class OnlineShop extends CI_Controller {
 		}
 
 		$data['kurir'] = $this -> batik -> views_kurir();
+		$data['jetis'] = $this -> batik -> view_user(1);
+		$data['user'] = $this -> batik -> view_user($_SESSION['id']);
+
 		$this->load->view('OnlineShop/template/header');
 		$this->load->view('OnlineShop/checkout', $data);
 		$this->load->view('OnlineShop/template/footer');
@@ -225,8 +287,8 @@ class OnlineShop extends CI_Controller {
 		$submit = $this->input->post('masuk');
 
 		if ($submit == 'masuk') {
-			$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-			$this->form_validation->set_rules('password', 'Password', 'required|trim');
+			$this->form_validation->set_rules('email', 'Email', 'required|trim|strip_tags|valid_email');
+			$this->form_validation->set_rules('password', 'Password', 'required|trim|strip_tags');
 
 			$this->form_validation->set_message('required', '{field} harus di isi.');
 			$this->form_validation->set_message('valid_email', 'Harap isi {field} dengan benar.');
@@ -274,9 +336,9 @@ class OnlineShop extends CI_Controller {
 		$submit = $this->input->post('daftar');
 
 		if ($submit == 'daftar') {
-			$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
-			$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]');
-			$this->form_validation->set_rules('confirmpassword', 'Confirm Password', 'required|trim|matches[password]');
+			$this->form_validation->set_rules('email', 'Email', 'required|trim|strip_tags|valid_email|is_unique[user.email]');
+			$this->form_validation->set_rules('password', 'Password', 'required|trim|strip_tags|min_length[8]');
+			$this->form_validation->set_rules('confirmpassword', 'Confirm Password', 'required|trim|strip_tags|matches[password]');
 
 			$this->form_validation->set_message('required', '{field} harus di isi.');
 			$this->form_validation->set_message('valid_email', 'Harap isi {field} dengan  benar.');

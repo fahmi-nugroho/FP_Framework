@@ -14,7 +14,6 @@
     </div>
 
     <hr>
-
     <div class="card border-0">
       <div class="card-header bg-transparent border-0 mb-1">
         <h5>Keranjang</h5>
@@ -67,53 +66,56 @@
         <h5>Cara Pengiriman</h5>
       </div>
       <div class="card-body border border-danger" id="bodyDeliv">
-
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="takeaway">
-          <label class="form-check-label" for="takeaway">
-            Ambil ditempat ( Jalan - Jalan )
-          </label>
+        <?php echo form_open_multipart(base_url().'checkout'); ?>
+        <div class="row mb-3">
+          <label for="telepon" class="col-md-2 col-form-label">Nomor Telepon</label>
+          <div class="col-md-5">
+            <input type="text" class="form-control" value="<?php echo $user[0]['telepon'] ?>" placeholder="Nomor Telepon" id="telepon" name="telepon" required>
+          </div>
+          <div class="col-md-5 align-self-center">
+            <?= form_error('telepon', '<span class="badge bg-danger">', '</span>') ?>
+          </div>
         </div>
-        <div class="form-check mt-2">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="delivery">
-          <label class="form-check-label" for="delivery">
-            Kirim ke rumah
-          </label>
-        </div>
-
-        <div id="delivSetting" class="border-top border-danger mt-3 pt-3">
-          <div class="row">
-            <div class="col-sm-2 fw-normal">Alamat</div>
-            <div class="col-sm-10 text-end">
-              <textarea class="form-control" rows="3" disabled>Jalan jalan</textarea>
-              <button class="btn btn-outline-secondary btn-sm mt-2 px-3" type="button" name="button">Edit</button>
+        <fieldset class="row">
+          <legend class="col-form-label col-md-2 pt-0">Metode</legend>
+          <div class="col-md-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="metode" value="Ambil" id="takeaway" required>
+              <label class="form-check-label" for="takeaway">
+                Ambil ditempat ( <?php echo $jetis[0]['alamat'] ?> )
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="metode" value="Kirim" id="delivery">
+              <label class="form-check-label" for="delivery">
+                Kirim ke rumah
+              </label>
             </div>
           </div>
-          <div class="row my-3">
-            <div class="col-sm-2 fw-normal align-self-center">Nomor Telepon</div>
-            <div class="col-sm-10 mb-0">
-              <div class="row align-items-center">
-                <div class="col-6">
-                  <input type="text" class="form-control" value="087755565590" placeholder="name@example.com" disabled>
-                </div>
-                <div class="col-6">
-                  <button class="btn btn-outline-secondary btn-sm px-3" type="button" name="button">Edit</button>
-                </div>
-              </div>
+        </fieldset>
+
+        <div id="delivSetting" class="border-top border-danger mt-3 pt-3">
+          <div class="row mb-3">
+            <div class="col-sm-2 fw-normal">Alamat</div>
+            <div class="col-sm-10 text-end">
+              <textarea class="form-control" rows="3" id="alamat" name="alamat"><?php echo $user[0]['alamat'] ?></textarea>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-2 fw-normal align-self-center">Kurir</div>
-            <div class="col-sm-5">
-              <select class="form-select" aria-label=".form-select-sm example" id="hargaKurir">
-                <option value="0" selected>Pilih kurir</option>
+            <div class="col-sm-3">
+              <select class="form-select" aria-label=".form-select-sm example" name="hargaKurir" id="hargaKurir">
+                <option value="" selected disabled>Pilih kurir</option>
                 <?php foreach ($kurir as $key): ?>
                   <option value="<?php echo $key->harga_kurir ?>"><?php echo $key->nama_kurir ?></option>
                 <?php endforeach; ?>
               </select>
             </div>
-            <div class="col-sm-5 align-self-center" id="vhargaKurir">
+            <div class="col-sm-4 align-self-center" id="vhargaKurir">
               Rp 0
+            </div>
+            <div class="col-md-3 align-self-center">
+              <?= form_error('hargaKurir', '<span class="badge bg-danger">', '</span>') ?>
             </div>
           </div>
 
@@ -163,7 +165,10 @@
 
       </div>
       <div class="card-footer bg-transparent border-0 text-end px-0">
-        <button class="btn btn-success px-5 mt-2" type="button" name="button">Bayar</button>
+        <input type="hidden" id="kurir" name="kurir">
+        <input type="hidden" id="bayartotal" name="bayartotal" value="<?php echo $totalHarga ?>">
+        <button class="btn btn-success px-5 mt-2" type="submit" name="bayar" value="bayar">Bayar</button>
+        <?php echo form_close(); ?>
       </div>
     </div>
 
@@ -189,11 +194,13 @@
     let harga = new Intl.NumberFormat('id-ID').format($(this).val());
     let totalOngkir = Number($(this).val()) * <?php echo $totalBarang ?>;
     let total = totalOngkir + (<?php echo $totalHarga ?>);
+    $("#bayartotal").val(total);
     total = new Intl.NumberFormat('id-ID').format(total);
     totalOngkir = new Intl.NumberFormat('id-ID').format(totalOngkir);
 
     $("#vhargaKurir").html("Rp " + harga);
     $("#overKir div").html("Ongkos Kirim ("+$("#hargaKurir option:selected").html()+")");
+    $("#kurir").val($("#hargaKurir option:selected").html());
     $("#overKir div").next().html("Rp " + totalOngkir);
     $("#totalBayar").html("Rp " + total);
   })
@@ -201,17 +208,24 @@
   $("#takeaway").click(function () {
     // console.log("tes");
     // $("#delivSetting").css('opacity', '0').css('height', '0');
-    $("#bodyDeliv ").css('max-height', '90px');
+    $("#bodyDeliv ").css('max-height', '140px');
 
     $("#vhargaKurir").html("Rp 0");
     $("#overKir div").html("Ongkos Kirim (-)");
+    $("#kurir").val("Ambil ditempat");
     $("#overKir div").next().html("Rp 0");
+    $("#bayartotal").val(<?php echo $totalHarga ?>);
     $("#totalBayar").html("Rp <?php echo number_format($totalHarga, 0, ',', '.') ?>");
-    $("#hargaKurir option[value='0']").prop('selected', true);
+    $("#hargaKurir").attr("required", false);
+    $("#hargaKurir option:first-child").prop('selected', true);
+    $("#alamat").attr("required", false);
   })
   $("#delivery").click(function () {
     // console.log("tes");
     // $("#delivSetting").css('opacity', '1').css('height', 'auto');
-    $("#bodyDeliv ").css('max-height', '356px');
+    $("#hargaKurir").attr("required", true);
+    // $("#hargaKurir option:first-child").prop('selected', false);
+    $("#alamat").attr("required", true);
+    $("#bodyDeliv ").css('max-height', '313px');
   })
 </script>
