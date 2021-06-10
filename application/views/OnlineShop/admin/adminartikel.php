@@ -101,8 +101,8 @@
                     <?= anchor('OnlineShopAdmin/hapus_artikel/'.$art->id_artikel.'/'.$art->gambar_artikel, '<button type="button" class="btn btn-danger">Hapus</button>') ?>
                   </td>
                 </tr>
+                <?php endforeach; ?>
               </tbody>
-              <?php endforeach; ?>
             </table>
           </div>
           <?php else : ?>

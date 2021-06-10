@@ -7,6 +7,23 @@
         return $this->db->get('artikel');
     }
 
+    public function tampil_artikellain($id)
+    {
+      $this->db->where('id_artikel !=', $id);
+      return $this->db->get('artikel', 4);
+    }
+
+    public function pagiArtikel($limit, $start)
+    {
+      $query = $this->db->get('artikel', $limit, $start);
+      return $query -> result();
+    }
+
+    public function countArtikel()
+    {
+      return $this->db->get('artikel')->num_rows();
+    }
+
     public function input_data($data)
     {
         $this->db->insert('artikel', $data);

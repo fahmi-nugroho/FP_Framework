@@ -54,7 +54,8 @@ $route['default_controller'] = 'OnlineShop';
 $route['produk'] = 'OnlineShop/products';
 $route['produk/(:num)'] = 'OnlineShop/product/$1';
 $route['blog'] = 'OnlineShop/blog';
-$route['bacablog'] = 'OnlineShop/bacablog';
+$route['blog/(:num)'] = 'OnlineShop/blog';
+$route['blog/baca/(:num)'] = 'OnlineShop/bacablog/$1';
 
 $route['batik'] = 'OnlineShop/products';
 $route['batik/(:num)'] = 'OnlineShop/products';

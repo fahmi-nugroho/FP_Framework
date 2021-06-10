@@ -5,7 +5,7 @@
   class m_transaksi extends CI_Model{
     public function tampil_transaksi()
     {
-        return $this->db->get('transaksi');
+        return $this->db->get('daftar_order');
     }
 
     public function get_data($where, $table){

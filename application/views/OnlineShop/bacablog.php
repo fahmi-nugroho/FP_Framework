@@ -15,59 +15,58 @@
     <div class="best-features about-features">
       <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading bacablog">
-              <h1>Sejarah Motif Sekar Jagad</h1>
-            </div>
-          </div>
-          <div class="col-md-9">
-            <div id="section" class="box">
-              <div id="content">
-                <ul class="articles box">
-                  <h4>Bagaimana sih sejarah dari motif sekar jagad?</h4>
-                  <li>
-                    <p><img src="<?php echo base_url() ?>assets/images/Batik/Batik Sidoarjo Motif Sekar Jagad.jpg" alt="" class="f-left" />
-                      Suspendisse posuere, metus eget pharetra adipiscing, arcu velit lobortis augue, quis pharetra mauris ante a velit. Duis feugiat, odio a mattis gravida, velit est euismod urna, vitae gravida elit turpis sit amet elit.
-                      Phasellus ac hendrerit tortor. Aliquam erat volutpat. Donec laoreet viverra sapien et luctus. Cras fringilla commodo nulla sit amet congue. Donec aliquam gravida elit, in fringilla urna adipiscing in. Sed vel risus id urna luctus eleifend.
-                      Morbi ut fringilla magna. Curabitur lobortis molestie tellus ac ultricies. Maecenas tempus rutrum mauris in auctor. Ut interdum diam a justo malesuada dignissim. Morbi blandit odio sed magna rhoncus tincidunt. Etiam diam neque, ornare in molestie posuere, vulputate a nisl.
-                      Donec dictum, erat vel varius ullamcorper, lorem ipsum vulputate eros, sit amet lacinia orci arcu ac mi. Cras pellentesque, lacus vel laoreet tristique, justo magna convallis ante, at pellentesque ligula sapien sit amet elit. Nulla ut nunc libero.
-                      Suspendisse posuere, metus eget pharetra adipiscing, arcu velit lobortis augue, quis pharetra mauris ante a velit. Duis feugiat, odio a mattis gravida, velit est euismod urna, vitae gravida elit turpis sit amet elit. Phasellus ac hendrerit tortor. Aliquam erat volutpat.
-                      Donec laoreet viverra sapien et luctus. Cras fringilla commodo nulla sit amet congue. Donec aliquam gravida elit, in fringilla urna adipiscing in. Sed vel risus id urna luctus eleifend. Morbi ut fringilla magna. Curabitur lobortis molestie tellus ac ultricies. Maecenas tempus rutrum mauris in auctor.
-                      Ut interdum diam a justo malesuada dignissim. Morbi blandit odio sed magna rhoncus tincidunt. Etiam diam neque, ornare in molestie posuere, vulputate a nisl. Donec dictum, erat vel varius ullamcorper, lorem ipsum vulputate eros, sit amet lacinia orci arcu ac mi.
-                      Cras pellentesque, lacus vel laoreet tristique, justo magna convallis ante, at pellentesque ligula sapien sit amet elit. Nulla ut nunc libero.
-                    </p>
-                  </li>
-                </ul>
+          <?php foreach ($artikel as $art) : ?>
+            <div class="col-md-12">
+              <div class="section-heading bacablog">
+                <h1><?= $art->judul_artikel ?></h1>
               </div>
             </div>
-          </div>
+            <div class="col-md-9">
+              <div id="section" class="box">
+                <div id="content">
+                  <ul class="articles box">
+                    <li>
+                      <p><img src="<?php echo base_url() ?>assets/images/uploaded_image/<?= $art->gambar_artikel ?>" alt="" class="f-left" />
+                        <?= $art->isi_artikel ?>
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          <?php 
+            endforeach; 
+            $banyak = count($artikel_lain);
+            if ($banyak > 0) :
+          ?>
           <div class="col-md-3">
             <div class="aside">
               <div class="section-heading">
-                <h2>Artikel Baru</h2>
+                <h2>Artikel Lain</h2>
               </div>
-              <div class="sidenews">
-                <h6>beras kutah</h6>
-              <p class="box"> <img src="<?php echo base_url() ?>assets/images/Batik/Batik Sidoarjo Motif Sekar Jagad.jpg" alt="" class="f-left art" /> My name is Jessie Doe. I´m 26 years old and I´m living in the New York City.<br />
-                <a href="#">Read More...</a> </p>
-              </div>
-              <div class="sidenews">
-                <h6>beras kutah</h6>
-              <p class="box"> <img src="<?php echo base_url() ?>assets/images/Batik/Batik Sidoarjo Motif Sekar Jagad.jpg" alt="" class="f-left art" /> My name is Jessie Doe. I´m 26 years old and I´m living in the New York City.<br />
-                <a href="#">Read More...</a> </p>
-              </div>
-              <div class="sidenews">
-                <h6>beras kutah</h6>
-              <p class="box"> <img src="<?php echo base_url() ?>assets/images/Batik/Batik Sidoarjo Motif Sekar Jagad.jpg" alt="" class="f-left art" /> My name is Jessie Doe. I´m 26 years old and I´m living in the New York City.<br />
-                <a href="#">Read More...</a> </p>
-              </div>
-              <div class="sidenews">
-                <h6>beras kutah</h6>
-              <p class="box"> <img src="<?php echo base_url() ?>assets/images/Batik/Batik Sidoarjo Motif Sekar Jagad.jpg" alt="" class="f-left art" /> My name is Jessie Doe. I´m 26 years old and I´m living in the New York City.<br />
-                <a href="#">Read More...</a> </p>
+              <?php 
+                foreach ($artikel_lain as $art2) : 
+                $isi      = $art2->isi_artikel;
+                $ar_isi   = explode(' ', $isi);
+                $banyak   = count($ar_isi);
+                if ($banyak > 20) {
+                    $isi      = $ar_isi[0];
+                    for ($x = 1; $x < 20; $x++) {
+                    $isi = $isi . ' ' . $ar_isi[$x];
+                    }
+                    $isi = $isi . ' ...';
+                }
+              ?>
+                <div class="sidenews">
+                  <h6><?= $art2->judul_artikel ?></h6>
+                <p class="box"> <img src="<?php echo base_url() ?>assets/images/uploaded_image/<?= $art2->gambar_artikel ?>" alt="" class="f-left art" /> <?= $isi ?><br />
+                  <a href="<?= base_url().'blog/baca/'.$art2->id_artikel ?>">Read More...</a> 
+                </p>
+              <?php endforeach; ?>
               </div>
             </div>
           </div>
+          <?php endif; ?>
         </div>
       </div>
     </div>

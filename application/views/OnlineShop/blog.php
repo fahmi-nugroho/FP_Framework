@@ -46,7 +46,7 @@
                         <p><?= $isi ?></p>
                     </div>
                     <div class="blog-read-more mb-2 pb-2"> 
-                    <p><a href="<?php echo base_url() ?>bacablog">Read more....</a></p>
+                    <p><a href="<?= base_url().'blog/baca/'.$art->id_artikel ?>">Read more....</a></p>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                         <p><?= $isi ?></p>
                     </div>
                     <div class="blog-read-more mb-2 pb-2"> 
-                    <p><a href="#">Read more....</a></p>
+                    <p><a href="<?= base_url().'blog/baca/'.$art->id_artikel ?>">Read more....</a></p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
@@ -84,15 +84,8 @@
         <h1>Artikel Kosong</h1>
         </div>
         <?php endif; ?> 
+        
     <div class="row">
-        <div class="col-md-12">
-            <ul class="pages">
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
-            </ul>
-        </div>
+        <?php echo $this -> pagination -> create_links(); ?>
     </div>
 </div>

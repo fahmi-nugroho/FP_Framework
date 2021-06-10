@@ -11,9 +11,9 @@ class OnlineShop extends CI_Controller {
 	public function index()
 	{
 		$data['db'] = $this -> batik -> pagiBatik(6, 0);
-	  $this->load->view('OnlineShop/template/header');
+	  	$this->load->view('OnlineShop/template/header');
 		$this->load->view('OnlineShop/index', $data);
-    $this->load->view('OnlineShop/template/footer');
+    	$this->load->view('OnlineShop/template/footer');
 	}
 
 	public function products()
@@ -375,16 +375,57 @@ class OnlineShop extends CI_Controller {
 
 	public function blog()
 	{
-		$data['artikel'] = $this -> m_artikel -> tampil_artikel()->result();
-    $this->load->view('OnlineShop/template/header');
+		$config['base_url'] = base_url().'blog';
+		$config['total_rows'] = $this->m_artikel->countArtikel();
+		$config['per_page'] = 8;
+
+		$config['num_links'] = 2;
+		// $config['use_page_numbers'] = TRUE;
+
+		$config['full_tag_open'] = '<ul class="pages">';
+		$config['full_tag_close'] = '</ul>';
+
+		$config['first_link'] = false;
+		$config['last_link'] = false;
+
+		$config['prev_link'] = '<i class="fa fa-angle-double-left"></i>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+
+		$config['next_link'] = '<i class="fa fa-angle-double-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+
+		$this -> pagination -> initialize($config);
+
+		$data['start'] = $this -> uri -> segment(2);
+		$data['artikel'] = $this -> m_artikel -> pagiArtikel($config['per_page'], $data['start']);
+
+		$this->load->view('OnlineShop/template/header');
 		$this->load->view('OnlineShop/blog', $data);
-    $this->load->view('OnlineShop/template/footer');
+		$this->load->view('OnlineShop/template/footer');
+
+		// $data['artikel'] = $this -> m_artikel -> tampil_artikel()->result();
+    	// $this->load->view('OnlineShop/template/header');
+		// $this->load->view('OnlineShop/blog', $data);
+    	// $this->load->view('OnlineShop/template/footer');
 	}
 
-	public function bacablog()
+	public function bacablog($id)
 	{
+		$where		= array ('id_artikel' => $id);
+
+		$data['artikel'] = $this -> m_artikel -> edit_data($where, "artikel") -> result();
+		$data['artikel_lain'] = $this -> m_artikel -> tampil_artikellain($id)->result();
+		// print_r($data);
 		$this->load->view('OnlineShop/template/header');
-		$this->load->view('OnlineShop/bacablog');
+		$this->load->view('OnlineShop/bacablog', $data);
 		$this->load->view('OnlineShop/template/footer');
 	}
 

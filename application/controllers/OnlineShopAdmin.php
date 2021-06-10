@@ -341,10 +341,6 @@ class OnlineShopAdmin extends CI_Controller {
 		$this->load->view('OnlineShop/template/footer');
 	}
 
-	public function ubah_kurir(){
-		
-	}
-
 	public function admintransaksi()
 	{
 		$data['transaksi'] = $this->m_transaksi->tampil_transaksi()->result();
@@ -359,12 +355,15 @@ class OnlineShopAdmin extends CI_Controller {
 		$status		= $this->uri->segment(4);
 
 		$where		= array ('id_transaksi' => $id);
-		$dataselect['produk'] = $this->m_transaksi->get_data($where, 'transaksi')->result();
+		$dataselect['produk'] = $this->m_transaksi->get_data($where, 'daftar_order')->result();
 		$id_order = $dataselect['produk'][0]->id_order;
-		$tanggal = $dataselect['produk'][0]->id_order;
-		$nama_pembeli = $dataselect['produk'][0]->nama_pembeli;
+		$id_user = $dataselect['produk'][0]->id_user;
+		$nama_pembeli = $dataselect['produk'][0]->nama;
+		$tanggal = $dataselect['produk'][0]->tanggal;
 		$alamat = $dataselect['produk'][0]->alamat;
-		$total_harga = $dataselect['produk'][0]->total_harga;
+		$notelp = $dataselect['produk'][0]->notelp;
+		$total_harga = $dataselect['produk'][0]->total;
+		$kurir = $dataselect['produk'][0]->kurir;
 		if ($status == 'kirim'){
 			$status = "Proses Pengiriman";
 		}
@@ -374,14 +373,17 @@ class OnlineShopAdmin extends CI_Controller {
 
 		$data = array(
 			'id_order'				=> $id_order,
+			'id_user'				=> $id_user,
+			'nama'					=> $nama_pembeli,
 			'tanggal'				=> $tanggal,
-			'nama_pembeli'			=> $nama_pembeli,
 			'alamat'				=> $alamat,
-			'total_harga'			=> $total_harga,
+			'notelp'				=> $notelp,
+			'total'					=> $total_harga,
+			'kurir'					=> $kurir,
 			'status'				=> $status,
 		);
 
-		$this->m_transaksi->edit_transaksi($where, $data, 'transaksi');
+		$this->m_transaksi->edit_transaksi($where, $data, 'daftar_order');
 		redirect('admintransaksi');
 	}
 }

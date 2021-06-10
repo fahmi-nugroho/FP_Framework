@@ -57,9 +57,9 @@
                   <th scope="row" class="text-center"><?= $no++ ?></th>
                   <td class="text-center"><?= $trs->id_order ?></td>
                   <td class="text-center"><?= $trs->tanggal ?></td>
-                  <td class="text-center"><?= $trs->nama_pembeli ?></td>
+                  <td class="text-center"><?= $trs->nama ?></td>
                   <td class="text-center"><?= $trs->alamat ?></td>
-                  <td class="text-center"><?= $trs->total_harga ?></td>
+                  <td class="text-center"><?= $trs->total ?></td>
                   <td class="text-center"><?= $trs->status ?></td>
                   <td class="text-center">
                     <button type="button" class="btn btn-primary">Detail</button>

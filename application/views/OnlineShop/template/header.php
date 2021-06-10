@@ -68,7 +68,7 @@
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link <?= (uri_string() == "blog") ? "active" : "" ; ?>" href="<?php echo base_url() ?>blog">Blog</a>
+                  <a class="nav-link <?= (substr(uri_string(), 0, 4) == "blog") ? "active" : "" ; ?>" href="<?php echo base_url() ?>blog">Blog</a>
                 </li>
 
                 <li class="nav-item">
