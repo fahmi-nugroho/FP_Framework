@@ -177,3 +177,81 @@ body {
   border-color: #f33f3f;
   color: #fff;
 }
+
+
+#section {
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.box {
+  min-height: 1px;
+  _height: 1%;
+}
+
+.box:after {
+  display: block;
+  visibility: hidden;
+  clear: both;
+  line-height: 0;
+  font-size: 0;
+  content: ".";
+}
+
+#content {
+  float: left;
+  text-align: justify;
+}
+
+.articles {
+  margin: 0;
+  list-style: none;
+}
+
+.articles h2 {
+  margin: 0;
+}
+
+.articles h2 a {
+  text-decoration: none;
+}
+
+.articles .article-info {
+  padding-bottom: 10px;
+}
+
+.articles .article-info .comment {
+  padding-left: 18px;
+}
+
+.articles .article-info p {
+  margin: 0;
+}
+
+.f-left {
+  float: left !important;
+}
+
+.f-right {
+  float: right !important;
+}
+
+img.f-left {
+  margin-right: 15px;
+  width: 500px;
+  height: 350px;
+}
+
+#aside {
+  float: right;
+  width: 250px;
+}
+
+img.art {
+  width: 100px;
+  height: 60px;
+}
+
+.bacablog {
+  text-align: center;
+}
