@@ -11,6 +11,14 @@ class OnlineShop extends CI_Controller {
 	public function index()
 	{
 		$data['db'] = $this -> batik -> pagiBatik(6, 0);
+		$data['penjualan'] = array();
+		$data['ratings'] = array();
+
+		foreach ($data['db'] as $row) {
+			$data['penjualan'][$row->id_batik] = $this -> batik -> totalPenjualan($row->id_batik)[0];
+			$data['ratings'][$row->id_batik] = round($this -> batik -> rating($row->id_batik)[0]->rating);
+		}
+
 	  $this->load->view('OnlineShop/template/header');
 		$this->load->view('OnlineShop/index', $data);
     $this->load->view('OnlineShop/template/footer');
@@ -50,6 +58,14 @@ class OnlineShop extends CI_Controller {
 		$data['start'] = $this -> uri -> segment(2);
 		$data['db'] = $this -> batik -> pagiBatik($config['per_page'], $data['start']);
 
+		$data['penjualan'] = array();
+		$data['ratings'] = array();
+
+		foreach ($data['db'] as $row) {
+			$data['penjualan'][$row->id_batik] = $this -> batik -> totalPenjualan($row->id_batik)[0];
+			$data['ratings'][$row->id_batik] = round($this -> batik -> rating($row->id_batik)[0]->rating);
+		}
+
 		$this->load->view('OnlineShop/template/header');
 		$this->load->view('OnlineShop/products', $data);
 		$this->load->view('OnlineShop/template/footer');
@@ -58,6 +74,8 @@ class OnlineShop extends CI_Controller {
 	public function product($id)
 	{
 		$data['db'] = $this -> batik -> view_batik($id);
+		$data['penjualan'] = $this -> batik -> totalPenjualan($data['db'][0]->id_batik);
+
 		$this->load->view('OnlineShop/template/header');
 		$this->load->view('OnlineShop/product', $data);
 		$this->load->view('OnlineShop/template/footer');
@@ -213,7 +231,13 @@ class OnlineShop extends CI_Controller {
 				$id_user = $_SESSION['id'];
 				$nama = $_SESSION['nama'];
 				$tanggal = date("d-m-Y");
-				$alamat = $this->input->post('alamat');
+
+				if ($metode == "Kirim") {
+					$alamat = $this->input->post('alamat');
+				} else {
+					$alamat = $this -> input -> post('alamatJetis');
+				}
+
 				$notelp = $this->input->post('telepon');
 				$total = $this->input->post('bayartotal');
 				$kurir = $this->input->post('kurir');
@@ -235,6 +259,13 @@ class OnlineShop extends CI_Controller {
 				foreach ($_SESSION['cart'] as $key => $value) {
 					if (substr($key, 0, 5) == "cart_") {
 						$batik = $this -> batik -> view_batik(substr($key, 5))[0];
+						$newStok = $batik->stok - $value;
+
+						$data = array(
+							'stok' => $newStok,
+						);
+
+						$this->batik->updateBatik($batik->id_batik, $data);
 
 						$data = array(
 							'id_order' => $id_order,
@@ -248,8 +279,7 @@ class OnlineShop extends CI_Controller {
 				}
 
 				unset($_SESSION['cart']);
-				// echo "<script>alert('Silahkan Melakukan Pembayaran')</script>";
-				redirect();
+				echo "<script>alert('Silahkan Melakukan Pembayaran'); window.location = '".base_url()."'</script>";
 			}
 		}
 
@@ -309,9 +339,9 @@ class OnlineShop extends CI_Controller {
 
 						$this->session->set_userdata($newdata);
 						if ($user[0]['email'] == 'Admin@admin.com') {
-							redirect('adminartikel');
+							echo "<script>alert('Login berhasil'); window.location = '".base_url()."adminartikel'</script>";
 						} else {
-							redirect();
+							echo "<script>alert('Login berhasil'); window.location = '".base_url()."'</script>";
 						}
 					} else {
 						$this->session->set_flashdata('Error', 'ada');
@@ -358,7 +388,7 @@ class OnlineShop extends CI_Controller {
 				);
 
 				$this->batik->register($data);
-				redirect("login");
+				echo "<script>alert('Silahkan login'); window.location = '".base_url()."login'</script>";
 			}
 		}
 
@@ -370,7 +400,7 @@ class OnlineShop extends CI_Controller {
 	public function logout()
 	{
 		session_destroy();
-		redirect();
+		echo "<script>alert('Logout berhasil'); window.location = '".base_url()."'</script>";
 	}
 
 	public function blog()

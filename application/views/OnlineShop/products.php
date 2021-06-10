@@ -49,13 +49,24 @@
                           ?>
                         </p>
                         <ul class="stars">
-                          <li><i class="fa fa-star"></i></li>
-                          <li><i class="fa fa-star"></i></li>
-                          <li><i class="fa fa-star"></i></li>
-                          <li><i class="fa fa-star"></i></li>
-                          <li><i class="fa fa-star"></i></li>
+                          <?php
+                            $rating = $ratings[$row -> id_batik];
+                            $dua = floor($rating / 2);
+                            $satu = $rating % 2;
+                            $nol = floor((10 - $rating) / 2);
+
+                            for ($i=0; $i < $dua; $i++) {
+                              echo '<li><i class="fa fa-star"></i></li>';
+                            }
+                            for ($i=0; $i < $satu; $i++) {
+                              echo '<li><i class="fa fa-star-half-o"></i></li>';
+                            }
+                            for ($i=0; $i < $nol; $i++) {
+                              echo '<li><i class="fa fa-star-o"></i></li>';
+                            }
+                          ?>
                         </ul>
-                        <span>Terjual 24</span>
+                        <span>Terjual <?php echo $penjualan[$row->id_batik]->jumlah; ?></span>
                       </div>
                     </div>
                   </div>

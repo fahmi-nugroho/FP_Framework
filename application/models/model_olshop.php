@@ -20,6 +20,28 @@
       return $query -> result();
     }
 
+    public function updateBatik($id, $data)
+    {
+      $this -> db -> where('id_batik', $id);
+      return $this -> db -> update('batik', $data);
+    }
+
+    public function totalPenjualan($id)
+    {
+      $this -> db -> where('id_batik', $id);
+      $this -> db -> select_sum('jumlah');
+      $query = $this->db->get('detail_order');
+      return $query -> result();
+    }
+
+    public function rating($id)
+    {
+      $this -> db -> where('id_batik', $id);
+      $this -> db -> select_avg('rating');
+      $query = $this->db->get('rating');
+      return $query -> result();
+    }
+
     public function view_user($id)
     {
       $this -> db -> where('id_user', $id);

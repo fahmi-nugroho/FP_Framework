@@ -114,9 +114,9 @@ body {
 }
 
 #bodyDeliv {
-  overflow: hidden;
+  /* overflow: hidden;
   max-height: 140px;
-  transition: max-height 0.5s linear;
+  transition: max-height 0.5s linear; */
 }
 
 .main-row {

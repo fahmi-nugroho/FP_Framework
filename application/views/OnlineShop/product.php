@@ -38,7 +38,7 @@
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
               </span>
-              (101 penjualan)
+              (<?php echo $penjualan[0]->jumlah ?> penjualan)
             </div>
           </div>
           <div class="row">
