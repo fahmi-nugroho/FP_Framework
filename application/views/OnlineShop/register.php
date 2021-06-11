@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div class="best-features about-features">
+    <!-- <div class="best-features about-features">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -63,4 +63,4 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->

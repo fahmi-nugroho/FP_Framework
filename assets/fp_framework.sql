@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jun 11, 2021 at 11:32 AM
--- Server version: 5.7.24
--- PHP Version: 7.2.19
+-- Host: 127.0.0.1
+-- Generation Time: Jun 11, 2021 at 04:39 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,6 +35,14 @@ CREATE TABLE `artikel` (
   `gambar_artikel` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `artikel`
+--
+
+INSERT INTO `artikel` (`id_artikel`, `judul_artikel`, `isi_artikel`, `tanggal_artikel`, `gambar_artikel`) VALUES
+(2, 'Motif Batik Burung Kampung Jetis', 'Batik Jetis, Sidoarjo khas sentuhan motif burung merak yang mengembangkan ekor panjang yang indah. Selain itu dipenuhi warna cerah seperti biru, kuning dan hijau. Sedangkan batik khas Solo dan Yogyakarta berwarna coklat atau sogan.\r\n\r\nKarena ketekunannya mempertahankan batik Jetis, Miftach dipercaya mengikuti berbagai pameran. Bahkan, sebanyak 10 warga Australia, Jerman, Amerika, Belgia dan Kanada belajar membatik. Ia juga memamerkan sejumlah pejabat negara membeli batik karyanya. Namun, kini ia mengaku kesulitan pekerja untuk membuat batik tulis. Sebab, tak banyak generasi muda yang tertarik membatik.', '2021-06-11', '60c358e7cf52e2_77013164.jpg'),
+(3, '12 LANGKAH PROSES MEMBUAT KAIN BATIK TULIS!', 'Berikut tahap-tahap dan istilah-istilah dalam proses pembuatan kain batik tulis asli mulai dari pembuatan pola pertama sampai pewarnaan terakhir:\r\n\r\n1. Nyungging\r\n\r\nProses pertama kali ketika membuat batik tulis yaitu membuat pola di atas kertas yang dikerjakan oleh spesialis pola. Tidak semua orang dapat mengerjakan pola ini.\r\n\r\n2. Njaplak\r\n\r\nProses memindahkan pola dari kertas ke kain.\r\n\r\n3. Nglowong\r\n\r\nDi tahap ini, pembatik mulai melekatkan malam/lilin sesuai dengan pola yang telah dibuat.\r\n\r\n4. Ngiseni\r\n\r\nMemberikan isen-isen (isian) pada ornamen-ornamen tertentu seperti gambar bunga atau hewan.\r\n\r\n5. Nyolet\r\n\r\nMemberikan warna pada bagian-bagian tertentu dengan kuas.\r\n\r\n6. Mopok\r\n\r\nBagian ini adalah menutup bagian yang telah dicolet dengan malam.\r\n\r\n7. Nembok\r\n\r\nProses menutup bagian latar belakang pola yang tidak perlu diwarnai.\r\n\r\n8. Ngelir\r\n\r\nProses pewarnaan kain secara menyeluruh dengan memasukkannya ke dalam pewarna alam atau kimia.\r\n\r\n9. Nglorod\r\n\r\nProses meluruhkan malam untuk pertama kali dengan merendamkannya di dalam air mendidih.\r\n\r\n10. Ngrentesi\r\n\r\nProses memberikan titik/cecek pada klowongan menggunakan canting dengan jarum yang tipis\r\n\r\n11. Nyumri\r\n\r\nMenutup bagian tertentu dengan malam.\r\n\r\n12 . Nglorod\r\n\r\nProses akhir meluruhkan dan melarutkan malam pada kain dengan memasukkan pada air mendidih, kemudian diangin-anginkan sampai kering.\r\n\r\nProses nglorod tergantung pada banyaknya warna yang ingin dihasilkan pada satu helai kain batik. Semakin banyak warna yang diinginkan, semakin banyak proses nglorod yang akan dilakukan.\r\n\r\nItulah mengapa kain batik memiliki nilai dan harga yang lebih tinggi dibandingkan batik-batik lainnya. Proses pengerjaan satu kain batik membutuhkan kesabaran, ketekunan dan ketelitian dari masing-masing pengrajin batik. Proses pengerjaan yang panjang dan rumit biasanya membutuhkan waktu berbulan-bulan sampai bertahun-tahun.', '2021-06-11', '60c3594b3cf378_70191388.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -57,18 +65,18 @@ CREATE TABLE `batik` (
 
 INSERT INTO `batik` (`id_batik`, `nama_batik`, `deskripsi`, `harga`, `ukuran`, `stok`, `gambar`) VALUES
 (1, 'Lasem dan Madura', 'batik khas sidoarjo, lasem dan madura, semuanya hampir memiliki pewarnaan yang serupa. Dimana warna warna ngejreng dan berani banyak dipilih. namun untuk batik madura, motif yang diaplikasi adalah tentang bunga atau tumbuhan, tidak memiliki kebiasaan bermotif hewan. ini sangat berkaitan dengan kulturnya yang religius.', 150000, '250 x 250 cm', 40, 'batik khas sidoarjo, lasem dan madura.jpg'),
-(2, 'Bunga Kupu - kupu', 'Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.', 75000, '241 x 110 cm', 18, 'Batik Sidoarjo Motif Bunga kupu kupu.jpg'),
-(3, 'Burung Merak 1', 'Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.', 110000, '241 x 150 cm', 13, 'Batik Sidoarjo Motif Burung Merak 1.jpg'),
-(4, 'Burung Merak 2', 'Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.', 90000, '200 x 210 cm', 8, 'Batik Sidoarjo Motif Burung Merak 2.jpg'),
-(5, 'Kembang Bayem', 'Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.', 88000, '234 x 400 cm', 28, 'batik sidoarjo motif kembang bayem.jpg'),
-(6, 'Mahkota', 'Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.', 92000, '171 x 240 cm', 19, 'Batik Sidoarjo Motif Mahkota.jpg'),
-(8, 'Rawan Kenceng', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 123000, '140 x 50 cm', 28, 'Batik Sidoarjo Motif Rawan kenceng.jpg'),
-(9, 'Sawunggaling', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 310000, '130 x 350 cm', 11, 'batik sidoarjo motif sawunggaling.jpg'),
-(10, 'Tambal Segitiga', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 140000, '190 x 110 cm', 25, 'batik tambal segitiga.jpg'),
-(11, 'Uwer', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 290000, '220 x 250 cm', 15, 'Batik Sidoarjo Motif Uwer.jpg'),
-(12, 'Sekar Jagad', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 150000, '210 x 90 cm', 7, 'Batik Sidoarjo Motif Sekar Jagad.jpg'),
-(13, 'Sekardangan', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 200000, '150 x 150 cm', 16, 'Batik Sidoarjo motif Sekardangan.jpg'),
-(14, 'Rawan Wungu', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 150000, '310 x 210 cm', 23, 'Batik Tulis Sidoarjo Rawan Wungu.jpg');
+(2, 'Bunga Kupu - kupu', 'Kain Batik ber bahan halus nyaman di pakai &  tidak panas, berkualitas tinggi dengan Harga Kompetitif. Kami menggunakan kualitas bahan bagus, menggunakan Bahan  100% Cotton Mercerized (Katun Prima)', 75000, '241 x 110 cm', 18, 'Batik Sidoarjo Motif Bunga kupu kupu.jpg'),
+(3, 'Burung Merak Coklat', 'Burung Merak Sebagai salah satu burung paling eksotis di dunia ini, dapat melambangkan si pemakai motif ini dengan keindahan yang abadi. Mereka juga melambangkan burung yang tangguh dan pantang menyerah. Mereka juga tidak ingin dianggap rendah lawanya. Bagaimana menjadi pribadi yang tangguh tapi tetap anggun.', 110000, '241 x 150 cm', 13, 'Batik Sidoarjo Motif Burung Merak 1.jpg'),
+(4, 'Burung Merak', 'Motif ini digambarkan dengan burung merak yang saling berhadap hadapan dengan ekor yang mengembang seperti sedang menari. Ada pula kupu kupu kecil cantik dan dilengkapi gambar pohon kelapa beraksen hiasan tambahan lainnya.', 90000, '200 x 210 cm', 8, 'Batik Sidoarjo Motif Burung Merak 2.jpg'),
+(5, 'Kembang Bayem', 'Motif Kembang Bayem ini terkait dengan banyaknya sayuran bayam di daerah pedesaan Sidoarjo. Tanaman tersebut sangat mudah dijumpai di sekitar rumah penduduk, baik yang ditanam maupun yang tumbuh liar.', 88000, '234 x 400 cm', 28, 'batik sidoarjo motif kembang bayem.jpg'),
+(6, 'Mahkota', 'Batik Sekardangan dikenal masyarakat sebagai batik halus dan mahal. MotifMahkota adalah salah satu motif khas batik Sekardangan yang sudah dipatenkan oleh pemerintah daerah.Rumusan masalah penelitian ini meliputi bagaimana perwujudan motif Mahkota pada batiktulis Sekardangan Sidoarjo, dan bagaimana makna filosofi pada motif Mahkota di batik tulisSekardangan Sidoarjo?.', 92000, '171 x 240 cm', 19, 'Batik Sidoarjo Motif Mahkota.jpg'),
+(8, 'Rawan Kenceng', 'Motif ini diberi nama Rawan Kenceng karena memiliki latar berupa garis yang berkelok-kelok. Garis yang berkelok-kelok ini disebut rawan, yang berasal dari kata “rawa” yang mendapat imbuhan “an”. Yang menjadi motif utama adalah burung dan bunga sedangkan motif pelengkapnya adalah kupu-kupu dan surya majapahit.', 123000, '140 x 50 cm', 28, 'Batik Sidoarjo Motif Rawan kenceng.jpg'),
+(9, 'Sawunggaling', 'Motif ini dibuat oleh Ngabehi Atmo Supomo, seorang penatah wayang yang diberikan kepada salah satu pelopot motif batik di Indonesia bernama Hardjonegoro atau yang dikenal luas dengan Go Tik.', 310000, '130 x 350 cm', 11, 'batik sidoarjo motif sawunggaling.jpg'),
+(10, 'Tambal Segitiga', 'Motif hias tambal segitiga sudah ada sejak masa prasejarah hingga sekarang. Dimana pada masa pra-sejarah tersebut, filosofi motif batik tumpal ini memiliki fungsi magis sebagai penggambaran dari yang hal bersifat keduniaan menuju kepada transenden atau ketuhanan.', 140000, '190 x 110 cm', 25, 'batik tambal segitiga.jpg'),
+(11, 'Uwer', 'merupakan batik yang menggunakan motif yang indah dan juga artistik tanpa memiliki makna dan juga harapan tertentu pada garis motif nya. Pemakaian motif batik yang memperlihatkan keindahan alam masyarakat daerah.', 290000, '220 x 250 cm', 15, 'Batik Sidoarjo Motif Uwer.jpg'),
+(12, 'Sekar Jagad', 'Batik Sekar Jagad adalah salah satu motif batik khas Indonesia. Motif ini mengandung makna kecantikan dan keindahan sehingga orang lain yang melihat akan terpesona. Ada pula yang beranggapan bahwa motif Sekar Jagad sebenarnya berasal dari kata \"kar jagad\" yang diambil dari bahasa Jawa (Kar=peta; Jagad=dunia), sehingga motif ini juga melambangkan keragaman di seluruh dunia.', 150000, '210 x 90 cm', 7, 'Batik Sidoarjo Motif Sekar Jagad.jpg'),
+(13, 'Sekardangan', 'Kabupaten Sidoarjo telah menjadi daerah sentra batik Sebut saja Batik Sekardangan Jetis Tulangan Kedungcangkring dan Cina Peranakan dimana masing masing batik yang dihasilkan memiliki ciri khas dan karakteristik tersendiri.', 200000, '150 x 150 cm', 16, 'Batik Sidoarjo motif Sekardangan.jpg'),
+(14, 'Rawan Wungu', 'motif rawan yang berarti rawa. Jika rawa digambarkan lurus disebut Rawan Kenceng, namun jika rawa digambarkan berkelok-kelok maka disebut Rawan Inggek/Enggok. Motif-motif batik Jetis Sidoarjo pada 1990an mengalami kemajuan pesat, pengrajin dalam penciptaan batik motif batik lebih ditujukan kepada keindahan bentuk baku yang diarahkan pada pemenuhan selera pemakai (konsumen).', 150000, '310 x 210 cm', 23, 'Batik Tulis Sidoarjo Rawan Wungu.jpg');
 
 -- --------------------------------------------------------
 
@@ -97,8 +105,8 @@ CREATE TABLE `daftar_order` (
 
 INSERT INTO `daftar_order` (`id_transaksi`, `id_order`, `id_user`, `nama`, `tanggal`, `alamat`, `notelp`, `total`, `kurir`, `status`, `bukti`, `resi`) VALUES
 (1, 1623283968, 4, 'rifan', '10-06-2021', 'Perumahan Sejahtera', '087755565590', 2170000, 'JNT', 'Menunggu Pembayaran', NULL, NULL),
-(4, 1623325349, 4, 'rifan', '10-06-2021', 'Jl. P. Diponegoro, Lemah Putro, Sidoarjo, Jawa Timur 61213', '087755565590', 1968000, 'Ambil ditempat', 'Pesanan Selesai', NULL, NULL),
-(5, 1623330875, 4, 'rifan', '10-06-2021', 'Perumahan Sejahtera', '087755565590', 11195500, 'SiCepat', 'Pesanan Selesai', NULL, NULL);
+(4, 1623325349, 4, 'rifan', '10-06-2021', 'Jl. P. Diponegoro, Lemah Putro, Sidoarjo, Jawa Timur 61213', '087755565590', 1968000, 'Ambil ditempat', 'Menunggu Pembayaran', NULL, NULL),
+(5, 1623330875, 4, 'rifan', '10-06-2021', 'Perumahan Sejahtera', '087755565590', 11195500, 'SiCepat', 'Menunggu Pembayaran', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -217,30 +225,6 @@ INSERT INTO `rating` (`id_rating`, `id_order`, `id_user`, `id_batik`, `rating`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi`
---
-
-CREATE TABLE `transaksi` (
-  `id_transaksi` int(11) NOT NULL,
-  `id_order` varchar(100) NOT NULL,
-  `tanggal` date NOT NULL,
-  `nama_pembeli` varchar(100) NOT NULL,
-  `alamat` varchar(100) NOT NULL,
-  `total_harga` int(11) NOT NULL,
-  `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `transaksi`
---
-
-INSERT INTO `transaksi` (`id_transaksi`, `id_order`, `tanggal`, `nama_pembeli`, `alamat`, `total_harga`, `status`) VALUES
-(1, '18081010065', '2018-08-10', 'haluboy', 'haluland', 5000, 'Proses Pengiriman'),
-(2, '18081010064', '2018-08-10', 'diki', 'dikiland', 2000, 'Pesanan Dibatalkan');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user`
 --
 
@@ -250,7 +234,7 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `telepon` varchar(25) DEFAULT NULL,
-  `alamat` text,
+  `alamat` text DEFAULT NULL,
   `foto` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -260,7 +244,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nama_user`, `email`, `password`, `telepon`, `alamat`, `foto`) VALUES
 (1, 'Admin', 'Admin@admin.com', '$2y$10$ROxtKzqztryWEtq6aPrxo.EPXxpKC1q0q9RELtGWz2rEeMe3kOMs6', NULL, 'Jl. P. Diponegoro, Lemah Putro, Sidoarjo, Jawa Timur 61213', NULL),
-(4, 'Rifanz', 'rifan@gmail.com', '$2y$10$JsbO69v8DQ0tH5RtQ/cAOuv8a9bPTpbK.LdfaCxNQrHBREerSWs1W', '087755565590', 'Perumahan Sejahtera', '60c34901ed7af3_59319629.jpg');
+(4, 'rifan', 'rifan@gmail.com', '$2y$10$JsbO69v8DQ0tH5RtQ/cAOuv8a9bPTpbK.LdfaCxNQrHBREerSWs1W', '087755565590', 'Perumahan Sejahtera', NULL);
 
 --
 -- Indexes for dumped tables
@@ -311,12 +295,6 @@ ALTER TABLE `rating`
   ADD KEY `fk_batik_rating` (`id_batik`);
 
 --
--- Indexes for table `transaksi`
---
-ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`id_transaksi`);
-
---
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -332,7 +310,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `artikel`
 --
 ALTER TABLE `artikel`
-  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `batik`
@@ -363,12 +341,6 @@ ALTER TABLE `kurir`
 --
 ALTER TABLE `rating`
   MODIFY `id_rating` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT for table `transaksi`
---
-ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
