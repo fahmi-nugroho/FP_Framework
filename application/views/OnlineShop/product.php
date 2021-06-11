@@ -32,11 +32,21 @@
             <div class="col">
               :
               <span>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
+                <?php
+                  $dua = floor($rating / 2);
+                  $satu = $rating % 2;
+                  $nol = floor((10 - $rating) / 2);
+
+                  for ($i=0; $i < $dua; $i++) {
+                    echo '<i class="fa fa-star"></i>';
+                  }
+                  for ($i=0; $i < $satu; $i++) {
+                    echo '<i class="fa fa-star-half-o"></i>';
+                  }
+                  for ($i=0; $i < $nol; $i++) {
+                    echo '<i class="fa fa-star-o"></i>';
+                  }
+                ?>
               </span>
               (<?php echo $penjualan[0]->jumlah ?> penjualan)
             </div>

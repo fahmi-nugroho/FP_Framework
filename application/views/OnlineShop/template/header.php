@@ -77,11 +77,11 @@
 
                 <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1): ?>
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle <?= (uri_string() == "keranjang") ? "active" : "" ; ?>" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle <?= (uri_string() == "keranjang" || uri_string() == "profil") ? "active" : "" ; ?>" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       <?php echo $_SESSION['nama'] ?>
                     </a>
                     <ul class="dropdown-menu dropcustom" aria-labelledby="navbarDropdownMenuLink">
-                      <li><a class="dropdown-item" href="#">Profil</a></li>
+                      <li><a class="dropdown-item <?= (uri_string() == "profil") ? "active" : "" ; ?>" href="<?php echo base_url() ?>profil">Profil</a></li>
                       <li><a class="dropdown-item" onclick="hideDropdown()" data-bs-toggle="offcanvas" href="#keranjang" role="button" aria-controls="keranjang">Keranjang</a></li>
                       <li><a class="dropdown-item" href="<?php echo base_url() ?>OnlineShop/logout">Logout</a></li>
                     </ul>

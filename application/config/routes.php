@@ -51,8 +51,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'OnlineShop';
 
-$route['produk'] = 'OnlineShop/products';
-$route['produk/(:num)'] = 'OnlineShop/product/$1';
 $route['blog'] = 'OnlineShop/blog';
 $route['blog/(:num)'] = 'OnlineShop/blog';
 $route['blog/baca/(:num)'] = 'OnlineShop/bacablog/$1';
@@ -60,12 +58,13 @@ $route['blog/baca/(:num)'] = 'OnlineShop/bacablog/$1';
 $route['batik'] = 'OnlineShop/products';
 $route['batik/(:num)'] = 'OnlineShop/products';
 $route['batik/produk/(:num)'] = 'OnlineShop/product/$1';
-$route['blog'] = 'OnlineShop/blog';
 
 $route['about'] = 'OnlineShop/about';
 $route['login'] = 'OnlineShop/login';
 $route['register'] = 'OnlineShop/register';
+$route['profil'] = 'OnlineShop/profil';
 $route['checkout'] = 'OnlineShop/checkout';
+
 $route['adminartikel'] = 'OnlineShopAdmin/adminartikel';
 $route['adminartikel/edit/(:num)'] = 'OnlineShopAdmin/edit_artikel/$1';
 $route['adminproduk'] = 'OnlineShopAdmin/adminproduk';

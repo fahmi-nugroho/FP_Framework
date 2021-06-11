@@ -22,7 +22,7 @@
                   </div>
                   <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 30px">
                     <fieldset>
-                      <input name="confirmpassword" type="password" class="form-control mb-0" id="confirmpassword" placeholder="Confirm Password" required>
+                      <input name="confirmpassword" type="password" class="form-control mb-0" id="confirmpassword" placeholder="Konfirmasi Password" required>
                       <?= form_error('confirmpassword', '<span class="badge bg-danger fs-6 fw-normal">', '</span>') ?>
                     </fieldset>
                   </div>

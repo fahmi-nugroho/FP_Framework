@@ -29,16 +29,22 @@
     public function totalPenjualan($id)
     {
       $this -> db -> where('id_batik', $id);
+      $this -> db -> from('detail_order');
+      $this -> db -> join('daftar_order', 'daftar_order.id_order = detail_order.id_order');
+      $this -> db -> where('status', 'Pesanan Selesai');
       $this -> db -> select_sum('jumlah');
-      $query = $this->db->get('detail_order');
+      $query = $this -> db -> get();
       return $query -> result();
     }
 
     public function rating($id)
     {
       $this -> db -> where('id_batik', $id);
+      $this -> db -> from('rating');
+      $this -> db -> join('daftar_order', 'daftar_order.id_order = rating.id_order');
+      $this -> db -> where('status', 'Pesanan Selesai');
       $this -> db -> select_avg('rating');
-      $query = $this->db->get('rating');
+      $query = $this -> db -> get();
       return $query -> result();
     }
 
@@ -49,15 +55,21 @@
       return $query -> result_array();
     }
 
+    public function updateUser($id, $data)
+    {
+      $this -> db -> where('id_user', $id);
+      return $this -> db -> update('user', $data);
+    }
+
     public function pagiBatik($limit, $start)
     {
-      $query = $this->db->get('batik', $limit, $start);
+      $query = $this -> db -> get('batik', $limit, $start);
       return $query -> result();
     }
 
     public function countBatik()
     {
-      return $this->db->get('batik')->num_rows();
+      return $this -> db -> get('batik')->num_rows();
     }
 
     public function register($data)
@@ -67,7 +79,7 @@
 
     public function login($email)
     {
-      $this->db->where('email', $email);
+      $this -> db -> where('email', $email);
       $query = $this -> db -> get('user');
       return $query -> result_array();
     }
@@ -80,5 +92,13 @@
     public function detailCheckout($data)
     {
       return $this -> db -> insert('detail_order', $data);
+    }
+
+    public function pembelian($id)
+    {
+      $this -> db -> where('id_user', $id);
+      $this -> db -> order_by('id_order', 'DESC');
+      $query = $this -> db -> get('daftar_order');
+      return $query -> result();
     }
   }

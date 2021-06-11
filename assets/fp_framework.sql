@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 10, 2021 at 04:12 PM
+-- Generation Time: Jun 11, 2021 at 11:32 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -97,8 +97,8 @@ CREATE TABLE `daftar_order` (
 
 INSERT INTO `daftar_order` (`id_transaksi`, `id_order`, `id_user`, `nama`, `tanggal`, `alamat`, `notelp`, `total`, `kurir`, `status`, `bukti`, `resi`) VALUES
 (1, 1623283968, 4, 'rifan', '10-06-2021', 'Perumahan Sejahtera', '087755565590', 2170000, 'JNT', 'Menunggu Pembayaran', NULL, NULL),
-(4, 1623325349, 4, 'rifan', '10-06-2021', 'Jl. P. Diponegoro, Lemah Putro, Sidoarjo, Jawa Timur 61213', '087755565590', 1968000, 'Ambil ditempat', 'Menunggu Pembayaran', NULL, NULL),
-(5, 1623330875, 4, 'rifan', '10-06-2021', 'Perumahan Sejahtera', '087755565590', 11195500, 'SiCepat', 'Menunggu Pembayaran', NULL, NULL);
+(4, 1623325349, 4, 'rifan', '10-06-2021', 'Jl. P. Diponegoro, Lemah Putro, Sidoarjo, Jawa Timur 61213', '087755565590', 1968000, 'Ambil ditempat', 'Pesanan Selesai', NULL, NULL),
+(5, 1623330875, 4, 'rifan', '10-06-2021', 'Perumahan Sejahtera', '087755565590', 11195500, 'SiCepat', 'Pesanan Selesai', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -260,7 +260,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nama_user`, `email`, `password`, `telepon`, `alamat`, `foto`) VALUES
 (1, 'Admin', 'Admin@admin.com', '$2y$10$ROxtKzqztryWEtq6aPrxo.EPXxpKC1q0q9RELtGWz2rEeMe3kOMs6', NULL, 'Jl. P. Diponegoro, Lemah Putro, Sidoarjo, Jawa Timur 61213', NULL),
-(4, 'rifan', 'rifan@gmail.com', '$2y$10$JsbO69v8DQ0tH5RtQ/cAOuv8a9bPTpbK.LdfaCxNQrHBREerSWs1W', '087755565590', 'Perumahan Sejahtera', NULL);
+(4, 'Rifanz', 'rifan@gmail.com', '$2y$10$JsbO69v8DQ0tH5RtQ/cAOuv8a9bPTpbK.LdfaCxNQrHBREerSWs1W', '087755565590', 'Perumahan Sejahtera', '60c34901ed7af3_59319629.jpg');
 
 --
 -- Indexes for dumped tables
