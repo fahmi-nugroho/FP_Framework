@@ -80,8 +80,8 @@
                   </td>
                   <?php endif; ?>
                 </tr>
+                <?php endforeach; ?>
               </tbody>
-              <?php endforeach; ?>
             </table>
           </div>
           <?php else : ?>
@@ -91,6 +91,9 @@
           <?php  
             endif;
             ?> 
+          <div>
+            <a class="btn btn-success mb-2" href="<?= base_url('OnlineShopAdmin/export/transaksi') ?>" role="button">Export Data</a>
+          </div>
           <!-- <div class="col-md-12">
             <ul class="pages">
                 <li class="active"><a href="#">1</a></li>

@@ -386,4 +386,82 @@ class OnlineShopAdmin extends CI_Controller {
 		$this->m_transaksi->edit_transaksi($where, $data, 'daftar_order');
 		redirect('admintransaksi');
 	}
+
+	public function export($table)
+	{
+		if ($table == "produk") {
+			$data['produk'] = $this->m_produk->tampil_produk()->result();
+			$this->load->view('OnlineShop/admin/produkexport', $data);
+		} elseif ($table == "transaksi") {
+			$data['transaksi'] = $this->m_transaksi->tampil_transaksi()->result();
+			$this->load->view('OnlineShop/admin/transaksiexport', $data);
+		}
+	}
+
+	// public function pdf()
+	// {
+	// 	$this->load->library('dompdf_gen');
+
+	// 	$data['produk'] = $this->m_produk->tampil_produk()->result();
+
+	// 	$this->load->view('OnlineShop/admin/produkpdf', $data);
+
+	// 	$paper_size = "A4";
+	// 	$orientation = 'landscape';
+	// 	$html = $this->output->get_output();
+	// 	$this->dompdf->set_paper($paper_size, $orientation);
+
+	// 	$this->dompdf->load_html($html);
+	// 	$this->dompdf->render();
+	// 	$this->dompdf->stream("Daftar_Produk.pdf", array('Attachment' => 0));
+	// }
+
+	// public function excel()
+	// {
+	// 	$data['produk'] = $this->m_produk->tampil_produk()->result();
+
+	// 	require(APPPATH. 'PHPExcel-1.8/Classes/PHPExcel.php');
+	// 	require(APPPATH. 'PHPExcel-1.8/Classes/PHPExcel/Writer/Excel2007.php');
+
+	// 	$object = new PHPExcel();
+
+	// 	$object->getProperties()->setCreator("Kelompok Batik Jetis");
+	// 	$object->getProperties()->setLastModifiedBy("Kelompok Batik Jetis");
+	// 	$object->getProperties()->setTitle("Daftar Produk");
+
+	// 	$object->setActiveSheetIndex(0);
+
+	// 	$object->getActiveSheet()->setCellValue('A1', 'NO');
+	// 	$object->getActiveSheet()->setCellValue('B1', 'Nama Produk');
+	// 	$object->getActiveSheet()->setCellValue('C1', 'Harga Produk');
+	// 	$object->getActiveSheet()->setCellValue('D1', 'Ukuran Produk');
+	// 	$object->getActiveSheet()->setCellValue('E1', 'Stok Produk');
+	// 	$object->getActiveSheet()->setCellValue('F1', 'Deskripsi Produk');
+
+	// 	$baris = 2;
+	// 	$no = 1;
+
+	// 	foreach ($data['produk'] as $prd){
+	// 		$object->getActiveSheet()->setCellValue('A'.$baris, $no++);
+	// 		$object->getActiveSheet()->setCellValue('B'.$baris, $prd->nama_batik);
+	// 		$object->getActiveSheet()->setCellValue('C'.$baris, $prd->harga);
+	// 		$object->getActiveSheet()->setCellValue('D'.$baris, $prd->ukuran);
+	// 		$object->getActiveSheet()->setCellValue('E'.$baris, $prd->stok);
+	// 		$object->getActiveSheet()->setCellValue('F'.$baris, $prd->deskripsi);
+
+	// 		$baris++;
+	// 	}
+
+	// 	$filename = "Data_Produk".'.xlsx';
+	// 	$object->getProperties()->setTitle("Data Produk");
+
+	// 	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+	// 	header('Content-Disposition: attachment;filename="'.$filename.'"');
+	// 	header('Chace-Control: max-age=0');
+
+	// 	$writer = PHPExcel_IOFactory::createwriter($object, 'Excel2007');
+	// 	$writer->save('php://output');
+
+	// 	exit;
+	// }
 }

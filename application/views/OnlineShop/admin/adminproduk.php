@@ -157,6 +157,9 @@
           <?php  
             endif;
           ?> 
+          <div>
+            <a class="btn btn-success mb-2" href="<?= base_url('OnlineShopAdmin/export/produk') ?>" role="button">Export Data</a>
+          </div>
           <!-- <div class="col-md-12">
             <ul class="pages">
                 <li class="active"><a href="#">1</a></li>
