@@ -41,8 +41,8 @@
     {
       $this -> db -> where('id_batik', $id);
       $this -> db -> from('rating');
-      $this -> db -> join('daftar_order', 'daftar_order.id_order = rating.id_order');
-      $this -> db -> where('status', 'Pesanan Selesai');
+      // $this -> db -> join('daftar_order', 'daftar_order.id_order = rating.id_order');
+      // $this -> db -> where('status', 'Pesanan Selesai');
       $this -> db -> select_avg('rating');
       $query = $this -> db -> get();
       return $query -> result();
@@ -100,5 +100,45 @@
       $this -> db -> order_by('id_order', 'DESC');
       $query = $this -> db -> get('daftar_order');
       return $query -> result();
+    }
+
+    public function view_detail($id)
+    {
+      $this -> db -> where('id_order', $id);
+      $query = $this -> db -> get('detail_order');
+      return $query -> result();
+    }
+    public function delete_detail($id)
+    {
+      $this -> db -> where('id_order', $id);
+      return $this -> db -> delete('detail_order');
+    }
+
+    public function updatePembelian($id, $data)
+    {
+      $this -> db -> where('id_order', $id);
+      return $this -> db -> update('daftar_order', $data);
+    }
+
+    public function detailPembelian($id)
+    {
+      $this -> db -> where('id_order', $id);
+      $this -> db -> from('detail_order');
+      $this -> db -> join('batik', 'batik.id_batik = detail_order.id_batik');
+      $query = $this -> db -> get();
+      return $query -> result();
+    }
+
+    public function inputRating($data)
+    {
+      return $this -> db -> insert('rating', $data);
+    }
+
+    public function cekRating($batik, $order)
+    {
+      $this -> db -> where('id_order', $order);
+      $this -> db -> where('id_batik', $batik);
+      $query = $this -> db -> get('rating');
+      return $query -> num_rows();
     }
   }

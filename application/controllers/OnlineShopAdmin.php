@@ -49,7 +49,7 @@ class OnlineShopAdmin extends CI_Controller {
 					'tanggal_artikel'		=> $tanggal,
 					'gambar_artikel'		=> $gambar,
 				);
-		
+
 				$this->m_artikel->input_data($data, 'artikel');
 				redirect('adminartikel');
 			}
@@ -262,7 +262,7 @@ class OnlineShopAdmin extends CI_Controller {
 				);
 				$this->m_artikel->edit_artikel($where, $data, 'batik');
 				redirect('adminproduk');
-			} 
+			}
 		}
 
 		$where = array('id_batik' => $id);
@@ -331,7 +331,7 @@ class OnlineShopAdmin extends CI_Controller {
 				);
 				$this->m_kurir->edit_kurir($where, $data, 'kurir');
 				redirect('adminpengiriman');
-			} 
+			}
 		}
 
 		$where = array('id_kurir' => $id);
@@ -344,9 +344,40 @@ class OnlineShopAdmin extends CI_Controller {
 	public function admintransaksi()
 	{
 		$data['transaksi'] = $this->m_transaksi->tampil_transaksi()->result();
-        $this->load->view('OnlineShop/admin/headeradmin');
+
+		foreach ($data['transaksi'] as $row) {
+			$detail = $this -> m_transaksi -> detailPembelian($row->id_order);
+			$data['detail'][$row->id_order] = $detail;
+		}
+		// echo "<pre>";
+		// print_r($data);
+		// echo "</pre>";
+		// die();
+		$submit = $this -> input -> post('submit');
+
+		if ($submit == 'kirimResi') {
+			$this -> form_validation -> set_rules('resi', 'Nomor Resi', 'required|trim|strip_tags|numeric');
+
+			$this -> form_validation -> set_message('required', '{field} harus di isi.');
+			$this -> form_validation -> set_message('numeric', '{field} harus terdiri dari angka saja.');
+
+			if ($this -> form_validation -> run() === true) {
+				$resi	= $this -> input -> post('resi');
+				$id = $this -> input -> post('idOrder');
+
+				$upd = array(
+					'status' => "Proses Pengiriman",
+					'resi' => $resi
+				);
+				$this -> m_transaksi -> updatePembelian($id, $upd);
+
+				echo "<script>alert('Data berhasil disimpan'); window.location = '".base_url()."admintransaksi'</script>";
+			}
+		}
+
+    $this->load->view('OnlineShop/admin/headeradmin');
 		$this->load->view('OnlineShop/admin/admintransaksi', $data);
-        $this->load->view('OnlineShop/template/footer');
+    $this->load->view('OnlineShop/template/footer');
 	}
 
 	public function update_transaksi()

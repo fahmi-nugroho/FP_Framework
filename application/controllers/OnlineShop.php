@@ -471,6 +471,23 @@ class OnlineShop extends CI_Controller {
 
 		$data['user'] = $this -> batik -> view_user($_SESSION['id'])[0];
 		$data['pembelian'] = $this -> batik -> pembelian($_SESSION['id']);
+
+		foreach ($data['pembelian'] as $row) {
+			$detail = $this -> batik -> detailPembelian($row->id_order);
+			$data['detail'][$row->id_order] = $detail;
+
+			foreach ($data['detail'][$row->id_order] as $row) {
+				if ($this -> batik -> cekRating($row->id_batik, $row->id_order) == 0) {
+					$data['rating'][$row->id_order][$row->id_batik] = 0;
+				}
+			}
+		}
+
+		// echo "<pre>";
+		// print_r($row);
+		// print_r($data);
+		// echo "</pre>";
+		// die();
 		$data['error'] = '';
 		$submit = $this -> input -> post('submit');
 
@@ -572,9 +589,81 @@ class OnlineShop extends CI_Controller {
 					);
 
 					$this -> batik -> updateUser($data['user']['id_user'], $upd);
+					session_destroy();
 					echo "<script>alert('Silahkan login ulang'); window.location = '".base_url()."login'</script>";
 				}
 			}
+		} else if ($submit == 'uploadBayar') {
+			if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
+				$ext = explode("." , $_FILES['gambar']['name']);
+				$ext = strtolower(end($ext));
+
+				$config['upload_path'] = './assets/images/bukti_pembayaran';
+				$config['allowed_types'] = 'jpeg|jpg|png';
+				$config['max_size'] = 2048;
+				$config['file_name'] = uniqid("" , true) . "." . $ext;
+
+				$this -> upload -> initialize($config);
+
+				if ($this -> upload -> do_upload('gambar')) {
+						$foto = $this -> upload -> data('file_name');
+						$id = $this -> input -> post('idOrder');
+						$upd = array(
+							'status' => "Menunggu Pengiriman",
+							'bukti' => $foto
+						);
+						$this -> batik -> updatePembelian($id, $upd);
+
+						echo "<script>alert('Data berhasil disimpan'); window.location = '".base_url()."profil'</script>";
+				} else {
+						$data['error'] = array('error' => $this -> upload -> display_errors('<p class="text-danger mt-1">', '</p>'));
+				}
+			}
+		} else if ($submit == 'selesai') {
+			$id = $this -> input -> post('idOrder');
+			$upd = array(
+				'status' => "Pesanan Selesai"
+			);
+			$this -> batik -> updatePembelian($id, $upd);
+
+			echo "<script>alert('Silahkan memberikan ulasan'); window.location = '".base_url()."profil'</script>";
+		} else if ($submit == 'submitRating') {
+			$batik = $this -> input -> post('batik');
+			$order = $this -> input -> post('order');
+			$rating = $this -> input -> post('rating');
+
+			$ins = array(
+				'id_order' => $order,
+				'id_user' => $data['user']['id_user'],
+				'id_batik' => $batik,
+				'rating' => $rating
+			);
+
+			$this -> batik -> inputRating($ins);
+
+			echo "<script>alert('Terima kasih ^^'); window.location = '".base_url()."profil'</script>";
+		} else if ($submit == 'batal') {
+			$order = $this -> input -> post('idOrder');
+			$detail = $this -> batik -> view_detail($order);
+
+			foreach ($detail as $row) {
+				$batik = $this -> batik -> view_batik($row->id_batik)[0];
+				$newStok = $batik->stok + $row->jumlah;
+
+				$data = array(
+					'stok' => $newStok,
+				);
+
+				$this -> batik -> updateBatik($batik->id_batik, $data);
+			}
+
+			$upd = array(
+				'status' => "Pesanan Dibatalkan"
+			);
+
+			$this -> batik -> updatePembelian($order, $upd);
+
+			echo "<script>alert('Pesanan Berhasil Dibatalkan'); window.location = '".base_url()."profil'</script>";
 		}
 
 		$this -> load -> view('OnlineShop/template/header');

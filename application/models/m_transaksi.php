@@ -17,4 +17,19 @@
       $this->db->where($where);
       $this->db->update($table, $data);
     }
+
+    public function detailPembelian($id)
+    {
+      $this -> db -> where('id_order', $id);
+      $this -> db -> from('detail_order');
+      $this -> db -> join('batik', 'batik.id_batik = detail_order.id_batik');
+      $query = $this -> db -> get();
+      return $query -> result();
+    }
+
+    public function updatePembelian($id, $data)
+    {
+      $this -> db -> where('id_order', $id);
+      return $this -> db -> update('daftar_order', $data);
+    }
   }
