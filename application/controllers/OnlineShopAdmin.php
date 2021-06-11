@@ -12,6 +12,10 @@ class OnlineShopAdmin extends CI_Controller {
 
 	public function adminartikel()
 	{
+		if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != 2){
+			show_404();
+		}
+
 		$submit = $this->input->post('input');
 
 		if ($submit == 'Tambah') {
@@ -51,7 +55,7 @@ class OnlineShopAdmin extends CI_Controller {
 				);
 
 				$this->m_artikel->input_data($data, 'artikel');
-				redirect('adminartikel');
+				echo "<script>alert('Artikel berhasil ditambah'); window.location = '".base_url()."adminartikel'</script>";
 			}
 		}
 
@@ -68,10 +72,11 @@ class OnlineShopAdmin extends CI_Controller {
 		$where = array ('id_artikel' => $id);
 		$this->m_artikel->hapus_data($where, 'artikel');
 		unlink('./assets/images/uploaded_image/'.$gambar);
-		redirect('adminartikel');
+		echo "<script>alert('Artikel berhasil dihapus'); window.location = '".base_url()."adminartikel'</script>";
 	}
 
-	public function edit_artikel($id){
+	public function edit_artikel($id)
+	{
 		$submit = $this->input->post('input');
 		if ($submit == 'Ubah') {
 			if ($this->form_validation->run() == true) {
@@ -118,7 +123,7 @@ class OnlineShopAdmin extends CI_Controller {
 					'id_artikel'			=> $id,
 				);
 				$this->m_artikel->edit_artikel($where, $data, 'artikel');
-				redirect('adminartikel');
+				echo "<script>alert('Artikel berhasil diubah'); window.location = '".base_url()."adminartikel'</script>";
 			}
 		}
 
@@ -126,11 +131,15 @@ class OnlineShopAdmin extends CI_Controller {
 		$data['artikel'] = $this->m_artikel->edit_data($where, 'artikel')->result();
 		$this->load->view('OnlineShop/admin/headeradmin');
 		$this->load->view('OnlineShop/admin/editartikel', $data);
-        $this->load->view('OnlineShop/template/footer');
+    $this->load->view('OnlineShop/template/footer');
 	}
 
 	public function adminproduk()
 	{
+		if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != 2){
+			show_404();
+		}
+
 		$submit = $this->input->post('input');
 		if ($submit == 'Tambah') {
 			$this->form_validation->set_rules('nama', 'Nama', 'trim');
@@ -181,7 +190,7 @@ class OnlineShopAdmin extends CI_Controller {
 				);
 
 				$this->m_produk->input_data($data, 'batik');
-				redirect('adminproduk');
+				echo "<script>alert('Produk berhasil ditambah'); window.location = '".base_url()."adminproduk'</script>";
 			}
 		}
 
@@ -199,10 +208,11 @@ class OnlineShopAdmin extends CI_Controller {
 		$where		= array ('id_batik' => $id);
 		$this->m_produk->hapus_data($where, 'batik');
 		unlink('./assets/images/uploaded_image/'.$gambar);
-		redirect('adminproduk');
+		echo "<script>alert('Produk berhasil dihapus'); window.location = '".base_url()."adminproduk'</script>";
 	}
 
-	public function edit_produk($id){
+	public function edit_produk($id)
+	{
 		$submit = $this->input->post('input');
 		if ($submit == "Ubah") {
 			$this->form_validation->set_rules('nama', 'Nama', 'trim');
@@ -261,7 +271,7 @@ class OnlineShopAdmin extends CI_Controller {
 					'id_batik'			=> $id,
 				);
 				$this->m_artikel->edit_artikel($where, $data, 'batik');
-				redirect('adminproduk');
+				echo "<script>alert('Produk berhasil diubah'); window.location = '".base_url()."adminproduk'</script>";
 			}
 		}
 
@@ -274,6 +284,10 @@ class OnlineShopAdmin extends CI_Controller {
 
 	public function adminpengiriman()
 	{
+		if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != 2){
+			show_404();
+		}
+
 		$submit = $this->input->post('input');
 		if ($submit == "Tambah") {
 			$this->form_validation->set_rules('nama', 'Nama', 'trim');
@@ -291,7 +305,7 @@ class OnlineShopAdmin extends CI_Controller {
 				);
 
 				$this->m_kurir->input_data($data, 'kurir');
-				redirect('adminpengiriman');
+				echo "<script>alert('Kurir berhasil ditambah'); window.location = '".base_url()."adminpengiriman'</script>";
 			}
 		}
 
@@ -305,10 +319,11 @@ class OnlineShopAdmin extends CI_Controller {
 	{
 		$where		= array ('id_kurir' => $id);
 		$this->m_kurir->hapus_data($where, 'kurir');
-		redirect('adminproduk');
+		echo "<script>alert('Kurir berhasil dihapus'); window.location = '".base_url()."adminpengiriman'</script>";
 	}
 
-	public function edit_kurir($id){
+	public function edit_kurir($id)
+	{
 		$submit = $this->input->post('input');
 		if ($submit == "Ubah") {
 			$this->form_validation->set_rules('nama', 'Nama', 'trim');
@@ -330,7 +345,7 @@ class OnlineShopAdmin extends CI_Controller {
 					'id_kurir'			=> $id,
 				);
 				$this->m_kurir->edit_kurir($where, $data, 'kurir');
-				redirect('adminpengiriman');
+				echo "<script>alert('Kurir berhasil diubah'); window.location = '".base_url()."adminpengiriman'</script>";
 			}
 		}
 
@@ -343,6 +358,10 @@ class OnlineShopAdmin extends CI_Controller {
 
 	public function admintransaksi()
 	{
+		if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != 2){
+			show_404();
+		}
+
 		$data['transaksi'] = $this->m_transaksi->tampil_transaksi()->result();
 
 		foreach ($data['transaksi'] as $row) {
@@ -380,43 +399,43 @@ class OnlineShopAdmin extends CI_Controller {
     $this->load->view('OnlineShop/template/footer');
 	}
 
-	public function update_transaksi()
-	{
-		$id			= $this->uri->segment(3);
-		$status		= $this->uri->segment(4);
-
-		$where		= array ('id_transaksi' => $id);
-		$dataselect['produk'] = $this->m_transaksi->get_data($where, 'daftar_order')->result();
-		$id_order = $dataselect['produk'][0]->id_order;
-		$id_user = $dataselect['produk'][0]->id_user;
-		$nama_pembeli = $dataselect['produk'][0]->nama;
-		$tanggal = $dataselect['produk'][0]->tanggal;
-		$alamat = $dataselect['produk'][0]->alamat;
-		$notelp = $dataselect['produk'][0]->notelp;
-		$total_harga = $dataselect['produk'][0]->total;
-		$kurir = $dataselect['produk'][0]->kurir;
-		if ($status == 'kirim'){
-			$status = "Proses Pengiriman";
-		}
-		elseif ($status == 'batal'){
-			$status = "Pesanan Dibatalkan";
-		}
-
-		$data = array(
-			'id_order'				=> $id_order,
-			'id_user'				=> $id_user,
-			'nama'					=> $nama_pembeli,
-			'tanggal'				=> $tanggal,
-			'alamat'				=> $alamat,
-			'notelp'				=> $notelp,
-			'total'					=> $total_harga,
-			'kurir'					=> $kurir,
-			'status'				=> $status,
-		);
-
-		$this->m_transaksi->edit_transaksi($where, $data, 'daftar_order');
-		redirect('admintransaksi');
-	}
+	// public function update_transaksi()
+	// {
+	// 	$id			= $this->uri->segment(3);
+	// 	$status		= $this->uri->segment(4);
+	//
+	// 	$where		= array ('id_transaksi' => $id);
+	// 	$dataselect['produk'] = $this->m_transaksi->get_data($where, 'daftar_order')->result();
+	// 	$id_order = $dataselect['produk'][0]->id_order;
+	// 	$id_user = $dataselect['produk'][0]->id_user;
+	// 	$nama_pembeli = $dataselect['produk'][0]->nama;
+	// 	$tanggal = $dataselect['produk'][0]->tanggal;
+	// 	$alamat = $dataselect['produk'][0]->alamat;
+	// 	$notelp = $dataselect['produk'][0]->notelp;
+	// 	$total_harga = $dataselect['produk'][0]->total;
+	// 	$kurir = $dataselect['produk'][0]->kurir;
+	// 	if ($status == 'kirim'){
+	// 		$status = "Proses Pengiriman";
+	// 	}
+	// 	elseif ($status == 'batal'){
+	// 		$status = "Pesanan Dibatalkan";
+	// 	}
+	//
+	// 	$data = array(
+	// 		'id_order'				=> $id_order,
+	// 		'id_user'				=> $id_user,
+	// 		'nama'					=> $nama_pembeli,
+	// 		'tanggal'				=> $tanggal,
+	// 		'alamat'				=> $alamat,
+	// 		'notelp'				=> $notelp,
+	// 		'total'					=> $total_harga,
+	// 		'kurir'					=> $kurir,
+	// 		'status'				=> $status,
+	// 	);
+	//
+	// 	$this->m_transaksi->edit_transaksi($where, $data, 'daftar_order');
+	// 	redirect('admintransaksi');
+	// }
 
 	public function export($table)
 	{

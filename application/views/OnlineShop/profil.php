@@ -349,6 +349,7 @@
                         <div class="modal-body">
                           <div class="input-group mt-4 mb-3">
                             <input type="hidden" name="idOrder" value="<?= $beli->id_order ?>">
+                            <input type="hidden" name="kurir" value="<?= $beli->kurir ?>">
                             <input type="file" name="gambar" class="form-control mx-auto" aria-describedby="uploadBayar-<?= $beli->id_order ?>" aria-label="Upload" accept=".jpeg, .jpg, .png" required>
                             <button class="btn btn-primary" type="submit" id="uploadBayar-<?= $beli->id_order ?>" name="submit" value="uploadBayar">Upload</button>
                           </div>

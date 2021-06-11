@@ -483,11 +483,6 @@ class OnlineShop extends CI_Controller {
 			}
 		}
 
-		// echo "<pre>";
-		// print_r($row);
-		// print_r($data);
-		// echo "</pre>";
-		// die();
 		$data['error'] = '';
 		$submit = $this -> input -> post('submit');
 
@@ -608,10 +603,18 @@ class OnlineShop extends CI_Controller {
 				if ($this -> upload -> do_upload('gambar')) {
 						$foto = $this -> upload -> data('file_name');
 						$id = $this -> input -> post('idOrder');
-						$upd = array(
-							'status' => "Menunggu Pengiriman",
-							'bukti' => $foto
-						);
+						$kurir = $this -> input -> post('kurir');
+						if ($kurir == "Ambil ditempat") {
+							$upd = array(
+								'status' => "Silahkan Ambil Pesanan",
+								'bukti' => $foto
+							);
+						} else {
+							$upd = array(
+								'status' => "Menunggu Pengiriman",
+								'bukti' => $foto
+							);
+						}
 						$this -> batik -> updatePembelian($id, $upd);
 
 						echo "<script>alert('Data berhasil disimpan'); window.location = '".base_url()."profil'</script>";
