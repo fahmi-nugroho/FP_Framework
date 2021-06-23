@@ -36,6 +36,11 @@
   </head>
 
   <body>
+    <?php
+  		// if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 2){
+  		// 	echo "<script>window.history.back()</script>";
+  		// }
+    ?>
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
       <div class="jumper">

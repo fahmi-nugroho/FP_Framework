@@ -115,7 +115,7 @@
                     }
                   ?>
                 </ul>
-                <span>Terjual <?php echo $penjualan[$row->id_batik]->jumlah; ?></span>
+                <span>Terjual <?php echo (!empty($penjualan[$row->id_batik]->jumlah) ? $penjualan[$row->id_batik]->jumlah : "0"); ?></span>
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@
               <h4>Kenapa Dinamakan Kampung Batik Jetis?</h4>
               <p>
                 Dinamakan kampoeng batik tulis, karena sebagian besar warga Kelurahan Jetis Kecamatan Sidoarjo ini adalah pembatik. Mereka juga menjual langsung karya karyanya di rumah masing masing. Karena itu, kawasan ini dikukuhkan sebagai Kampoeng Batik Tulis Jetis, Sidoarjo.
-              
+
                 Batik pertama kali hadir di Kampung Jetis pada tahun 1675. Pelopor seni batik ini merupakan seorang pendakwah agama islam bernama Mbah Mulyadi yang datang dari suatu kerajaan yang ...
               </p>
               <a href="<?php echo base_url() ?>about" class="filled-button">Lanjut Baca</a>

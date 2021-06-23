@@ -451,7 +451,7 @@ class OnlineShop extends CI_Controller {
 		$this -> load -> view('OnlineShop/template/footer');
 	}
 
-	public function bacablog()
+	public function bacablog($id)
 	{
 		$where = array('id_artikel' => $id);
 
